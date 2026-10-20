@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Управленческие поединки — редизайн · Shuka</title>
+<meta name="description" content="Концепт редизайна сайта Федерации управленческой борьбы.">
+<meta property="og:title" content="Управленческие поединки — редизайн · Shuka">
+<meta property="og:description" content="Концепт редизайна сайта Федерации управленческой борьбы.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' fill='none' stroke='%233D5AFE' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Commissioner:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>
+/* Layout: ринг двух сторон — красный и синий угол, таймер поединка в центре, ниже — лента разделов как табло турнира */
+:root{
+  color-scheme:light;
+  --paper:#F4F5F7; --surface:#FFFFFF; --ink:#111318; --muted:#565C68; --line:#D9DCE2;
+  --red:#D92B3A; --red-soft:#FBE3E5; --blue:#2348D0; --blue-soft:#E2E8FB;
+  --f-display:"Oswald","Arial Narrow",sans-serif;
+  --f-body:"Commissioner","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --ease-out:cubic-bezier(0.23,1,0.32,1);
+  --ease-io:cubic-bezier(0.77,0,0.175,1);
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+a{color:var(--blue)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;text-transform:uppercase;letter-spacing:0.01em}
+.press{transition:transform 160ms var(--ease-out),background-color 200ms ease,color 200ms ease,border-color 200ms ease}
+.press:active{transform:scale(0.97)}
+
+.concept{background:var(--ink);color:#E9EBEF;font-size:13px}
+.concept .wrap{display:flex;flex-wrap:wrap;gap:4px 16px;justify-content:space-between;padding-block:8px}
+.concept a{color:#9FB2FF}
+
+/* Шапка */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px;flex-wrap:nowrap;padding-block:8px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--ink);text-decoration:none}
+.mark{width:36px;height:36px;position:relative;flex:none}
+.mark i{position:absolute;top:0;bottom:0;width:50%}
+.mark i:first-child{left:0;background:var(--red);clip-path:polygon(0 0,100% 0,60% 100%,0 100%)}
+.mark i:last-child{right:0;background:var(--blue);clip-path:polygon(40% 0,100% 0,100% 100%,0 100%)}
+.brand b{font-family:var(--f-display);font-size:18px;letter-spacing:0.02em;text-transform:uppercase;line-height:1.1}
+.brand small{display:block;font-family:var(--f-body);font-size:12px;color:var(--muted);text-transform:none;letter-spacing:0;font-weight:500}
+.menu{display:flex;flex-wrap:nowrap;gap:20px;font-weight:500;font-size:15px;white-space:nowrap}
+.menu a{color:var(--ink);text-decoration:none;min-height:44px;display:inline-flex;align-items:center;position:relative}
+.menu a::after{content:"";position:absolute;left:0;right:0;bottom:8px;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform 220ms var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.menu a:hover::after{transform:scaleX(1)}}
+.top-actions{display:flex;gap:8px;align-items:center}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;font-weight:600;font-size:15px;text-decoration:none;border-radius:4px;border:2px solid transparent;cursor:pointer;font-family:inherit}
+.btn-ink{background:var(--ink);color:#FFFFFF}
+.btn-red{background:var(--red);color:#FFFFFF}
+.btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent}
+@media (hover:hover) and (pointer:fine){.btn-ink:hover{background:var(--blue)}.btn-red:hover{background:#B81F2D}.btn-ghost:hover{background:var(--ink);color:#FFFFFF}}
+
+/* Hero: ринг */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.ring{display:grid;grid-template-columns:1fr auto 1fr;min-height:560px;position:relative}
+.side{position:relative;padding:72px clamp(16px,4vw,56px) 56px;display:flex;flex-direction:column;justify-content:space-between;gap:32px;overflow:hidden;transition:background-color 500ms ease}
+.side.red{background:var(--red-soft)}
+.side.blue{background:var(--blue-soft);text-align:right;align-items:flex-end}
+.side.is-active.red{background:#F8CDD1}
+.side.is-active.blue{background:#C9D5F7}
+.ghost{position:absolute;font-family:var(--f-display);font-weight:700;font-size:clamp(10rem,22vw,20rem);line-height:0.8;opacity:0.07;pointer-events:none;white-space:nowrap;will-change:transform}
+.side.red .ghost{left:-2%;bottom:-6%;color:var(--red)}
+.side.blue .ghost{right:-2%;top:-4%;color:var(--blue)}
+.tag{font-family:var(--f-mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase}
+.side.red .tag{color:#A11624}.side.blue .tag{color:#1A389F}
+.word{font-family:var(--f-display);font-weight:700;font-size:clamp(2.2rem,5.4vw,5.8rem);line-height:0.9;text-transform:uppercase;display:block;white-space:nowrap}
+.side.red .word{color:var(--red);animation:from-left 900ms var(--ease-out) 150ms both}
+.side.blue .word{color:var(--blue);animation:from-right 900ms var(--ease-out) 150ms both}
+@keyframes from-left{from{transform:translateX(-60px);opacity:0;filter:blur(6px)}to{transform:none;opacity:1;filter:none}}
+@keyframes from-right{from{transform:translateX(60px);opacity:0;filter:blur(6px)}to{transform:none;opacity:1;filter:none}}
+.clock{font-family:var(--f-mono);font-weight:700;font-size:clamp(2rem,4vw,3.4rem);font-variant-numeric:tabular-nums;letter-spacing:-0.02em;line-height:1}
+.side.red .clock{color:#8E1420}.side.blue .clock{color:#17318C}
+.clock-wrap{display:flex;flex-direction:column;gap:6px}
+.clock-state{font-size:13px;color:var(--muted);font-weight:500}
+
+.center{width:min(420px,40vw);background:var(--paper);display:flex;flex-direction:column;justify-content:center;gap:28px;padding:56px 32px;position:relative;z-index:2;box-shadow:0 0 0 1px var(--line)}
+.center::before,.center::after{content:"";position:absolute;top:0;bottom:0;width:6px}
+.center::before{left:0;background:var(--red)}
+.center::after{right:0;background:var(--blue)}
+.center h1{font-size:clamp(1.9rem,3vw,2.6rem);line-height:1.05}
+.center p{margin:0;color:var(--muted);font-size:16px}
+.vs{display:flex;align-items:center;gap:12px;font-family:var(--f-mono);font-size:12px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase}
+.vs::before,.vs::after{content:"";flex:1;height:1px;background:var(--line)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px}
+.turn-bar{height:4px;background:var(--line);border-radius:2px;overflow:hidden;position:relative}
+.turn-bar i{position:absolute;inset:0;transform-origin:left;background:var(--red);transform:scaleX(0)}
+
+@media (max-width:860px){
+  .ring{grid-template-columns:1fr 1fr}
+  .center{grid-column:1 / -1;grid-row:2;width:auto;padding:40px 24px}
+  .side{padding:40px 16px 32px;min-height:260px}
+}
+
+/* Полоса фактов */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));border-bottom:1px solid var(--line);background:var(--surface)}
+.fact{padding:28px clamp(16px,3vw,32px);border-right:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:-1px}
+.fact:last-child{border-right:0}
+.fact b{display:block;font-family:var(--f-display);font-size:clamp(24px,3vw,34px);line-height:1;text-transform:uppercase}
+.fact span{display:block;margin-top:8px;color:var(--muted);font-size:14px}
+
+section.block{padding-block:88px;border-bottom:1px solid var(--line)}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px;margin-bottom:40px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--red);font-weight:500}
+.head h2{font-size:clamp(2rem,4.4vw,3.6rem);line-height:1;margin-top:12px}
+.head p{max-width:440px;margin:0;color:var(--muted)}
+
+/* Роли */
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:2px;background:var(--line);border:2px solid var(--line)}
+.role{background:var(--surface);padding:32px 28px;display:flex;flex-direction:column;gap:14px;transition:background-color 200ms ease}
+.role svg{color:var(--ink)}
+.role h3{font-size:26px}
+.role p{margin:0;color:var(--muted)}
+@media (hover:hover) and (pointer:fine){.role:hover{background:#FBFBFC}}
+
+/* Календарь как табло */
+.board{background:var(--ink);color:#F1F2F5;border-radius:6px;overflow:hidden}
+.board-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center;padding:20px 24px;border-bottom:1px solid #2A2E37}
+.board-head span{font-family:var(--f-mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#A3A9B6}
+.filters{display:flex;flex-wrap:wrap;gap:6px}
+.filters button{font:inherit;font-size:14px;font-weight:600;min-height:40px;padding:0 14px;border-radius:4px;border:1px solid #3A3F4A;background:transparent;color:#D5D9E0;cursor:pointer}
+.filters button[aria-pressed="true"]{background:#F1F2F5;color:var(--ink);border-color:#F1F2F5}
+.row{display:grid;grid-template-columns:150px 1fr 160px 140px;gap:16px;align-items:center;padding:18px 24px;border-bottom:1px solid #22262E;transition:background-color 160ms ease}
+.row:last-child{border-bottom:0}
+@media (hover:hover) and (pointer:fine){.row:hover{background:#1A1D24}}
+.row .when{font-family:var(--f-mono);font-size:13px;color:#A3A9B6}
+.row .name{font-family:var(--f-display);font-size:22px;text-transform:uppercase;letter-spacing:0.01em;line-height:1.15}
+.row .city{color:#C9CED7;font-size:15px}
+.chip{justify-self:end;font-family:var(--f-mono);font-size:12px;padding:4px 10px;border-radius:3px;text-transform:uppercase;letter-spacing:0.06em;white-space:nowrap}
+.chip.final{background:var(--red);color:#FFFFFF}
+.chip.cup{background:#2D3A6B;color:#DCE3FF}
+.chip.youth{background:#F1F2F5;color:var(--ink)}
+.board-scroll{overflow-x:auto}
+.board-inner{min-width:640px}
+.row.flip{animation:flip 420ms var(--ease-out) both}
+@keyframes flip{from{opacity:0;transform:perspective(600px) rotateX(-60deg)}to{opacity:1;transform:none}}
+
+/* FUB_id */
+.fubid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px;align-items:center}
+.card-id{aspect-ratio:1.586;max-width:100%;width:440px;justify-self:center;border-radius:14px;background:var(--ink);color:#FFFFFF;position:relative;overflow:hidden;padding:24px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 30px 60px rgba(17,19,24,0.25);transform:rotate(-4deg);transition:transform 500ms var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.card-id:hover{transform:rotate(0deg) translateY(-4px)}}
+.card-id::before{content:"";position:absolute;top:0;bottom:0;left:0;width:50%;background:var(--red);clip-path:polygon(0 0,100% 0,70% 100%,0 100%);opacity:0.95}
+.card-id::after{content:"";position:absolute;top:0;bottom:0;right:0;width:50%;background:var(--blue);clip-path:polygon(30% 0,100% 0,100% 100%,0 100%);opacity:0.95}
+.card-id > *{position:relative;z-index:1}
+.card-id .num{font-family:var(--f-mono);font-size:clamp(18px,3vw,24px);letter-spacing:0.1em}
+.card-id .lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.85}
+.card-id .big{font-family:var(--f-display);font-size:clamp(28px,5vw,40px);text-transform:uppercase;line-height:1}
+.checklist{list-style:none;padding:0;margin:24px 0 32px;display:flex;flex-direction:column;gap:12px}
+.checklist li{display:flex;gap:12px;align-items:flex-start}
+.checklist svg{flex:none;margin-top:3px;color:var(--red)}
+
+/* Академия */
+.academy{background:var(--blue);color:#FFFFFF;border-radius:6px;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:40px;align-items:end}
+.academy h2{font-size:clamp(2rem,4.4vw,3.4rem);line-height:1}
+.academy p{margin:16px 0 0;color:#DCE3FF;max-width:520px}
+.weeks{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:6px;margin-top:24px}
+.weeks i{height:36px;border-radius:3px;background:rgba(255,255,255,0.18);display:block;transform-origin:bottom}
+.weeks i.done{background:#FFFFFF}
+.weeks i{animation:grow 600ms var(--ease-out) both}
+@keyframes grow{from{transform:scaleY(0.2);opacity:0}to{transform:none;opacity:1}}
+.weeks-cap{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:12px;color:#DCE3FF;margin-top:8px}
+.btn-white{background:#FFFFFF;color:var(--blue)}
+
+/* Клубы */
+.clubs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px}
+.club{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:24px;display:flex;flex-direction:column;gap:10px}
+.club h3{font-size:24px}
+.club p{margin:0;color:var(--muted);font-size:15px}
+.club a{font-weight:600;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;margin-top:auto}
+
+/* Новости */
+.news{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px}
+.news article{border-top:4px solid var(--ink);padding-top:20px}
+.news h3{font-size:24px;line-height:1.15}
+.news p{margin:12px 0 0;color:var(--muted)}
+.news .when{font-family:var(--f-mono);font-size:12px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:10px;display:block}
+
+footer{background:var(--ink);color:#D5D9E0}
+footer .wrap{padding-block:56px 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px}
+footer h2{font-size:clamp(2rem,4vw,3rem);color:#FFFFFF;line-height:1}
+.contacts{display:flex;flex-direction:column;gap:10px;font-size:18px}
+.contacts span{user-select:all}
+.fine{border-top:1px solid #2A2E37}
+.fine .wrap{padding-block:20px;font-size:13px;color:#A3A9B6;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+
+@media (max-width:1240px){.menu{display:none}}
+@media (max-width:520px){.brand small{display:none}.brand b{font-size:15px}.top-actions .btn{padding:0 16px}}
+@media (max-width:640px){
+  .row{grid-template-columns:1fr auto;gap:6px 12px}
+  .row .when{grid-column:1 / -1}
+  .row .city{grid-column:1}
+  .board-inner{min-width:0}
+  .top-actions .btn-ghost{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .side .word,.weeks i,.row.flip{animation:none}
+  .ghost{transform:none !important}
+  .card-id{transition:none}
+}
+</style>
+</head>
+<body>
+<div class="concept"><div class="wrap"><span>Концепт редизайна для портфолио · не официальный сайт</span><a href="https://poedinki.ru" target="_blank" rel="noopener">Официальный сайт: poedinki.ru</a></div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="mark" aria-hidden="true"><i></i><i></i></span><b>Управленческие поединки<small>Федерация управленческой борьбы</small></b></a>
+    <nav class="menu" aria-label="Разделы">
+      <a href="#duel">Что такое поединок</a>
+      <a href="#calendar">Соревнования</a>
+      <a href="#academy">Академия</a>
+      <a href="#clubs">Клубы</a>
+      <a href="#news">Пресс-центр</a>
+    </nav>
+    <div class="top-actions">
+      <a class="btn btn-ghost press" href="#fubid">Кабинет</a>
+      <a class="btn btn-ink press" href="#join">Вступить</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-label="Главный экран">
+    <div class="ring">
+      <div class="side red" id="side-red">
+        <span class="ghost" aria-hidden="true" data-depth="0.5">ХОД</span>
+        <span class="tag">Красный угол</span>
+        <span class="word" aria-hidden="true">Добейся</span>
+        <div class="clock-wrap"><span class="clock" id="clock-red">3:00</span><span class="clock-state" id="state-red">Ведёт переговоры</span></div>
+      </div>
+
+      <div class="center">
+        <div class="vs">Поединок</div>
+        <h1>Переговоры как спорт: с судьёй, временем и счётом</h1>
+        <p>Федерация проводит управленческие поединки — интеллектуальные дуэли по авторской технологии Владимира Тарасова. Турниры в городах России и онлайн, клубы для тренировок и обучение тренеров.</p>
+        <div class="turn-bar" aria-hidden="true"><i id="turn-bar"></i></div>
+        <div class="hero-cta">
+          <a class="btn btn-red press" href="#calendar">Найти турнир</a>
+          <a class="btn btn-ghost press" href="#duel">Как это устроено</a>
+        </div>
+      </div>
+
+      <div class="side blue" id="side-blue">
+        <span class="ghost" aria-hidden="true" data-depth="0.8">ОТВЕТ</span>
+        <span class="tag">Синий угол</span>
+        <span class="word" aria-hidden="true">Убеди</span>
+        <div class="clock-wrap"><span class="clock" id="clock-blue">3:00</span><span class="clock-state" id="state-blue">Ждёт хода</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="facts">
+    <div class="fact"><b>С 2001</b><span>работает Федерация</span></div>
+    <div class="fact"><b>22 клуба</b><span>в городах и онлайн</span></div>
+    <div class="fact"><b>8 турниров</b><span>в ближайшем календаре</span></div>
+    <div class="fact"><b>10 недель</b><span>обучения тренеров в Академии</span></div>
+  </div>
+
+  <section class="block" id="duel">
+    <div class="wrap">
+      <div class="head">
+        <div><div class="eyebrow">Что такое поединок</div><h2>Три роли на одном поле</h2></div>
+        <p>Для участия в официальных соревнованиях каждому — игроку, судье и секунданту — нужна карточка FUB_id.</p>
+      </div>
+      <div class="roles">
+        <article class="role">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"></circle><path d="M5 21v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2"></path></svg>
+          <h3>Игрок</h3>
+          <p>Ведёт поединок: добивается своей цели в споре с соперником за отведённое время.</p>
+        </article>
+        <article class="role">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M5 7h14M5 7l-3 7h6zM19 7l-3 7h6z"></path></svg>
+          <h3>Судья</h3>
+          <p>Оценивает поединок и объявляет результат. Статистика судейства ведётся по сезонам.</p>
+        </article>
+        <article class="role">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          <h3>Секундант</h3>
+          <p>Помогает игроку подготовиться к поединку и сопровождает его на соревновании.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="calendar">
+    <div class="wrap">
+      <div class="head">
+        <div><div class="eyebrow">Соревнования</div><h2>Ближайшие турниры</h2></div>
+        <p>Региональные финалы, кубки и серия «Траектория лидера». Прямые трансляции — на ФУБ-ТВ.</p>
+      </div>
+      <div class="board">
+        <div class="board-head">
+          <span>Сезон 2026</span>
+          <div class="filters" role="group" aria-label="Тип турнира">
+            <button type="button" class="press" aria-pressed="true" data-f="all">Все</button>
+            <button type="button" class="press" aria-pressed="false" data-f="final">Финалы</button>
+            <button type="button" class="press" aria-pressed="false" data-f="cup">Кубки</button>
+            <button type="button" class="press" aria-pressed="false" data-f="youth">Молодёжь</button>
+          </div>
+        </div>
+        <div class="board-scroll"><div class="board-inner" id="rows"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="fubid">
+    <div class="wrap fubid">
+      <div>
+        <div class="eyebrow">Обязательно с 01.01.2024</div>
+        <h2 style="font-size:clamp(2rem,4.4vw,3.4rem);line-height:1;margin-top:12px">Получите FUB_id</h2>
+        <ul class="checklist">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>Нужна всем участникам официальных соревнований</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>Одна карточка для роли игрока, судьи и секунданта</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>Обновляйте анкету, если сменились контакты</li>
+        </ul>
+        <div class="hero-cta" id="join">
+          <a class="btn btn-ink press" href="#fubid">Зарегистрироваться</a>
+          <a class="btn btn-ghost press" href="#fubid">Вступить в Федерацию</a>
+          <a class="btn btn-ghost press" href="#fubid">В Молодёжную лигу</a>
+        </div>
+      </div>
+      <div class="card-id" aria-label="Пример карточки FUB_id" role="img">
+        <span class="lbl">Федерация управленческой борьбы</span>
+        <span class="big">FUB_id</span>
+        <span class="num">Образец · 0000 0000</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="academy">
+    <div class="wrap">
+      <div class="academy">
+        <div>
+          <div class="eyebrow" style="color:#FFD2D6">Академия · 8 поток</div>
+          <h2 style="margin-top:12px">Бизнес-тренер управленческой борьбы</h2>
+          <p>Программа на 10 недель, с 14 сентября по 23 ноября 2026. По итогам — сертификат, с которым можно проводить корпоративные и открытые мероприятия.</p>
+        </div>
+        <div>
+          <div class="weeks" id="weeks" aria-hidden="true"></div>
+          <div class="weeks-cap"><span>14 сен</span><span id="weeks-now"></span><span>23 ноя</span></div>
+          <div class="hero-cta" style="margin-top:28px"><a class="btn btn-white press" href="#academy">Узнать о следующем потоке</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="clubs">
+    <div class="wrap">
+      <div class="head">
+        <div><div class="eyebrow">Клубы и тренировки</div><h2>Тренируйтесь между турнирами</h2></div>
+        <p>Клубная и Молодёжная лиги, очные клубы в разных городах и онлайн-клубы для тех, кому далеко ехать.</p>
+      </div>
+      <div class="clubs">
+        <article class="club"><h3>Клубная лига</h3><p>Регулярные игры клубов между собой и рейтинг по итогам сезона.</p><a href="#clubs">Таблица клубов →</a></article>
+        <article class="club"><h3>Молодёжная лига</h3><p>Отдельный зачёт и Молодёжный Кубок Тарасова для молодых игроков.</p><a href="#join">Подать заявку →</a></article>
+        <article class="club"><h3>Онлайн-клубы</h3><p>Тренировки по видеосвязи и официальный таймер поединка в браузере.</p><a href="#clubs">Найти клуб →</a></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="news">
+    <div class="wrap">
+      <div class="head"><div><div class="eyebrow">Пресс-центр</div><h2>Новости</h2></div></div>
+      <div class="news">
+        <article><span class="when">Кубок «Стратегия Сун Цзы»</span><h3>Определены шесть титульных стратагем Кубка 2026</h3><p>Оргкомитет утвердил стратагемы, вокруг которых построят поединки турнира.</p></article>
+        <article><span class="when">Управленческое многоборье</span><h3>Сформирован состав Первого Кубка России</h3><p>В турнире по управленческому многоборью выступят 32 игрока.</p></article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2>Остались вопросы?</h2>
+    <div class="contacts"><span>+7 (495) 647 95 77</span><span>mailbox@poedinki.ru</span></div>
+  </div>
+  <div class="fine"><div class="wrap"><span>© 2001–2026 Федерация управленческой борьбы · используется авторская технология</span><span>Концепт редизайна · Shuka</span></div></div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Таймер поединка: ходы сменяют друг друга */
+  var t = {red:180, blue:180}, active = 'red', turnLen = 6, turnLeft = turnLen;
+  var el = {
+    red:{side:document.getElementById('side-red'),clock:document.getElementById('clock-red'),st:document.getElementById('state-red')},
+    blue:{side:document.getElementById('side-blue'),clock:document.getElementById('clock-blue'),st:document.getElementById('state-blue')}
+  };
+  var bar = document.getElementById('turn-bar');
+  function fmt(s){var m=Math.floor(s/60),x=s%60;return m+':'+(x<10?'0':'')+x}
+  function paint(){
+    ['red','blue'].forEach(function(k){
+      el[k].clock.textContent = fmt(t[k]);
+      el[k].side.classList.toggle('is-active', k===active);
+      el[k].st.textContent = k===active ? 'Ведёт переговоры' : 'Ждёт хода';
+    });
+    bar.style.background = active==='red' ? 'var(--red)' : 'var(--blue)';
+  }
+  function runBar(){
+    if(reduce){bar.style.transform='scaleX(1)';return}
+    bar.animate([{transform:'scaleX(0)'},{transform:'scaleX(1)'}],{duration:turnLen*1000,easing:'linear',fill:'forwards'});
+  }
+  paint(); runBar();
+  if(!reduce){
+    setInterval(function(){
+      if(document.hidden) return;
+      t[active] = t[active] > 0 ? t[active]-1 : 180;
+      turnLeft--;
+      if(turnLeft<=0){ active = active==='red' ? 'blue' : 'red'; turnLeft = turnLen; runBar(); }
+      paint();
+    },1000);
+  }
+
+  /* Глубина: фоновые слова сдвигаются с разной скоростью */
+  if(!reduce){
+    var ghosts = [].slice.call(document.querySelectorAll('.ghost'));
+    var tx=0,ty=0,cx=0,cy=0;
+    window.addEventListener('pointermove',function(e){tx=(e.clientX/innerWidth-0.5);ty=(e.clientY/innerHeight-0.5)},{passive:true});
+    (function loop(){
+      cx += (tx-cx)*0.06; cy += (ty-cy)*0.06;
+      var sy = Math.min(window.scrollY,600);
+      ghosts.forEach(function(g){var d=+g.dataset.depth;g.style.transform='translate('+(cx*40*d)+'px,'+(cy*24*d - sy*0.15*d)+'px)'});
+      requestAnimationFrame(loop);
+    })();
+  }
+
+  /* Табло турниров */
+  var events = [
+    {when:'Скоро',name:'Кубок Москвы. Осень 2026',city:'Москва',type:'cup',label:'Кубок'},
+    {when:'Встречи 9–12',name:'Траектория лидера',city:'Серия турниров',type:'cup',label:'Серия'},
+    {when:'Дата уточняется',name:'Кубок Волги. Финал',city:'Самара',type:'final',label:'Финал'},
+    {when:'Дата уточняется',name:'Кубок Юга. Финал',city:'Краснодар',type:'final',label:'Финал'},
+    {when:'Дата уточняется',name:'Кубок Урала. Финал',city:'Ижевск',type:'final',label:'Финал'},
+    {when:'Дата уточняется',name:'Кубок Сибири. Финал',city:'Красноярск',type:'final',label:'Финал'},
+    {when:'Декабрь 2026',name:'Кубок ВызоваЕ',city:'Москва',type:'cup',label:'Кубок'},
+    {when:'Третий сезон',name:'Молодёжный Кубок Тарасова',city:'Молодёжная лига',type:'youth',label:'Молодёжь'}
+  ];
+  var rows = document.getElementById('rows');
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function render(f, animate){
+    rows.innerHTML = events.filter(function(e){return f==='all'||e.type===f}).map(function(e,i){
+      return '<div class="row'+(animate?' flip':'')+'" style="animation-delay:'+(i*45)+'ms"><span class="when">'+esc(e.when)+'</span><span class="name">'+esc(e.name)+'</span><span class="city">'+esc(e.city)+'</span><span class="chip '+e.type+'">'+esc(e.label)+'</span></div>';
+    }).join('');
+  }
+  render('all', false);
+  [].forEach.call(document.querySelectorAll('.filters button'),function(b){
+    b.addEventListener('click',function(){
+      [].forEach.call(document.querySelectorAll('.filters button'),function(x){x.setAttribute('aria-pressed', x===b?'true':'false')});
+      render(b.dataset.f, !reduce);
+    });
+  });
+
+  /* Недели обучения: заполняем по сегодняшней дате */
+  var start = new Date(2026,8,14), end = new Date(2026,10,23), now = new Date();
+  var done = Math.max(0, Math.min(10, Math.floor((now-start)/(7*864e5))+ (now>=start?1:0)));
+  var weeks = document.getElementById('weeks'), html='';
+  for(var i=0;i<10;i++) html += '<i class="'+(i<done?'done':'')+'" style="animation-delay:'+(i*50)+'ms"></i>';
+  weeks.innerHTML = html;
+  document.getElementById('weeks-now').textContent = now<start ? 'старт скоро' : now>end ? 'поток завершён' : 'идёт '+done+'-я неделя';
+})();
+</script>
+<a href="../index.html" class="pf-back" aria-label="Вернуться к портфолио"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>Портфолио</a>
+<style>.pf-back{position:fixed;z-index:50;left:max(16px,env(safe-area-inset-left,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 16px 0 12px;border-radius:999px;background:rgba(17,19,24,0.88);color:#fff;font:600 14px/1 system-ui,sans-serif;text-decoration:none;backdrop-filter:blur(8px);box-shadow:0 8px 24px rgba(0,0,0,0.2);transition:transform 160ms cubic-bezier(0.23,1,0.32,1)}.pf-back:active{transform:scale(0.97)}.pf-back:focus-visible{outline:2px solid #3D5AFE;outline-offset:3px}</style>
+</body>
+</html>

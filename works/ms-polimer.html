@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>МС-Полимер — редизайн · Shuka</title>
+<meta name="description" content="Концепт редизайна сайта производителя полиэтиленовой упаковки.">
+<meta property="og:title" content="МС-Полимер — редизайн · Shuka">
+<meta property="og:description" content="Концепт редизайна сайта производителя полиэтиленовой упаковки.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' fill='none' stroke='%233D5AFE' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800&family=Fira+Sans:wght@400;500;600&family=Fira+Mono:wght@400;500&display=swap">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>
+/* Layout: производственный цех на просвет — слои плёнки в герое, ниже конфигуратор тиража как техзадание, характеристики моноширинным как в спецификации */
+:root{
+  color-scheme:light;
+  --film:#EAF0EF; --surface:#FFFFFF; --ink:#0E2A2F; --muted:#4A6064; --line:#CCD8D8;
+  --orange:#C9450B; --orange-hi:#FF6A26; --teal:#17757C; --teal-soft:#D5E9E8;
+  --f-display:"Exo 2","Segoe UI",system-ui,sans-serif;
+  --f-body:"Fira Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"Fira Mono",ui-monospace,Menlo,monospace;
+  --ease-out:cubic-bezier(0.23,1,0.32,1);
+  --ease-io:cubic-bezier(0.77,0,0.175,1);
+}
+*{box-sizing:border-box}
+body{background:var(--film);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+a{color:var(--teal)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;letter-spacing:-0.01em}
+.mono{font-family:var(--f-mono)}
+.press{transition:transform 160ms var(--ease-out),background-color 200ms ease,color 200ms ease,border-color 200ms ease}
+.press:active{transform:scale(0.97)}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 24px;font-weight:600;font-size:16px;text-decoration:none;border-radius:999px;border:2px solid transparent;cursor:pointer;font-family:inherit}
+.btn-orange{background:var(--orange);color:#FFFFFF}
+.btn-ink{background:var(--ink);color:#FFFFFF}
+.btn-line{border-color:var(--ink);color:var(--ink);background:transparent}
+@media (hover:hover) and (pointer:fine){.btn-orange:hover{background:#A93A08}.btn-ink:hover{background:var(--teal)}.btn-line:hover{background:var(--ink);color:#FFFFFF}}
+
+.concept{background:var(--ink);color:#DCE8E8;font-size:13px}
+.concept .wrap{display:flex;flex-wrap:wrap;gap:4px 16px;justify-content:space-between;padding-block:8px}
+.concept a{color:#8FD3D8}
+
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--film) 86%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--film)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:72px;padding-block:8px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-family:var(--f-display);font-weight:800;font-size:22px;letter-spacing:-0.02em;white-space:nowrap}
+.brand svg{flex:none}
+.menu{display:flex;gap:24px;font-weight:500;white-space:nowrap}
+.menu a{color:var(--ink);text-decoration:none;min-height:44px;display:inline-flex;align-items:center;transition:color 160ms ease}
+@media (hover:hover) and (pointer:fine){.menu a:hover{color:var(--orange)}}
+.top-right{display:flex;align-items:center;gap:16px}
+.phone{display:flex;flex-direction:column;line-height:1.2;text-align:right}
+.phone b{font-weight:600;white-space:nowrap}
+.phone span{font-size:12px;color:var(--muted)}
+@media (max-width:1180px){.menu{display:none}}
+@media (max-width:640px){.phone{display:none}.top .btn{padding:0 16px;min-height:44px}}
+
+/* Hero */
+.hero{position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,480px),1fr));gap:40px;align-items:center;padding-block:64px 88px}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:13px;color:var(--teal);background:var(--teal-soft);padding:6px 12px;border-radius:999px}
+.hero h1{font-size:clamp(2.6rem,5.6vw,4.9rem);font-weight:800;line-height:0.98;margin-top:22px;letter-spacing:-0.03em}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero .lead{font-size:clamp(1.05rem,1.5vw,1.2rem);color:var(--muted);max-width:520px;margin:24px 0 0}
+.spec{display:flex;flex-wrap:wrap;gap:24px 36px;margin-top:36px;padding-top:24px;border-top:1px dashed var(--line)}
+.spec div{display:flex;flex-direction:column}
+.spec b{font-family:var(--f-display);font-size:30px;line-height:1}
+.spec span{font-size:14px;color:var(--muted);margin-top:6px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.line-up{display:block;overflow:hidden}
+.line-up > span{display:inline-block;animation:up 900ms var(--ease-out) both}
+.line-up:nth-child(2) > span{animation-delay:90ms}
+.line-up:nth-child(3) > span{animation-delay:180ms}
+@keyframes up{from{transform:translateY(105%)}to{transform:none}}
+
+.stage{position:relative;aspect-ratio:1;max-width:100%;width:560px;justify-self:center}
+.sheet{position:absolute;border-radius:28px;border:1px solid rgba(255,255,255,0.7);backdrop-filter:blur(2px);will-change:transform}
+.s1{inset:6% 16% 22% 2%;background:linear-gradient(160deg,rgba(23,117,124,0.20),rgba(23,117,124,0.06));transform:rotate(-8deg)}
+.s2{inset:14% 2% 10% 22%;background:linear-gradient(200deg,rgba(201,69,11,0.14),rgba(201,69,11,0.03));transform:rotate(7deg)}
+.s3{inset:26% 30% 2% 10%;background:linear-gradient(180deg,rgba(255,255,255,0.75),rgba(255,255,255,0.35));transform:rotate(-2deg)}
+.bag{position:absolute;inset:12% 18% 6% 18%;container-type:inline-size;filter:drop-shadow(0 30px 40px rgba(14,42,47,0.18))}
+.bag svg{width:100%;height:100%;display:block}
+.print{clip-path:inset(0 100% 0 0);animation:print 6.4s var(--ease-io) 600ms infinite}
+@keyframes print{0%{clip-path:inset(0 100% 0 0)}35%,80%{clip-path:inset(0 0 0 0)}92%,100%{clip-path:inset(0 0 0 100%)}}
+.roller{position:absolute;top:44%;height:30%;width:14px;left:20%;border-radius:8px;background:linear-gradient(90deg,#0E2A2F,#2B4C52 50%,#0E2A2F);box-shadow:0 0 0 4px rgba(201,69,11,0.25);animation:roll 6.4s var(--ease-io) 600ms infinite}
+@keyframes roll{0%{transform:translateX(0);opacity:1}35%{transform:translateX(58cqw);opacity:1}42%,100%{transform:translateX(58cqw);opacity:0}}
+.label-tag{position:absolute;font-family:var(--f-mono);font-size:12px;background:var(--surface);border:1px solid var(--line);padding:6px 10px;border-radius:8px;white-space:nowrap;box-shadow:0 6px 18px rgba(14,42,47,0.08)}
+.lt1{top:6%;right:4%}.lt2{bottom:14%;left:0}.lt3{bottom:2%;right:10%}
+.label-tag b{color:var(--orange);font-weight:500}
+
+/* Бегущая лента */
+.tape{background:#F2C200;color:#141414;overflow:hidden;border-block:2px solid #141414;font-family:var(--f-mono);font-weight:500;font-size:14px;letter-spacing:0.06em;text-transform:uppercase}
+.tape-run{display:flex;gap:40px;width:max-content;padding-block:10px;animation:run 30s linear infinite}
+.tape-run span::before{content:"";display:inline-block;width:10px;height:10px;margin-right:14px;background:#141414;transform:rotate(45deg) translateY(-1px)}
+@keyframes run{to{transform:translateX(-50%)}}
+
+section.block{padding-block:88px}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px;margin-bottom:40px}
+.eyebrow{font-family:var(--f-mono);font-size:13px;color:var(--orange);letter-spacing:0.04em}
+.head h2{font-size:clamp(2rem,4vw,3.2rem);font-weight:800;line-height:1.02;margin-top:10px;letter-spacing:-0.025em}
+.head p{max-width:440px;margin:0;color:var(--muted)}
+
+/* Каталог */
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:16px}
+.cat{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:18px;text-decoration:none;color:var(--ink);transition:transform 220ms var(--ease-out),border-color 200ms ease,box-shadow 220ms ease}
+.cat:active{transform:scale(0.98)}
+@media (hover:hover) and (pointer:fine){.cat:hover{transform:translateY(-3px);border-color:var(--teal);box-shadow:0 14px 30px rgba(14,42,47,0.08)}.cat:hover .ico{background:var(--ink);color:#FFFFFF}}
+.ico{width:56px;height:56px;border-radius:16px;background:var(--teal-soft);color:var(--ink);display:flex;align-items:center;justify-content:center;transition:background-color 200ms ease,color 200ms ease}
+.cat h3{font-size:20px;font-weight:700}
+.cat p{margin:4px 0 0;color:var(--muted);font-size:14px}
+.cat .go{margin-top:auto;font-weight:600;font-size:14px;color:var(--teal)}
+
+/* Конфигуратор */
+.config{background:var(--ink);color:#E6EFEF;border-radius:28px;overflow:hidden;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.cfg-form{padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;gap:26px}
+.cfg-form h2{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:800;color:#FFFFFF;line-height:1.05}
+.cfg-form > p{margin:0;color:#A9C1C2}
+fieldset{border:0;padding:0;margin:0}
+legend,.flabel{font-family:var(--f-mono);font-size:12.5px;color:#A9C1C2;letter-spacing:0.04em;margin-bottom:10px;display:block}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{position:relative}
+.chips input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.chips span{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid #34565C;font-weight:500;font-size:15px;transition:background-color 180ms ease,border-color 180ms ease,color 180ms ease,transform 160ms var(--ease-out)}
+.chips input:checked + span{background:#FFFFFF;color:var(--ink);border-color:#FFFFFF}
+.chips input:focus-visible + span{outline:2px solid var(--orange-hi);outline-offset:3px}
+.chips label:active span{transform:scale(0.96)}
+.dims{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.num{display:flex;align-items:center;background:#16383E;border:1.5px solid #34565C;border-radius:14px;padding:0 14px;min-height:52px}
+.num input{flex:1;min-width:0;background:transparent;border:0;color:#FFFFFF;font:600 18px var(--f-mono);outline:none}
+.num span{color:#A9C1C2;font-family:var(--f-mono);font-size:13px}
+.range-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.range-row output{font-family:var(--f-mono);font-size:20px;color:#FFFFFF}
+input[type=range]{width:100%;accent-color:var(--orange-hi);height:32px;margin:0}
+.cfg-view{background:#123338;padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;gap:24px;position:relative}
+.preview{flex:1;min-height:300px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 40%,#1E4C53,#123338 70%);border-radius:20px;position:relative}
+.preview svg{width:min(260px,70%);height:auto;transition:transform 420ms var(--ease-out)}
+.preview .dim-w,.preview .dim-h{position:absolute;font-family:var(--f-mono);font-size:12px;color:#A9C1C2}
+.preview .dim-w{bottom:12px;left:50%;transform:translateX(-50%)}
+.preview .dim-h{right:12px;top:50%;transform:translateY(-50%) rotate(90deg)}
+.summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:#2A4D53;border-radius:14px;overflow:hidden}
+.summary div{background:#123338;padding:12px 14px}
+.summary dt{font-family:var(--f-mono);font-size:11.5px;color:#A9C1C2;letter-spacing:0.04em}
+.summary dd{margin:2px 0 0;font-weight:600;color:#FFFFFF}
+.notice{font-size:14px;color:#FFD8C4;background:rgba(201,69,11,0.18);border:1px solid rgba(255,106,38,0.4);border-radius:12px;padding:12px 14px}
+.notice[hidden]{display:none}
+
+/* Почему мы */
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:0;border-top:2px solid var(--ink)}
+.why div{padding:28px 24px 28px 0;border-bottom:1px solid var(--line)}
+.why b{display:block;font-family:var(--f-display);font-size:26px;font-weight:800;line-height:1.1}
+.why span{display:block;color:var(--muted);margin-top:8px;max-width:320px}
+
+/* Шаги */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;counter-reset:s}
+.steps li{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px;position:relative}
+.steps li::before{content:counter(s);font-family:var(--f-display);font-weight:800;font-size:44px;color:var(--teal-soft);-webkit-text-stroke:1.5px var(--teal);line-height:1;display:block}
+.steps h3{font-size:20px;margin-top:14px}
+.steps p{margin:6px 0 0;color:var(--muted);font-size:15px}
+
+/* Переработка */
+.recycle{background:var(--teal);color:#FFFFFF;border-radius:28px;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:32px;align-items:center}
+.recycle h2{font-size:clamp(1.8rem,3.6vw,2.8rem);font-weight:800;line-height:1.05}
+.recycle p{margin:14px 0 0;color:#DDF1F1}
+.recycle ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.recycle li{display:flex;justify-content:space-between;gap:16px;align-items:center;background:rgba(255,255,255,0.1);border-radius:14px;padding:16px 18px;font-weight:600}
+.recycle li span{font-family:var(--f-mono);font-weight:400;font-size:13px;color:#DDF1F1}
+
+/* Контакты */
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px}
+.cbox{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px}
+.cbox .k{font-family:var(--f-mono);font-size:12.5px;color:var(--muted)}
+.cbox .v{font-family:var(--f-display);font-weight:700;font-size:22px;margin-top:6px;user-select:all}
+.cbox p{margin:6px 0 0;color:var(--muted);font-size:14px}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-block:28px 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:14px;color:var(--muted)}
+
+@media (prefers-reduced-motion:reduce){
+  .line-up > span,.tape-run,.roller{animation:none}
+  .print{animation:none;clip-path:none}
+  .roller{display:none}
+  .sheet{transform:none !important}
+}
+</style>
+</head>
+<body>
+<div class="concept"><div class="wrap"><span>Концепт редизайна для портфолио · не официальный сайт</span><a href="https://ms-polimer.ru" target="_blank" rel="noopener">Официальный сайт: ms-polimer.ru</a></div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="2" y="5" width="20" height="22" rx="4" fill="#17757C" opacity="0.35"></rect><rect x="8" y="2" width="20" height="22" rx="4" fill="#0E2A2F"></rect><circle cx="18" cy="13" r="4" fill="#FF6A26"></circle></svg>
+      МС-Полимер
+    </a>
+    <nav class="menu" aria-label="Разделы">
+      <a href="#catalog">Каталог</a>
+      <a href="#order">Печать логотипа</a>
+      <a href="#how">Как заказать</a>
+      <a href="#recycle">Переработка</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="top-right">
+      <div class="phone"><b>8-800-600-07-10</b><span>Бесплатно · Пн–Пт 8:00–17:00</span></div>
+      <a class="btn btn-orange press" href="#order">Рассчитать</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="kicker">Собственное производство с 1998 года</span>
+        <h1><span class="line-up"><span>Пакеты</span></span><span class="line-up"><span>с вашим логотипом</span></span><span class="line-up"><span><em>от 200 кг</em></span></span></h1>
+        <p class="lead">Делаем полиэтиленовые пакеты и плёнку ПВД и ПНД на своей площадке в Реже. Типовые размеры оптом или партия под ваш размер, с печатью и готовым макетом от нашего дизайн-бюро.</p>
+        <div class="cta">
+          <a class="btn btn-orange press" href="#order">Рассчитать тираж</a>
+          <a class="btn btn-line press" href="#catalog">Смотреть каталог</a>
+        </div>
+        <div class="spec">
+          <div><b>200 кг</b><span>минимальный заказ</span></div>
+          <div><b>0 ₽</b><span>доставка по Екатеринбургу</span></div>
+          <div><b>3–5 дней</b><span>доставка по России</span></div>
+        </div>
+      </div>
+      <div class="stage" id="stage" aria-hidden="true">
+        <div class="sheet s1" data-d="0.4"></div>
+        <div class="sheet s2" data-d="0.9"></div>
+        <div class="sheet s3" data-d="1.4"></div>
+        <div class="bag">
+          <svg viewBox="0 0 300 380">
+            <defs><linearGradient id="bagfill" x1="0" x2="1"><stop offset="0" stop-color="#FFFFFF"></stop><stop offset="0.5" stop-color="#F4F8F8"></stop><stop offset="1" stop-color="#E2ECEC"></stop></linearGradient></defs>
+            <path d="M40 20 h55 v70 q55 30 110 0 v-70 h55 l10 340 q-115 18 -240 0 z" fill="url(#bagfill)" stroke="#B7C9C9" stroke-width="2"></path>
+            <path d="M95 20 v70 q55 30 110 0 v-70" fill="none" stroke="#B7C9C9" stroke-width="2"></path>
+            <g class="print">
+              <circle cx="150" cy="220" r="46" fill="#C9450B"></circle>
+              <path d="M128 222 l14 14 30 -32" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"></path>
+              <text x="150" y="304" text-anchor="middle" font-family="Exo 2, sans-serif" font-weight="800" font-size="26" fill="#0E2A2F">ВАШ ЛОГОТИП</text>
+            </g>
+          </svg>
+          <div class="roller"></div>
+        </div>
+        <span class="label-tag lt1">ПВД · <b>ПНД</b></span>
+        <span class="label-tag lt2">Флексопечать</span>
+        <span class="label-tag lt3">Сертифицировано</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="tape" aria-hidden="true"><div class="tape-run">
+    <span>Пакеты-майки</span><span>Вырубная ручка</span><span>Фасовочные</span><span>Вакуумные</span><span>Плёнка ПВД и ПНД</span><span>Сигнальная лента</span><span>Мешки для мусора</span>
+    <span>Пакеты-майки</span><span>Вырубная ручка</span><span>Фасовочные</span><span>Вакуумные</span><span>Плёнка ПВД и ПНД</span><span>Сигнальная лента</span><span>Мешки для мусора</span>
+  </div></div>
+
+  <section class="block" id="catalog">
+    <div class="wrap">
+      <div class="head">
+        <div><div class="eyebrow">Каталог</div><h2>Что производим</h2></div>
+        <p>Розница, производство, медицина, склады. Типовые позиции оптом или изготовление по вашим размерам.</p>
+      </div>
+      <div class="cats">
+        <a class="cat" href="#order"><span class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4v5a3 3 0 0 0 6 0V3h4l1 18H4z"></path></svg></span><div><h3>Пакеты-майки</h3><p>Для магазинов и маркетов</p></div><span class="go">Рассчитать →</span></a>
+        <a class="cat" href="#order"><span class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M9 7h6"></path></svg></span><div><h3>С вырубной ручкой</h3><p>Под печать логотипа и подарочные</p></div><span class="go">Рассчитать →</span></a>
+        <a class="cat" href="#order"><span class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10v18H7z"></path><path d="M7 7h10"></path></svg></span><div><h3>Фасовочные</h3><p>Для весового товара и упаковки</p></div><span class="go">Рассчитать →</span></a>
+        <a class="cat" href="#order"><span class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"></rect><path d="M8 9h8M8 12h8M8 15h8"></path></svg></span><div><h3>Вакуумные пакеты</h3><p>Для упаковки продуктов</p></div><span class="go">Рассчитать →</span></a>
+        <a class="cat" href="#order"><span class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle></svg></span><div><h3>Плёнка ПВД и ПНД</h3><p>Для упаковки и производства</p></div><span class="go">Рассчитать →</span></a>
+        <a class="cat" href="#order"><span class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h18v8H3z"></path><path d="M7 8l-4 8M13 8l-4 8M19 8l-4 8"></path></svg></span><div><h3>Сигнальная лента</h3><p>Для строительства и коммуникаций</p></div><span class="go">Рассчитать →</span></a>
+        <a class="cat" href="#order"><span class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 14H7z"></path><path d="M9 7V4h6v3M4 7h16"></path></svg></span><div><h3>Мешки для мусора</h3><p>Бытовые и для производства</p></div><span class="go">Рассчитать →</span></a>
+        <a class="cat" href="#order"><span class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14v16H5z"></path><path d="M12 9v6M9 12h6"></path></svg></span><div><h3>Для медотходов</h3><p>Классы А, Б, В и Г</p></div><span class="go">Рассчитать →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="order" style="padding-top:0">
+    <div class="wrap">
+      <form class="config" id="cfg" novalidate>
+        <div class="cfg-form">
+          <div>
+            <div class="eyebrow" style="color:var(--orange-hi)">Заявка на расчёт</div>
+            <h2 style="margin-top:10px">Соберите тираж — посчитаем цену</h2>
+          </div>
+          <p>Цена с логотипом считается индивидуально. Укажите параметры, и менеджер пришлёт расчёт.</p>
+
+          <fieldset>
+            <legend>ТИП ПАКЕТА</legend>
+            <div class="chips">
+              <label><input type="radio" name="type" value="tshirt" id="t-tshirt" checked><span>Майка</span></label>
+              <label><input type="radio" name="type" value="cutout" id="t-cutout"><span>Вырубная ручка</span></label>
+              <label><input type="radio" name="type" value="pack" id="t-pack"><span>Фасовочный</span></label>
+              <label><input type="radio" name="type" value="vacuum" id="t-vacuum"><span>Вакуумный</span></label>
+            </div>
+          </fieldset>
+
+          <div>
+            <span class="flabel">РАЗМЕР, СМ</span>
+            <div class="dims">
+              <label class="num" for="w"><input id="w" type="number" inputmode="numeric" min="10" max="100" value="38" aria-label="Ширина в сантиметрах"><span>ширина</span></label>
+              <label class="num" for="h"><input id="h" type="number" inputmode="numeric" min="10" max="120" value="60" aria-label="Высота в сантиметрах"><span>высота</span></label>
+            </div>
+          </div>
+
+          <div>
+            <div class="range-row"><label class="flabel" for="mic">ТОЛЩИНА</label><output id="mic-out" for="mic">20 мкм</output></div>
+            <input type="range" id="mic" min="8" max="100" step="1" value="20">
+          </div>
+
+          <fieldset>
+            <legend>ПЕЧАТЬ ЛОГОТИПА</legend>
+            <div class="chips">
+              <label><input type="radio" name="print" value="0" id="p0"><span>Без печати</span></label>
+              <label><input type="radio" name="print" value="1" id="p1" checked><span>1 цвет</span></label>
+              <label><input type="radio" name="print" value="2" id="p2"><span>2 цвета</span></label>
+              <label><input type="radio" name="print" value="3" id="p3"><span>3 и больше</span></label>
+            </div>
+          </fieldset>
+
+          <div>
+            <div class="range-row"><label class="flabel" for="kg">ТИРАЖ</label><output id="kg-out" for="kg">500 кг</output></div>
+            <input type="range" id="kg" min="200" max="5000" step="50" value="500">
+          </div>
+        </div>
+
+        <div class="cfg-view">
+          <div class="preview">
+            <svg id="pv" viewBox="0 0 200 260" aria-hidden="true">
+              <path id="pv-body" fill="#F4F8F8" stroke="#B7C9C9" stroke-width="2"></path>
+              <g id="pv-logo"><circle cx="100" cy="150" r="26" fill="#FF6A26"></circle><text x="100" y="200" text-anchor="middle" font-family="Exo 2, sans-serif" font-weight="800" font-size="15" fill="#0E2A2F">ЛОГОТИП</text></g>
+            </svg>
+            <span class="dim-w" id="dim-w">38 см</span>
+            <span class="dim-h" id="dim-h">60 см</span>
+          </div>
+          <dl class="summary" id="sum"></dl>
+          <button class="btn btn-orange press" type="submit" style="width:100%">Отправить на расчёт</button>
+          <p class="notice" id="notice" hidden>Это демо-форма концепта: заявка никуда не отправляется. На настоящем сайте здесь будет форма с контактами.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="block" id="why" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><div><div class="eyebrow">Почему МС-Полимер</div><h2>Производим сами, а не перепродаём</h2></div></div>
+      <div class="why">
+        <div><b>С 1998 года</b><span>Работаем для малого и среднего бизнеса почти три десятилетия.</span></div>
+        <div><b>Своя площадка</b><span>Вся продукция изготовлена на нашем производстве в Реже.</span></div>
+        <div><b>Флексопечать</b><span>Печатаем логотип на пакетах, плёнке и ленте. Макет подготовит дизайн-бюро.</span></div>
+        <div><b>Своя доставка</b><span>Бесплатно по Екатеринбургу собственным транспортом, по России — 3–5 рабочих дней.</span></div>
+        <div><b>Сертификаты</b><span>Весь товар сертифицирован, документы — в разделе «О компании».</span></div>
+        <div><b>Образцы</b><span>Можно заказать доставку образцов до запуска партии.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="how" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><div><div class="eyebrow">Как заказать</div><h2>От заявки до склада</h2></div></div>
+      <ol class="steps">
+        <li><h3>Заявка</h3><p>Параметры из конфигуратора или звонок на бесплатный номер.</p></li>
+        <li><h3>Макет</h3><p>Дизайн-бюро готовит оригинал-макет и согласует его с вами.</p></li>
+        <li><h3>Производство</h3><p>Выдуваем плёнку, печатаем и режем пакеты на своей линии.</p></li>
+        <li><h3>Доставка</h3><p>Привозим своим транспортом или отправляем курьерской службой.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="recycle" style="padding-top:0">
+    <div class="wrap">
+      <div class="recycle">
+        <div>
+          <div class="eyebrow" style="color:#FFD8C4">Услуги переработки</div>
+          <h2 style="margin-top:10px">Отходы плёнки — обратно в сырьё</h2>
+          <p>Перерабатываем полимерные отходы предприятий в материал для нового производства.</p>
+        </div>
+        <ul>
+          <li>Агломерирование<span>отходы плёнки</span></li>
+          <li>Дробление<span>полимеры</span></li>
+          <li>Гранулирование<span>вторичная гранула</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contacts" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><div><div class="eyebrow">Контакты</div><h2>Позвоните или приезжайте</h2></div></div>
+      <div class="contact">
+        <div class="cbox"><div class="k">Бесплатно по России</div><div class="v">8-800-600-07-10</div><p>Пн–Пт, 8:00–17:00</p></div>
+        <div class="cbox"><div class="k">Екатеринбург</div><div class="v">+7 (343) 253-29-27</div><p>Telegram и WhatsApp — по ссылкам на сайте</p></div>
+        <div class="cbox"><div class="k">Почта</div><div class="v">info@ms-polimer.ru</div><p>Пришлите ТЗ или логотип для расчёта</p></div>
+        <div class="cbox"><div class="k">Производство</div><div class="v" style="font-size:18px">г. Реж, ул. Гайдара, 96Г</div><p>623750, Свердловская область</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© МС-Полимер · производство полиэтиленовой упаковки</span><span>Концепт редизайна · Shuka</span></div></footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Глубина сцены: слои плёнки плывут с разной скоростью за курсором */
+  if(!reduce){
+    var stage=document.getElementById('stage'), sheets=[].slice.call(stage.querySelectorAll('.sheet'));
+    var base=sheets.map(function(s){return getComputedStyle(s).transform});
+    var tx=0,ty=0,cx=0,cy=0,t0=performance.now();
+    window.addEventListener('pointermove',function(e){tx=e.clientX/innerWidth-0.5;ty=e.clientY/innerHeight-0.5},{passive:true});
+    (function loop(now){
+      cx+=(tx-cx)*0.05; cy+=(ty-cy)*0.05;
+      var k=(now-t0)/1000;
+      sheets.forEach(function(s,i){
+        var d=+s.dataset.d, bob=Math.sin(k*0.7+i*1.3)*6*d;
+        s.style.transform=base[i]+' translate('+(cx*28*d)+'px,'+(cy*20*d+bob)+'px)';
+      });
+      requestAnimationFrame(loop);
+    })(t0);
+  }
+
+  /* Конфигуратор */
+  var form=document.getElementById('cfg');
+  var $=function(id){return document.getElementById(id)};
+  var names={tshirt:'Майка',cutout:'Вырубная ручка',pack:'Фасовочный',vacuum:'Вакуумный'};
+  var printNames={'0':'Без печати','1':'1 цвет','2':'2 цвета','3':'3 цвета и больше'};
+  function shape(type,w,h){
+    var W=Math.max(70,Math.min(180,w*3.6)), H=Math.max(90,Math.min(240,h*3));
+    var x=100-W/2, y=250-H, r=x+W;
+    if(type==='tshirt'){var hw=W*0.22;return 'M'+x+' '+y+' h'+hw+' v'+(H*0.2)+' q'+(W/2-hw)+' '+(H*0.1)+' '+(W-2*hw)+' 0 v'+(-H*0.2)+' h'+hw+' l4 '+H+' h'+(-W-8)+' z';}
+    if(type==='cutout'){var cy=y+H*0.12;return 'M'+x+' '+y+' H'+r+' V250 H'+x+' Z M'+(100-W*0.18)+' '+cy+' h'+(W*0.36)+' a6 6 0 0 1 0 12 h'+(-W*0.36)+' a6 6 0 0 1 0 -12 z';}
+    if(type==='vacuum'){return 'M'+(x+8)+' '+y+' H'+(r-8)+' q8 0 8 8 V242 q0 8 -8 8 H'+(x+8)+' q-8 0 -8 -8 V'+(y+8)+' q0 -8 8 -8 z M'+(x+6)+' '+(y+14)+' H'+(r-6);}
+    return 'M'+x+' '+y+' H'+r+' V250 H'+x+' Z';
+  }
+  function upd(){
+    var type=form.querySelector('[name=type]:checked').value;
+    var pr=form.querySelector('[name=print]:checked').value;
+    var w=Math.max(10,Math.min(100,+$('w').value||10)), h=Math.max(10,Math.min(120,+$('h').value||10));
+    var mic=+$('mic').value, kg=+$('kg').value;
+    $('mic-out').textContent=mic+' мкм';
+    $('kg-out').textContent=kg.toLocaleString('ru-RU')+' кг';
+    $('pv-body').setAttribute('d',shape(type,w,h));
+    $('pv-body').setAttribute('fill-rule','evenodd');
+    $('pv-body').setAttribute('fill', mic>=50 ? '#E3ECEC' : '#F4F8F8');
+    $('pv-logo').style.opacity = pr==='0' ? '0' : '1';
+    var Hh=Math.max(90,Math.min(240,h*3)), Ww=Math.max(70,Math.min(180,w*3.6)), sc=Math.min(1,Ww/150);
+    $('pv-logo').setAttribute('transform','translate(100 '+(250-Hh*0.42)+') scale('+sc+') translate(-100 -165)');
+    $('pv-logo').style.transition='opacity 240ms ease';
+    $('dim-w').textContent=w+' см'; $('dim-h').textContent=h+' см';
+    var rows=[['Тип',names[type]],['Размер',w+' × '+h+' см'],['Толщина',mic+' мкм'],['Печать',printNames[pr]],['Тираж',kg.toLocaleString('ru-RU')+' кг'],['Доставка',kg>=200?'По Екатеринбургу бесплатно':'—']];
+    $('sum').innerHTML=rows.map(function(r){return '<div><dt>'+r[0]+'</dt><dd>'+r[1]+'</dd></div>'}).join('');
+  }
+  form.addEventListener('input',upd); form.addEventListener('change',upd);
+  form.addEventListener('submit',function(e){e.preventDefault();$('notice').hidden=false;});
+  upd();
+})();
+</script>
+<a href="../index.html" class="pf-back" aria-label="Вернуться к портфолио"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>Портфолио</a>
+<style>.pf-back{position:fixed;z-index:50;left:max(16px,env(safe-area-inset-left,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 16px 0 12px;border-radius:999px;background:rgba(17,19,24,0.88);color:#fff;font:600 14px/1 system-ui,sans-serif;text-decoration:none;backdrop-filter:blur(8px);box-shadow:0 8px 24px rgba(0,0,0,0.2);transition:transform 160ms cubic-bezier(0.23,1,0.32,1)}.pf-back:active{transform:scale(0.97)}.pf-back:focus-visible{outline:2px solid #3D5AFE;outline-offset:3px}</style>
+</body>
+</html>
