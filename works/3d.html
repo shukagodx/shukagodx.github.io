@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Обжиг — 3D-моделирование · Shuka</title>
-<meta name="description" content="Интерактивные 3D-модели керамики: кружка и чайник с разными глазурями, сеткой модели и рендерами для карточек товаров.">
-<meta property="og:title" content="Обжиг — 3D-моделирование · Shuka">
-<meta property="og:description" content="Интерактивные 3D-модели кружки и чайника: покрутите, смените глазурь, посмотрите сетку.">
+<title>3D-модели предметов · Shuka</title>
+<meta name="description" content="Интерактивные 3D-модели: посуда, наушники, игрушка и шапка. Можно покрутить, сменить цвет и посмотреть сетку модели.">
+<meta property="og:title" content="3D-модели предметов · Shuka">
+<meta property="og:description" content="Интерактивные 3D-модели предметов: покрутите, смените цвет, посмотрите сетку.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://shukagodx.github.io/works/3d.html">
 <meta property="og:site_name" content="Shuka — веб-дизайнер">
@@ -58,7 +58,7 @@ h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:
 .ctl:active{transform:scale(0.94)}
 .ctl[aria-pressed="true"]{background:var(--ink);color:#FFF;border-color:var(--ink)}
 .dock{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.86);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:20px;padding:8px;max-width:calc(100% - 32px);overflow-x:auto;box-shadow:0 12px 30px rgba(30,28,26,0.08)}
-.seg{display:flex;background:var(--bg);border-radius:13px;padding:3px;flex:none}
+.seg{display:flex;background:var(--bg);border-radius:13px;padding:3px;flex:none;max-width:100%;overflow-x:auto}
 .seg button{font:inherit;font-weight:600;font-size:14px;min-height:40px;padding:0 14px;border:0;border-radius:10px;background:transparent;color:var(--muted);cursor:pointer;transition:background-color 180ms ease,color 180ms ease}
 .seg button[aria-pressed="true"]{background:#FFF;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,0.12)}
 .sep{width:1px;height:28px;background:var(--line);flex:none}
@@ -112,14 +112,14 @@ body.render-mode #render-stage{display:block;position:fixed;inset:0}
 </header>
 <main>
   <section class="wrap intro">
-    <h1>Обжиг. <span>Керамика в 3D</span></h1>
-    <p>Модели кружки и чайника для студии керамики. Их можно покрутить прямо в браузере, сменить глазурь и посмотреть сетку модели. Из этих же моделей сделаны кадры для карточек товаров на маркетплейсах.</p>
+    <h1>Предметы <span>в 3D</span></h1>
+    <p>Посуда, техника, игрушка и одежда — пять моделей, которые можно покрутить прямо в браузере, сменить цвет и посмотреть сетку. Из этих моделей сделаны «фото» для карточек товаров на маркетплейсах.</p>
   </section>
 
   <div class="wrap">
     <div class="studio" id="studio">
       <canvas id="view" aria-label="Интерактивная 3D-модель. Потяните, чтобы повернуть."></canvas>
-      <div class="badge" aria-live="polite"><span id="m-kind">модель</span><b id="m-name">Кружка «Утро»</b><span id="m-tris">— треугольников</span></div>
+      <div class="badge" aria-live="polite"><span id="m-kind">модель</span><b id="m-name">Кружка</b><span id="m-tris">— треугольников</span></div>
       <div class="zoom">
         <button class="ctl" type="button" id="zin" aria-label="Приблизить"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
         <button class="ctl" type="button" id="zout" aria-label="Отдалить"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg></button>
@@ -130,9 +130,12 @@ body.render-mode #render-stage{display:block;position:fixed;inset:0}
         <div class="seg" role="group" aria-label="Модель">
           <button type="button" data-model="mug" aria-pressed="true">Кружка</button>
           <button type="button" data-model="pot" aria-pressed="false">Чайник</button>
+          <button type="button" data-model="hp" aria-pressed="false">Наушники</button>
+          <button type="button" data-model="bear" aria-pressed="false">Мишка</button>
+          <button type="button" data-model="hat" aria-pressed="false">Шапка</button>
         </div>
         <span class="sep" aria-hidden="true"></span>
-        <div class="glazes" role="group" aria-label="Глазурь" id="glazes"></div>
+        <div class="glazes" role="group" aria-label="Цвет" id="glazes"></div>
         <span class="glaze-name" id="glaze-name">Сливки</span>
         <span class="sep" aria-hidden="true"></span>
         <button type="button" class="wire-btn" id="wire" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18M15 3v18"></path></svg>Сетка</button>
@@ -144,7 +147,7 @@ body.render-mode #render-stage{display:block;position:fixed;inset:0}
   <section class="wrap block">
     <div class="head">
       <div><div class="eyebrow">Как сделано</div><h2>От профиля до глазури</h2></div>
-      <p>Обе модели построены из кривой профиля, которую вращают вокруг оси, плюс отдельные детали: ручка, носик и крышка.</p>
+      <p>Посуда построена из кривой профиля, которую вращают вокруг оси. Наушники, мишка и шапка собраны из примитивов, трубок по кривым и деформаций.</p>
     </div>
     <ol class="steps">
       <li><svg id="sv-profile" viewBox="0 0 240 180" role="img" aria-label="Кривая профиля кружки"></svg><h3>Профиль</h3><p>Рисую половину силуэта: толщину стенки, закругление края и ножку.</p></li>
@@ -174,10 +177,10 @@ body.render-mode #render-stage{display:block;position:fixed;inset:0}
       <p>Готовые изображения на прозрачном фоне. Из них собраны карточки товаров для маркетплейсов.</p>
     </div>
     <div class="renders">
-      <figure><img src="../img/3d/mug-cream.png" alt="Кружка в глазури «Сливки»" width="800" height="1000" loading="lazy"><figcaption>Кружка «Утро»<span>Сливки</span></figcaption></figure>
-      <figure><img src="../img/3d/mug-sage.png" alt="Кружка в глазури «Шалфей»" width="800" height="1000" loading="lazy"><figcaption>Кружка «Утро»<span>Шалфей</span></figcaption></figure>
-      <figure><img src="../img/3d/pot-cobalt.png" alt="Чайник в глазури «Кобальт»" width="800" height="1000" loading="lazy"><figcaption>Чайник «Вечер»<span>Кобальт</span></figcaption></figure>
-      <figure><img src="../img/3d/pot-terra.png" alt="Чайник в глазури «Терракота»" width="800" height="1000" loading="lazy"><figcaption>Чайник «Вечер»<span>Терракота</span></figcaption></figure>
+      <figure><img src="../img/3d/hp-coral.png" alt="Наушники, цвет «Коралл»" width="800" height="1000" loading="lazy"><figcaption>Наушники<span>Коралл</span></figcaption></figure>
+      <figure><img src="../img/3d/bear-caramel.png" alt="Плюшевый мишка, цвет «Карамель»" width="800" height="1000" loading="lazy"><figcaption>Плюшевый мишка<span>Карамель</span></figcaption></figure>
+      <figure><img src="../img/3d/hat-mustard.png" alt="Шапка-бини, цвет «Горчица»" width="800" height="1000" loading="lazy"><figcaption>Шапка-бини<span>Горчица</span></figcaption></figure>
+      <figure><img src="../img/3d/pot-cobalt.png" alt="Чайник в глазури «Кобальт»" width="800" height="1000" loading="lazy"><figcaption>Чайник<span>Кобальт</span></figcaption></figure>
     </div>
   </section>
 
@@ -193,17 +196,15 @@ body.render-mode #render-stage{display:block;position:fixed;inset:0}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){
-  var GLAZES=[
-    {id:'cream',name:'Сливки',c:'#EFE4D2'},
-    {id:'sage',name:'Шалфей',c:'#8FA88A'},
-    {id:'cobalt',name:'Кобальт',c:'#2A4E95'},
-    {id:'terra',name:'Терракота',c:'#B4532E'},
-    {id:'graphite',name:'Графит',c:'#2F3034'}
-  ];
+  var PAL={
+    ceramic:[{id:'cream',name:'Сливки',c:'#EFE4D2'},{id:'sage',name:'Шалфей',c:'#8FA88A'},{id:'cobalt',name:'Кобальт',c:'#2A4E95'},{id:'terra',name:'Терракота',c:'#B4532E'},{id:'graphite',name:'Графит',c:'#2F3034'}],
+    hp:[{id:'white',name:'Белый',c:'#F1F0EC'},{id:'sand',name:'Песок',c:'#D8C3A5'},{id:'sage',name:'Шалфей',c:'#8FA88A'},{id:'coral',name:'Коралл',c:'#EE7356'},{id:'black',name:'Чёрный',c:'#2A2B2F'}],
+    bear:[{id:'caramel',name:'Карамель',c:'#C68B52'},{id:'choco',name:'Шоколад',c:'#6E4631'},{id:'milk',name:'Молоко',c:'#EFE2CD'},{id:'pink',name:'Розовый',c:'#F0A3B4'},{id:'blue',name:'Голубой',c:'#9CC0E6'}],
+    hat:[{id:'mustard',name:'Горчица',c:'#C4861A'},{id:'wine',name:'Бордо',c:'#7A2433'},{id:'emerald',name:'Изумруд',c:'#1E6B58'},{id:'cream',name:'Крем',c:'#EEE5D4'},{id:'graphite',name:'Графит',c:'#3A3B40'}]
+  };
   var MUG=[[0,0.55],[3.25,0.55],[3.45,0.62],[3.6,0.9],[3.72,1.4],[3.8,4],[3.9,8.2],[3.98,8.85],[3.94,9.12],[3.8,9.18],[3.66,9.05],[3.6,8.6],[3.52,4],[3.42,1.25],[3.2,1.05],[0,1.0]];
   var MUG_FOOT=[[0,0],[3.0,0],[3.2,0.08],[3.3,0.3],[3.28,0.6],[0,0.6]];
 
-  // профиль на схеме
   (function(){
     var s=document.getElementById('sv-profile'); if(!s) return;
     var pts=MUG.map(function(p){return [120+p[0]*14, 160-p[1]*14]});
@@ -216,11 +217,7 @@ body.render-mode #render-stage{display:block;position:fixed;inset:0}
   var RENDER=params.get('render');
   var studio=document.getElementById('studio');
   var canvas=document.getElementById('view');
-  if(RENDER){
-    document.body.classList.add('render-mode');
-    document.getElementById('render-stage').appendChild(canvas);
-    canvas.style.cursor='default';
-  }
+  if(RENDER){document.body.classList.add('render-mode');document.getElementById('render-stage').appendChild(canvas);canvas.style.cursor='default'}
   if(typeof THREE==='undefined'){document.getElementById('fallback').style.display='flex';return}
   var renderer;
   try{renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true,preserveDrawingBuffer:!!RENDER});}
@@ -235,77 +232,138 @@ body.render-mode #render-stage{display:block;position:fixed;inset:0}
 
   var scene=new THREE.Scene();
   var camera=new THREE.PerspectiveCamera(28,1,0.1,200);
-
-  // студийное окружение для отражений глазури
   (function(){
     var env=new THREE.Scene();
-    var room=new THREE.Mesh(new THREE.SphereGeometry(50,32,16),new THREE.MeshBasicMaterial({color:0x6f675f,side:THREE.BackSide}));
-    env.add(room);
-    function box(w,h,x,y,z,ry,c){var m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({color:c||0xffffff,side:THREE.DoubleSide}));m.position.set(x,y,z);m.lookAt(0,4,0);env.add(m)}
-    box(30,20,-30,22,18,0,0xffffff); box(24,30,34,14,-6,0,0xfff4e8); box(40,8,0,40,0,0,0xffffff); box(60,20,0,-20,0,0,0x8a7e70);
-    var pm=new THREE.PMREMGenerator(renderer);
-    scene.environment=pm.fromScene(env,0.03).texture;
+    env.add(new THREE.Mesh(new THREE.SphereGeometry(50,32,16),new THREE.MeshBasicMaterial({color:0x6f675f,side:THREE.BackSide})));
+    function box(w,h,x,y,z,c){var m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({color:c||0xffffff,side:THREE.DoubleSide}));m.position.set(x,y,z);m.lookAt(0,4,0);env.add(m)}
+    box(30,20,-30,22,18,0xffffff); box(24,30,34,14,-6,0xfff4e8); box(40,8,0,40,0,0xffffff); box(60,20,0,-20,0,0x8a7e70);
+    scene.environment=new THREE.PMREMGenerator(renderer).fromScene(env,0.03).texture;
   })();
-
-  var hemi=new THREE.HemisphereLight(0xfffaf2,0xb9ab98,0.45); scene.add(hemi);
+  scene.add(new THREE.HemisphereLight(0xfffaf2,0xb9ab98,0.45));
   var key=new THREE.DirectionalLight(0xffffff,1.35); key.position.set(-8,16,10); key.castShadow=true;
   key.shadow.mapSize.set(2048,2048); key.shadow.camera.left=-24; key.shadow.camera.right=24; key.shadow.camera.top=24; key.shadow.camera.bottom=-24; key.shadow.radius=6; key.shadow.bias=-0.0006;
   scene.add(key);
   var rim=new THREE.DirectionalLight(0xfff0e0,0.6); rim.position.set(10,8,-10); scene.add(rim);
-
   var ground=new THREE.Mesh(new THREE.PlaneGeometry(80,80),new THREE.ShadowMaterial({opacity:0.16}));
   ground.rotation.x=-Math.PI/2; ground.receiveShadow=true; scene.add(ground);
 
-  var glazeMat=new THREE.MeshPhysicalMaterial({color:GLAZES[0].c,roughness:0.32,metalness:0,clearcoat:0.8,clearcoatRoughness:0.15,envMapIntensity:0.7});
-  var clayMat=new THREE.MeshStandardMaterial({color:new THREE.Color('#C98F6B').convertSRGBToLinear(),roughness:0.92,metalness:0});
-  glazeMat.color.convertSRGBToLinear();
+  // шум для ворса и вязки
+  function noiseTex(rep){
+    var c=document.createElement('canvas'); c.width=c.height=256; var g=c.getContext('2d'), d=g.createImageData(256,256);
+    for(var i=0;i<d.data.length;i+=4){var v=110+Math.random()*145;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=255}
+    g.putImageData(d,0,0); var t=new THREE.CanvasTexture(c); t.wrapS=t.wrapT=THREE.RepeatWrapping; t.repeat.set(rep,rep); return t;
+  }
+  var fuzz=noiseTex(10);
+  function lin(hex){return new THREE.Color(hex).convertSRGBToLinear()}
+  var mainMat=new THREE.MeshPhysicalMaterial({color:lin('#EFE4D2'),roughness:0.32,metalness:0,clearcoat:0.8,clearcoatRoughness:0.15,envMapIntensity:0.7});
+  var lightMat=new THREE.MeshStandardMaterial({color:lin('#F3E7D6'),roughness:1,bumpMap:fuzz,bumpScale:0.06});
+  var clayMat=new THREE.MeshStandardMaterial({color:lin('#C98F6B'),roughness:0.92});
+  var darkMat=new THREE.MeshStandardMaterial({color:lin('#26272B'),roughness:0.55,envMapIntensity:0.6});
+  var glossMat=new THREE.MeshPhysicalMaterial({color:lin('#141416'),roughness:0.08,clearcoat:1,clearcoatRoughness:0.05});
+  var metalMat=new THREE.MeshStandardMaterial({color:lin('#C9CCD1'),roughness:0.28,metalness:1});
   var wireMat=new THREE.LineBasicMaterial({color:0x1e1c1a,transparent:true,opacity:0.32});
+  var STYLE={
+    ceramic:{roughness:0.32,clearcoat:0.8,bump:null},
+    hp:{roughness:0.42,clearcoat:0.35,bump:null},
+    bear:{roughness:1,clearcoat:0,bump:0.08},
+    hat:{roughness:0.95,clearcoat:0,bump:0.05}
+  };
 
   function lathe(pts,seg){return new THREE.LatheGeometry(pts.map(function(p){return new THREE.Vector2(p[0],p[1])}),seg||96)}
   function tube(points,r,taper,seg){
     var curve=new THREE.CatmullRomCurve3(points.map(function(p){return new THREE.Vector3(p[0],p[1],p[2]||0)}));
     var tub=seg||80, rad=24, g=new THREE.TubeGeometry(curve,tub,r,rad,false);
-    if(taper){
-      var pos=g.attributes.position, v=new THREE.Vector3();
-      for(var i=0;i<=tub;i++){
-        var t=i/tub, c=curve.getPointAt(t), s=1-taper*t;
-        for(var j=0;j<=rad;j++){var k=i*(rad+1)+j; v.fromBufferAttribute(pos,k).sub(c).multiplyScalar(s).add(c); pos.setXYZ(k,v.x,v.y,v.z)}
-      }
-      g.computeVertexNormals();
-    }
+    if(taper){var pos=g.attributes.position, v=new THREE.Vector3();
+      for(var i=0;i<=tub;i++){var t=i/tub,c=curve.getPointAt(t),s=1-taper*t;for(var j=0;j<=rad;j++){var k=i*(rad+1)+j;v.fromBufferAttribute(pos,k).sub(c).multiplyScalar(s).add(c);pos.setXYZ(k,v.x,v.y,v.z)}}
+      g.computeVertexNormals();}
     return g;
   }
   function mesh(g,m){var o=new THREE.Mesh(g,m);o.castShadow=true;o.receiveShadow=true;return o}
-  function cap(g,mat){var o=mesh(g,mat);return o}
+  function blob(r,sx,sy,sz,x,y,z,m,seg){var o=mesh(new THREE.SphereGeometry(r,seg||48,seg?Math.round(seg*0.66):32),m);o.scale.set(sx,sy,sz);o.position.set(x,y,z);return o}
 
   function buildMug(){
-    var grp=new THREE.Group();
-    grp.add(mesh(lathe(MUG),glazeMat));
-    grp.add(mesh(lathe(MUG_FOOT),clayMat));
-    grp.add(mesh(tube([[3.7,7.6],[5.3,7.7],[6.35,6.4],[6.2,4.4],[5.1,3.1],[3.75,2.7]],0.5,0),glazeMat));
-    grp.userData={name:'Кружка «Утро»',kind:'кружка · 350 мл',h:9.2,dist:40,ty:4.6};
-    return grp;
+    var g=new THREE.Group();
+    g.add(mesh(lathe(MUG),mainMat)); g.add(mesh(lathe(MUG_FOOT),clayMat));
+    g.add(mesh(tube([[3.7,7.6],[5.3,7.7],[6.35,6.4],[6.2,4.4],[5.1,3.1],[3.75,2.7]],0.5,0),mainMat));
+    g.userData={name:'Кружка',kind:'керамика · 350 мл',dist:40,ty:4.6,pal:'ceramic',def:'cream',style:'ceramic'};
+    return g;
   }
   function buildPot(){
-    var grp=new THREE.Group();
-    var body=[[0,0.5],[2.9,0.5],[3.25,0.7],[4.4,1.6],[5.1,3.0],[5.25,4.2],[4.95,5.5],[4.2,6.5],[3.3,7.05],[3.0,7.2],[3.0,7.35],[2.85,7.35],[2.75,7.1],[0,7.1]];
-    var foot=[[0,0],[2.7,0],[2.95,0.1],[3.05,0.35],[3.0,0.6],[0,0.6]];
-    var lid=[[0,7.25],[3.15,7.25],[3.18,7.4],[2.9,7.75],[2.1,8.25],[1.0,8.55],[0.55,8.6],[0,8.6]];
-    var knob=[[0,8.5],[0.45,8.55],[0.5,8.8],[0.85,9.2],[0.95,9.55],[0.75,9.9],[0.35,10.05],[0,10.08]];
-    grp.add(mesh(lathe(body),glazeMat));
-    grp.add(mesh(lathe(foot),clayMat));
-    grp.add(mesh(lathe(lid),glazeMat));
-    grp.add(mesh(lathe(knob,48),glazeMat));
-    grp.add(mesh(tube([[4.7,2.4],[6.4,3.4],[7.4,5.0],[8.0,6.6],[8.7,7.4]],0.78,0.55,90),glazeMat));
-    grp.add(mesh(tube([[-4.35,5.9],[-6.4,6.6],[-7.7,5.2],[-7.4,3.1],[-5.6,1.9],[-4.75,2.0]],0.55,0),glazeMat));
-    grp.userData={name:'Чайник «Вечер»',kind:'чайник · 1,2 л',h:10.1,dist:50,ty:5.0};
-    return grp;
+    var g=new THREE.Group();
+    g.add(mesh(lathe([[0,0.5],[2.9,0.5],[3.25,0.7],[4.4,1.6],[5.1,3.0],[5.25,4.2],[4.95,5.5],[4.2,6.5],[3.3,7.05],[3.0,7.2],[3.0,7.35],[2.85,7.35],[2.75,7.1],[0,7.1]]),mainMat));
+    g.add(mesh(lathe([[0,0],[2.7,0],[2.95,0.1],[3.05,0.35],[3.0,0.6],[0,0.6]]),clayMat));
+    g.add(mesh(lathe([[0,7.25],[3.15,7.25],[3.18,7.4],[2.9,7.75],[2.1,8.25],[1.0,8.55],[0.55,8.6],[0,8.6]]),mainMat));
+    g.add(mesh(lathe([[0,8.5],[0.45,8.55],[0.5,8.8],[0.85,9.2],[0.95,9.55],[0.75,9.9],[0.35,10.05],[0,10.08]],48),mainMat));
+    g.add(mesh(tube([[4.7,2.4],[6.4,3.4],[7.4,5.0],[8.0,6.6],[8.7,7.4]],0.78,0.55,90),mainMat));
+    g.add(mesh(tube([[-4.35,5.9],[-6.4,6.6],[-7.7,5.2],[-7.4,3.1],[-5.6,1.9],[-4.75,2.0]],0.55,0),mainMat));
+    g.userData={name:'Чайник',kind:'керамика · 1,2 л',dist:50,ty:5.0,pal:'ceramic',def:'cobalt',style:'ceramic'};
+    return g;
   }
-  var models={mug:buildMug(),pot:buildPot()};
+  function buildHeadphones(){
+    var g=new THREE.Group();
+    [-1,1].forEach(function(s){
+      var cup=mesh(new THREE.CylinderGeometry(2.55,2.55,1.5,64),mainMat); cup.rotation.z=Math.PI/2; cup.position.set(s*4.15,3.2,0); g.add(cup);
+      var edge=mesh(new THREE.TorusGeometry(2.55,0.75,24,64),mainMat); edge.rotation.y=Math.PI/2; edge.position.set(s*4.15,3.2,0); g.add(edge);
+      var cap=mesh(new THREE.CylinderGeometry(1.75,1.75,0.25,64),darkMat); cap.rotation.z=Math.PI/2; cap.position.set(s*(4.15+1.2),3.2,0); g.add(cap);
+      var pad=mesh(new THREE.TorusGeometry(2.05,0.8,28,64),darkMat); pad.rotation.y=Math.PI/2; pad.position.set(s*3.05,3.2,0); g.add(pad);
+      var slider=mesh(new THREE.CylinderGeometry(0.26,0.26,2.0,24),metalMat); slider.position.set(s*4.15,6.6,0); g.add(slider);
+      var yoke=mesh(new THREE.TorusGeometry(2.75,0.22,16,64,Math.PI),metalMat); yoke.rotation.y=Math.PI/2; yoke.position.set(s*4.15,3.2,0); g.add(yoke);
+    });
+    g.add(mesh(tube([[-4.15,7.4],[-4.0,9.6],[-2.8,11.4],[0,12.2],[2.8,11.4],[4.0,9.6],[4.15,7.4]],0.6,0,90),mainMat));
+    g.add(mesh(tube([[-2.6,10.85],[-1.4,11.45],[0,11.7],[1.4,11.45],[2.6,10.85]],0.55,0,60),darkMat));
+    g.rotation.y=0.35;
+    g.userData={name:'Наушники',kind:'техника · беспроводные',dist:56,ty:6.4,pal:'hp',def:'coral',style:'hp'};
+    var w=new THREE.Group(); w.add(g); w.userData=g.userData; return w;
+  }
+  function buildBear(){
+    var g=new THREE.Group();
+    g.add(blob(3.1,1,1.12,0.9,0,3.7,0,mainMat));
+    g.add(blob(2.15,1,1.1,0.42,0,3.6,2.05,lightMat));
+    g.add(blob(2.6,1,0.95,0.95,0,8.1,0.2,mainMat));
+    [-1,1].forEach(function(s){
+      g.add(blob(0.95,1,1,0.65,s*1.85,10.15,-0.1,mainMat));
+      g.add(blob(0.55,1,1,0.4,s*1.85,10.15,0.32,lightMat));
+      var arm=blob(1.05,0.95,1.6,0.95,s*2.95,4.6,0.9,mainMat); arm.rotation.z=s*0.55; arm.rotation.x=-0.35; g.add(arm);
+      g.add(blob(1.35,1,0.85,1.35,s*1.75,1.05,1.7,mainMat));
+      g.add(blob(0.75,1,1,0.3,s*1.75,1.15,3.05,lightMat));
+      g.add(blob(0.3,1,1,0.75,s*0.95,8.55,2.42,glossMat,24));
+    });
+    g.add(blob(1.1,1,0.78,0.8,0,7.35,2.3,lightMat));
+    g.add(blob(0.4,1.35,0.9,0.8,0,7.78,3.12,glossMat,24));
+    g.userData={name:'Плюшевый мишка',kind:'игрушка · 35 см',dist:50,ty:5.6,pal:'bear',def:'caramel',style:'bear'};
+    return g;
+  }
+  function ribbed(geo,amp,count,ymax,fade){
+    var p=geo.attributes.position,v=new THREE.Vector3();
+    for(var i=0;i<p.count;i++){
+      v.fromBufferAttribute(p,i); var r=Math.hypot(v.x,v.z); if(r<0.01) continue;
+      var a=Math.atan2(v.z,v.x), k=fade?Math.max(0,1-(v.y-fade[0])/(fade[1]-fade[0])):1;
+      if(v.y>ymax) k=fade?k:0;
+      var d=amp*k*Math.pow(Math.abs(Math.cos(a*count/2)),0.6);
+      var s=(r+d)/r; p.setXYZ(i,v.x*s,v.y,v.z*s);
+    }
+    geo.computeVertexNormals(); return geo;
+  }
+  function buildHat(){
+    var g=new THREE.Group();
+    var dome=lathe([[4.15,0.3],[4.2,2.4],[4.15,4.0],[3.9,5.5],[3.3,6.8],[2.4,7.8],[1.3,8.45],[0,8.65]],144);
+    g.add(mesh(ribbed(dome,0.11,48,8.7,[2.4,8.6]),mainMat));
+    var cuff=lathe([[4.25,0],[4.55,0.12],[4.65,1.4],[4.6,2.65],[4.3,2.85]],144);
+    g.add(mesh(ribbed(cuff,0.16,48,3,null),mainMat));
+    var pom=new THREE.SphereGeometry(1.75,96,72), p=pom.attributes.position, v=new THREE.Vector3();
+    for(var i=0;i<p.count;i++){v.fromBufferAttribute(p,i);var n=1+0.12*Math.sin(v.x*7.1)*Math.cos(v.y*6.3)+0.08*Math.sin(v.z*9.7+v.y*3.1);v.multiplyScalar(n);p.setXYZ(i,v.x,v.y,v.z)}
+    pom.computeVertexNormals();
+    var pm=mesh(pom,lightMat); pm.position.set(0,9.9,0); g.add(pm);
+    g.rotation.x=0.08;
+    g.userData={name:'Шапка-бини',kind:'одежда · мерино',dist:48,ty:5.2,pal:'hat',def:'mustard',style:'hat'};
+    return g;
+  }
+  var models={mug:buildMug(),pot:buildPot(),hp:buildHeadphones(),bear:buildBear(),hat:buildHat()};
   var wires={};
   Object.keys(models).forEach(function(k){
     var w=new THREE.Group();
-    models[k].children.forEach(function(m){var l=new THREE.LineSegments(new THREE.WireframeGeometry(m.geometry),wireMat);w.add(l)});
+    models[k].updateMatrixWorld(true);
+    models[k].traverse(function(m){if(m.isMesh){var l=new THREE.LineSegments(new THREE.WireframeGeometry(m.geometry),wireMat);m.updateWorldMatrix(true,false);l.matrixAutoUpdate=false;l.matrix.copy(m.matrixWorld);w.add(l)}});
     w.visible=false; models[k].add(w); wires[k]=w;
   });
   function tris(g){var n=0;g.traverse(function(o){if(o.isMesh){n+=o.geometry.index?o.geometry.index.count/3:o.geometry.attributes.position.count/3}});return Math.round(n)}
@@ -313,45 +371,46 @@ body.render-mode #render-stage{display:block;position:fixed;inset:0}
   var pivot=new THREE.Group(); scene.add(pivot);
   var current=null, curKey=params.get('model')||(RENDER?RENDER:'mug');
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // состояние камеры и вращения
   var rotY=-0.55, rotX=0.18, velY=0, targetZoom=1, zoom=1, auto=!RENDER, dragging=false;
   var appear={t:1,from:0.86};
+  var gwrap=document.getElementById('glazes'), gname=document.getElementById('glaze-name');
+  var targetColor=lin('#EFE4D2'), targetLight=lin('#F3E7D6'), curPal='ceramic';
 
-  function setModel(k,instant){
+  function lighten(hex,k){var c=new THREE.Color(hex);c.lerp(new THREE.Color('#FFF6EA'),k);return c.convertSRGBToLinear()}
+  function buildSwatches(pal,sel){
+    gwrap.innerHTML='';
+    PAL[pal].forEach(function(g){
+      var b=document.createElement('button'); b.type='button'; b.className='gz'; b.style.setProperty('--c',g.c);
+      b.setAttribute('aria-label','Цвет «'+g.name+'»'); b.setAttribute('aria-pressed',g.id===sel?'true':'false'); b.dataset.id=g.id;
+      b.addEventListener('click',function(){setColor(g.id)}); gwrap.appendChild(b);
+    });
+  }
+  function setColor(id,instant){
+    var list=PAL[curPal], g=list.filter(function(x){return x.id===id})[0]||list[0];
+    targetColor=lin(g.c); targetLight=curPal==='hat'?lighten(g.c,0.25):lighten(g.c,curPal==='bear'?0.6:0.5);
+    if(instant||reduce){mainMat.color.copy(targetColor);lightMat.color.copy(targetLight)}
+    gname.textContent=g.name;
+    [].forEach.call(gwrap.children,function(b){b.setAttribute('aria-pressed',b.dataset.id===g.id?'true':'false')});
+  }
+  function setModel(k,instant,color){
     if(current) pivot.remove(current);
     curKey=k; current=models[k]; pivot.add(current);
-    current.position.y=0;
-    var u=current.userData;
+    var u=current.userData, st=STYLE[u.style];
+    mainMat.roughness=st.roughness; mainMat.clearcoat=st.clearcoat;
+    mainMat.bumpMap=st.bump?fuzz:null; mainMat.bumpScale=st.bump||0; mainMat.needsUpdate=true;
     document.getElementById('m-name').textContent=u.name;
     document.getElementById('m-kind').textContent=u.kind;
     document.getElementById('m-tris').textContent=tris(current).toLocaleString('ru-RU')+' треугольников';
     appear.t=instant||reduce?1:0;
     [].forEach.call(document.querySelectorAll('[data-model]'),function(b){b.setAttribute('aria-pressed',b.dataset.model===k?'true':'false')});
+    curPal=u.pal; buildSwatches(curPal,color||u.def); setColor(color||u.def,instant);
   }
-
-  // глазури
-  var gwrap=document.getElementById('glazes'), gname=document.getElementById('glaze-name');
-  var targetColor=new THREE.Color(GLAZES[0].c).convertSRGBToLinear();
-  GLAZES.forEach(function(g,i){
-    var b=document.createElement('button'); b.type='button'; b.className='gz'; b.style.setProperty('--c',g.c);
-    b.setAttribute('aria-label','Глазурь «'+g.name+'»'); b.setAttribute('aria-pressed',i===0?'true':'false');
-    b.addEventListener('click',function(){setGlaze(g.id)});
-    gwrap.appendChild(b);
-  });
-  function setGlaze(id,instant){
-    var g=GLAZES.filter(function(x){return x.id===id})[0]||GLAZES[0];
-    targetColor.set(g.c).convertSRGBToLinear(); if(instant||reduce) glazeMat.color.copy(targetColor);
-    gname.textContent=g.name;
-    [].forEach.call(gwrap.children,function(b,i){b.setAttribute('aria-pressed',GLAZES[i].id===g.id?'true':'false')});
-  }
-
   [].forEach.call(document.querySelectorAll('[data-model]'),function(b){b.addEventListener('click',function(){if(b.dataset.model!==curKey) setModel(b.dataset.model)})});
   var wireBtn=document.getElementById('wire');
   wireBtn.addEventListener('click',function(){
     var on=wireBtn.getAttribute('aria-pressed')!=='true'; wireBtn.setAttribute('aria-pressed',on?'true':'false');
     Object.keys(wires).forEach(function(k){wires[k].visible=on});
-    glazeMat.transparent=on; glazeMat.opacity=on?0.55:1; clayMat.transparent=on; clayMat.opacity=on?0.55:1;
+    [mainMat,clayMat,lightMat,darkMat,metalMat,glossMat].forEach(function(m){m.transparent=on;m.opacity=on?0.55:1});
   });
   var spinBtn=document.getElementById('spin');
   spinBtn.addEventListener('click',function(){auto=!auto;spinBtn.setAttribute('aria-pressed',auto?'true':'false')});
@@ -359,23 +418,17 @@ body.render-mode #render-stage{display:block;position:fixed;inset:0}
   document.getElementById('zin').addEventListener('click',function(){targetZoom=Math.max(0.6,targetZoom-0.15)});
   document.getElementById('zout').addEventListener('click',function(){targetZoom=Math.min(1.5,targetZoom+0.15)});
 
-  // перетаскивание
   var hint=document.getElementById('hint'), lastX=0,lastY=0,lastT=0;
-  canvas.addEventListener('pointerdown',function(e){
-    dragging=true; canvas.setPointerCapture(e.pointerId); canvas.classList.add('drag');
-    lastX=e.clientX; lastY=e.clientY; lastT=performance.now(); velY=0; hint.classList.add('gone');
-  });
+  canvas.addEventListener('pointerdown',function(e){dragging=true;canvas.setPointerCapture(e.pointerId);canvas.classList.add('drag');lastX=e.clientX;lastY=e.clientY;lastT=performance.now();velY=0;hint.classList.add('gone')});
   canvas.addEventListener('pointermove',function(e){
-    if(!dragging) return;
-    var now=performance.now(), dx=e.clientX-lastX, dy=e.clientY-lastY;
-    rotY+=dx*0.008; rotX=Math.max(-0.15,Math.min(0.75,rotX+dy*0.005));
-    velY=dx*0.008/Math.max(8,now-lastT)*16;
+    if(!dragging) return; var now=performance.now(),dx=e.clientX-lastX,dy=e.clientY-lastY;
+    rotY+=dx*0.008; rotX=Math.max(-0.15,Math.min(0.75,rotX+dy*0.005)); velY=dx*0.008/Math.max(8,now-lastT)*16;
     lastX=e.clientX; lastY=e.clientY; lastT=now;
   });
   function end(){dragging=false;canvas.classList.remove('drag')}
   canvas.addEventListener('pointerup',end); canvas.addEventListener('pointercancel',end);
-  canvas.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'){rotY-=0.2}if(e.key==='ArrowRight'){rotY+=0.2}});
   canvas.tabIndex=0;
+  canvas.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'){rotY-=0.2}if(e.key==='ArrowRight'){rotY+=0.2}});
 
   function resize(){
     var w=canvas.clientWidth||canvas.parentNode.clientWidth, h=canvas.clientHeight||canvas.parentNode.clientHeight;
@@ -383,29 +436,25 @@ body.render-mode #render-stage{display:block;position:fixed;inset:0}
     renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix();
   }
   window.addEventListener('resize',resize);
-
   function ease(t){return 1-Math.pow(1-t,3)}
   var last=performance.now(), visible=true;
   if('IntersectionObserver' in window && !RENDER){new IntersectionObserver(function(es){visible=es[0].isIntersecting}).observe(studio)}
   function frame(now){
     var dt=Math.min(0.05,(now-last)/1000); last=now;
-    if(!dragging){ rotY+=velY; velY*=0.92; if(auto&&Math.abs(velY)<0.002) rotY+=dt*0.35; }
+    if(!dragging){rotY+=velY;velY*=0.92;if(auto&&Math.abs(velY)<0.002) rotY+=dt*0.35}
     zoom+=(targetZoom-zoom)*0.12;
-    glazeMat.color.lerp(targetColor,0.14);
+    mainMat.color.lerp(targetColor,0.14); lightMat.color.lerp(targetLight,0.14);
     if(appear.t<1){appear.t=Math.min(1,appear.t+dt/0.6)}
-    var s=appear.from+(1-appear.from)*ease(appear.t);
-    pivot.scale.setScalar(s); pivot.rotation.y=rotY+(1-ease(appear.t))*-0.9;
+    pivot.scale.setScalar(appear.from+(1-appear.from)*ease(appear.t)); pivot.rotation.y=rotY+(1-ease(appear.t))*-0.9;
     var u=current.userData, d=u.dist*zoom;
-    var portrait=camera.aspect<0.9; if(portrait) d*=1.35/Math.max(0.55,camera.aspect)*0.75;
+    if(camera.aspect<0.9) d*=1.35/Math.max(0.55,camera.aspect)*0.75;
     camera.position.set(0,u.ty+Math.sin(rotX)*d,Math.cos(rotX)*d);
     camera.lookAt(0,u.ty*(RENDER?0.95:0.9),0);
     renderer.render(scene,camera);
   }
-  function loop(now){ if(visible||RENDER) frame(now); requestAnimationFrame(loop) }
-
-  setModel(curKey,true);
-  setGlaze(params.get('glaze')||'cream',true);
-  if(RENDER){ rotY=+(params.get('ry')||-0.55); rotX=+(params.get('rx')||0.2); targetZoom=zoom=+(params.get('z')||1); }
+  function loop(now){if(visible||RENDER) frame(now);requestAnimationFrame(loop)}
+  setModel(curKey,true,params.get('glaze'));
+  if(RENDER){rotY=+(params.get('ry')||-0.55);rotX=+(params.get('rx')||0.2);targetZoom=zoom=+(params.get('z')||1)}
   resize();
   requestAnimationFrame(function(t){last=t;frame(t);frame(t+16);window.renderDone=true;loop(t)});
 })();

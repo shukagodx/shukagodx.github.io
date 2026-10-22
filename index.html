@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Shuka — веб-дизайнер</title>
-<meta name="description" content="Лендинги, сайты для малого бизнеса и интерфейсы сервисов. Портфолио и контакты.">
+<meta name="description" content="Сайты и лендинги, логотипы, карточки для Ozon и Wildberries и 3D-модели товаров. Портфолио и контакты.">
 <meta property="og:title" content="Shuka — веб-дизайнер">
-<meta property="og:description" content="Лендинги, сайты для малого бизнеса и интерфейсы сервисов. Портфолио и контакты.">
+<meta property="og:description" content="Сайты и лендинги, логотипы, карточки для маркетплейсов и 3D-модели товаров.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://shukagodx.github.io/">
 <meta property="og:site_name" content="Shuka — веб-дизайнер">
@@ -17,492 +17,422 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' fill='none' stroke='%233D5AFE' stroke-width='4'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <style>
-/* Layout: холст дизайн-редактора — работы лежат как фреймы с подписями размеров, герой выделен рамкой с маркерами */
+/* Layout: светлая витрина — четыре категории работ подряд, каждая со своим способом показа: сравнение, сетка знаков, лента карточек, подиум 3D */
 :root{
-  --bg:#F1F3F5; --surface:#FFFFFF; --fg:#121417; --muted:#545B68; --line:#D6DBE2;
-  --accent:#3D5AFE; --accent-ink:#FFFFFF; --accent-soft:#E3E8FF;
-  --f-display:"Geologica", "Segoe UI", system-ui, sans-serif;
-  --f-body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
-  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme:light;
+  --bg:#FBF8F3; --bg2:#FFFFFF; --sand:#F3ECE2; --fg:#1A1714; --muted:#675E55; --line:#E8DFD3;
+  --accent:#3D5AFE; --accent-ink:#FFFFFF; --accent-soft:#E6EAFF;
+  --f-display:"Geologica","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
   --ease-out:cubic-bezier(0.23,1,0.32,1);
-  --ease-io:cubic-bezier(0.77,0,0.175,1);
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#111316; --surface:#181B20; --fg:#EDEFF2; --muted:#A1A8B4; --line:#2B3038;
-  --accent:#8195FF; --accent-ink:#0D1020; --accent-soft:#1E2445; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#111316; --surface:#181B20; --fg:#EDEFF2; --muted:#A1A8B4; --line:#2B3038;
-  --accent:#8195FF; --accent-ink:#0D1020; --accent-soft:#1E2445; color-scheme:dark}
-
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.6;
-  background-image:radial-gradient(var(--line) 1px, transparent 1.2px);background-size:24px 24px}
-.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.6}
+img{max-width:100%;display:block}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
 a{color:var(--accent)}
-a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
-h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+a:focus-visible,button:focus-visible,input:focus-visible,.car:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;letter-spacing:-0.03em;line-height:1.15}
 .mono{font-family:var(--f-mono);font-size:12.5px;letter-spacing:0.02em}
-.eyebrow{font-family:var(--f-mono);font-size:12.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
 
 /* Шапка */
-.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-block:24px}
-.logo{font-family:var(--f-display);font-weight:800;font-size:20px;letter-spacing:-0.03em;color:var(--fg);text-decoration:none;display:flex;align-items:center;gap:10px}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
+.logo{font-family:var(--f-display);font-weight:800;font-size:20px;letter-spacing:-0.03em;color:var(--fg);text-decoration:none;display:flex;align-items:center;gap:10px;min-height:44px}
 .logo i{width:12px;height:12px;border:2px solid var(--accent);display:inline-block}
-.top nav{display:flex;flex-wrap:wrap;gap:24px}
-.top nav a{color:var(--muted);text-decoration:none;font-weight:500;min-height:44px;display:inline-flex;align-items:center;transition:color 160ms ease}
-@media (hover:hover) and (pointer:fine){.top nav a:hover{color:var(--fg)}}
+.nav{display:flex;gap:22px;white-space:nowrap}
+.nav a{color:var(--muted);text-decoration:none;font-weight:500;min-height:44px;display:inline-flex;align-items:center;transition:color 160ms ease}
+@media (hover:hover) and (pointer:fine){.nav a:hover{color:var(--fg)}}
+.top .btn{min-height:44px;padding:0 18px}
+@media (max-width:900px){.nav{display:none}}
+
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:12px;font-weight:600;font-size:16px;text-decoration:none;border:1.5px solid transparent;transition:transform 160ms var(--ease-out),background-color 200ms ease,border-color 200ms ease,color 200ms ease}
+.btn:active{transform:scale(0.97)}
+.btn-main{background:var(--fg);color:#FFF}
+.btn-line{border-color:var(--line);color:var(--fg);background:var(--bg2)}
+@media (hover:hover) and (pointer:fine){.btn-main:hover{background:var(--accent)}.btn-line:hover{border-color:var(--fg)}}
 
 /* Hero */
-.hero{padding-block:56px 88px}
-.status{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:14px;color:var(--muted)}
+.hero{padding-block:64px 72px}
+.status{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--bg2);font-size:14px;color:var(--muted)}
 .status b{width:8px;height:8px;border-radius:50%;background:#1F9D63;display:inline-block}
-.sel{position:relative;display:inline-block;margin-top:40px;padding:10px 18px}
-.sel::before{content:"";position:absolute;inset:0;border:1.5px solid var(--accent);transform-origin:left center;animation:sel-draw 700ms var(--ease-io) 200ms both}
-.handle{position:absolute;width:10px;height:10px;background:var(--surface);border:1.5px solid var(--accent);animation:pop 260ms var(--ease-out) both}
-.h1{top:-5px;left:-5px;animation-delay:820ms}.h2{top:-5px;right:-5px;animation-delay:860ms}.h3{bottom:-5px;left:-5px;animation-delay:900ms}.h4{bottom:-5px;right:-5px;animation-delay:940ms}
-.dim{position:absolute;left:50%;bottom:-34px;transform:translateX(-50%);background:var(--accent);color:var(--accent-ink);padding:2px 8px;border-radius:4px;white-space:nowrap;animation:pop 260ms var(--ease-out) 1000ms both}
-@keyframes sel-draw{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
-@keyframes pop{from{opacity:0;transform:scale(0.9)}to{opacity:1}}
-.dim{transform:translateX(-50%)}
-@keyframes pop-dim{from{opacity:0}to{opacity:1}}
-.dim{animation-name:pop-dim}
-.hero h1{font-size:clamp(2.6rem,7.4vw,6.2rem);font-weight:800;line-height:0.98;letter-spacing:-0.045em}
+.hero h1{font-size:clamp(2.6rem,7vw,5.8rem);font-weight:800;line-height:0.98;letter-spacing:-0.045em;margin-top:28px;max-width:1100px}
 .hero h1 span{color:var(--accent)}
-.lead{max-width:620px;margin:64px 0 0;font-size:clamp(1.05rem,1.6vw,1.25rem);color:var(--muted)}
-.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
-.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 24px;border-radius:12px;font-weight:600;font-size:16px;text-decoration:none;transition:transform 160ms var(--ease-out),background-color 200ms ease,border-color 200ms ease}
-.btn:active{transform:scale(0.97)}
-.btn-main{background:var(--fg);color:var(--bg)}
-.btn-line{border:1.5px solid var(--line);color:var(--fg);background:var(--surface)}
-@media (hover:hover) and (pointer:fine){.btn-line:hover{border-color:var(--fg)}.btn-main:hover{background:var(--accent);color:var(--accent-ink)}}
+.lead{max-width:640px;margin:28px 0 0;font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--muted)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.cats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:56px}
+.cat{display:flex;flex-direction:column;gap:4px;padding:18px 20px;background:var(--bg2);border:1px solid var(--line);border-radius:16px;text-decoration:none;color:var(--fg);transition:transform 200ms var(--ease-out),border-color 200ms ease}
+.cat b{font-family:var(--f-display);font-size:18px;letter-spacing:-0.02em}
+.cat span{font-size:14px;color:var(--muted)}
+.cat i{font-style:normal;font-family:var(--f-mono);font-size:12.5px;color:var(--accent)}
+.cat:active{transform:scale(0.98)}
+@media (hover:hover) and (pointer:fine){.cat:hover{border-color:var(--fg);transform:translateY(-2px)}}
+@media (max-width:820px){.cats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
-/* Секции */
-section.block{padding-block:72px;border-top:1px solid var(--line)}
-.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 32px;margin-bottom:40px}
-.head h2{font-size:clamp(1.9rem,3.6vw,3rem);font-weight:700;letter-spacing:-0.035em;line-height:1.05;margin-top:12px}
-.head p{max-width:420px;margin:0;color:var(--muted)}
+/* Блоки */
+section.block{padding-block:88px}
+section.alt{background:var(--bg2);border-block:1px solid var(--line)}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px;margin-bottom:40px}
+.eyebrow{font-family:var(--f-mono);font-size:12.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent)}
+.head h2{font-size:clamp(2rem,4.2vw,3.4rem);font-weight:800;line-height:1.02;margin-top:12px}
+.head p{max-width:440px;margin:0;color:var(--muted)}
+.sub{font-family:var(--f-display);font-size:20px;font-weight:700;letter-spacing:-0.02em;margin:64px 0 20px}
+.kind{font-family:var(--f-mono);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)}
+.more{display:inline-flex;align-items:center;gap:6px;font-weight:600;text-decoration:none;min-height:44px}
 
-/* Фреймы работ */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:48px 28px}
-.frame{display:flex;flex-direction:column;gap:12px;min-width:0;animation:rise 600ms var(--ease-out) both}
-.frame:nth-child(2){animation-delay:70ms}.frame:nth-child(3){animation-delay:140ms}.frame:nth-child(4){animation-delay:210ms}.frame:nth-child(5){animation-delay:280ms}
-@keyframes rise{from{opacity:0.35;transform:translateY(12px)}to{opacity:1;transform:none}}
-.frame-label{display:flex;justify-content:space-between;gap:12px;color:var(--muted)}
-.shot{display:block;aspect-ratio:4/3;max-width:100%;border-radius:14px;overflow:hidden;border:1px solid var(--line);position:relative;text-decoration:none;transition:border-color 200ms ease,transform 160ms var(--ease-out)}
-.shot:active{transform:scale(0.985)}
-.mini{position:absolute;inset:0;transition:transform 400ms var(--ease-out);transform-origin:50% 0}
-@media (hover:hover) and (pointer:fine){.shot:hover{border-color:var(--accent)}.shot:hover .mini{transform:scale(1.035)}}
-.meta h3{font-size:22px;font-weight:700;letter-spacing:-0.02em}
-.meta p{margin:6px 0 0;color:var(--muted);font-size:15px}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.tag{font-family:var(--f-mono);font-size:12px;padding:3px 9px;border-radius:999px;background:var(--accent-soft);color:var(--fg)}
-.swatches{display:flex;gap:6px;align-items:center;margin-top:12px}
-.sw{width:18px;height:18px;border-radius:5px;border:1px solid var(--line)}
-.open{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-weight:600;text-decoration:none;min-height:44px}
-
-/* Мини-превью: собраны из палитры каждой работы */
-.m1{background:#0B1020;padding:9% 8%;display:flex;gap:7%;align-items:center}
-.m1 .txt{flex:1;display:flex;flex-direction:column;gap:7%}
-.m1 .t1{height:14px;width:80%;background:#EEF1F7;border-radius:3px}.m1 .t2{height:14px;width:55%;background:#EEF1F7;border-radius:3px}
-.m1 .t3{height:6px;width:70%;background:#3A4560;border-radius:3px;margin-top:6px}.m1 .t4{height:6px;width:50%;background:#3A4560;border-radius:3px}
-.m1 .pill{height:18px;width:46%;background:#C8F26A;border-radius:99px;margin-top:10px}
-.m1 .ring{width:38%;aspect-ratio:1;border-radius:50%;border:8px solid #222C45;border-top-color:#C8F26A;border-right-color:#C8F26A;transform:rotate(-20deg);flex:none}
-.m2{background:#EDEFE8;padding:9% 8%;display:flex;gap:6%;align-items:flex-end}
-.m2 .txt{flex:1;display:flex;flex-direction:column;gap:9px;padding-bottom:12%}
-.m2 .t1{height:16px;width:90%;background:#1C2B22;border-radius:3px}.m2 .t2{height:16px;width:60%;background:#1C2B22;border-radius:3px}
-.m2 .pill{height:18px;width:50%;background:#B8432B;border-radius:99px;margin-top:8px}
-.m2 .arch{width:40%;height:88%;background:#DDE3D5;border-radius:999px 999px 10px 10px;flex:none;position:relative;overflow:hidden}
-.m2 .arch::before{content:"";position:absolute;width:34%;aspect-ratio:1;border-radius:50%;background:#B8432B;left:33%;top:22%;box-shadow:-26px 18px 0 -4px #F2C4B6, 24px 22px 0 -6px #F7F3D8}
-.m2 .arch::after{content:"";position:absolute;width:36%;height:30%;background:#1C2B22;left:32%;bottom:0}
-.m3{background:#F3F5F8;display:flex}
-.m3 .side{width:22%;background:#FFFFFF;border-right:1px solid #E3E7EE;padding:8% 4%;display:flex;flex-direction:column;gap:9px}
-.m3 .side i{height:7px;background:#E3E7EE;border-radius:3px;display:block}.m3 .side i:first-child{background:#2557F5;width:60%;height:10px;margin-bottom:6px}
-.m3 .body{flex:1;padding:6% 5%;display:flex;flex-direction:column;gap:6%}
-.m3 .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.m3 .kpis i{height:30px;background:#FFFFFF;border:1px solid #E3E7EE;border-radius:6px;display:block}
-.m3 .chart{flex:1;background:#FFFFFF;border:1px solid #E3E7EE;border-radius:8px;position:relative;overflow:hidden}
-.m3 .chart svg{position:absolute;inset:10% 6% 12%;width:88%;height:78%}
-
-
-.m4{background:#F4F5F7;display:grid;grid-template-columns:1fr 1.1fr 1fr}
-.m4 .l{background:#F8CDD1;padding:14% 10%;display:flex;flex-direction:column;justify-content:space-between}
-.m4 .r{background:#E2E8FB;padding:14% 10%;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end}
-.m4 .w{height:18px;width:90%;background:#D92B3A;border-radius:2px;display:block}.m4 .r .w{background:#2348D0;width:70%}
-.m4 .c{height:12px;width:50%;background:#8E1420;border-radius:2px;display:block}.m4 .r .c{background:#17318C}
-.m4 .mid{border-left:3px solid #D92B3A;border-right:3px solid #2348D0;padding:16% 9%;display:flex;flex-direction:column;gap:7px}
-.m4 .mid i{display:block;border-radius:2px}.m4 .h1{height:10px;width:95%;background:#111318}.m4 .h2{height:10px;width:70%;background:#111318}
-.m4 .p{height:24px;width:100%;background:#D9DCE2;margin-top:6px}.m4 .b{height:12px;width:55%;background:#D92B3A;margin-top:auto}
-.m5{background:#EAF0EF;padding:9% 7%;display:flex;gap:6%;align-items:center}
-.m5 .txt{flex:1;display:flex;flex-direction:column;gap:8px}
-.m5 .txt i{display:block;border-radius:3px}.m5 .t1{height:14px;width:85%;background:#0E2A2F}.m5 .t2{height:14px;width:70%;background:#0E2A2F}.m5 .t3{height:14px;width:55%;background:#C9450B}
-.m5 .pill{height:16px;width:48%;background:#C9450B;border-radius:99px !important;margin-top:8px}
-.m5 .stagebox{width:44%;aspect-ratio:1;position:relative;flex:none}
-.m5 .stagebox i{position:absolute;display:block;border-radius:10px}
-.m5 .sh1{inset:4% 14% 18% 0;background:rgba(23,117,124,0.25);transform:rotate(-8deg)}
-.m5 .sh2{inset:12% 0 8% 20%;background:rgba(201,69,11,0.14);transform:rotate(7deg)}
-.m5 .bag{inset:14% 22% 4% 22%;background:#FFFFFF;border:1px solid #B7C9C9;border-radius:4px !important;clip-path:polygon(0 0,28% 0,28% 22%,72% 22%,72% 0,100% 0,100% 100%,0 100%)}
-.m5 .bag::after{content:"";position:absolute;width:34%;aspect-ratio:1;border-radius:50%;background:#C9450B;left:33%;top:46%}
-
-/* (служебное) */
-.slot{aspect-ratio:4/3;max-width:100%;border:1.5px dashed var(--line);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:24px;color:var(--muted);background:repeating-linear-gradient(135deg,transparent 0 12px,color-mix(in srgb,var(--line) 35%,transparent) 12px 13px)}
-.slot svg{color:var(--accent)}
-
-/* Процесс */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:20px;list-style:none;padding:0;margin:0;counter-reset:s}
-.steps li{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;counter-increment:s}
-.steps li::before{content:counter(s, decimal-leading-zero);font-family:var(--f-mono);font-size:13px;color:var(--accent)}
-.steps h3{font-size:19px;font-weight:700;margin-top:14px;letter-spacing:-0.01em}
-.steps p{margin:8px 0 0;color:var(--muted);font-size:15px}
-
-/* Услуги */
-.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));border-top:1px solid var(--line)}
-.svc div{padding:22px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;padding-right:24px}
-.svc span{font-family:var(--f-display);font-weight:600;font-size:18px;letter-spacing:-0.01em}
-.svc em{font-style:normal;font-family:var(--f-mono);font-size:12.5px;color:var(--muted);white-space:nowrap;align-self:center}
-
-/* Контакты */
-.contact{background:var(--fg);color:var(--bg);border-radius:24px;padding:clamp(28px,6vw,64px);display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-end}
-.contact h2{font-size:clamp(2rem,5vw,3.6rem);font-weight:800;letter-spacing:-0.04em;line-height:1}
-.contact .rows{display:flex;flex-direction:column;gap:14px;min-width:0}
-.crow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.crow .mono{opacity:0.7}
-.copy{font:inherit;font-size:15px;font-weight:600;min-height:44px;padding:0 16px;border-radius:10px;border:1.5px solid color-mix(in srgb,var(--bg) 35%,transparent);background:transparent;color:var(--bg);cursor:pointer;transition:transform 140ms var(--ease-out),background-color 160ms ease}
-.copy:active{transform:scale(0.97)}
-.val{font-family:var(--f-display);font-size:20px;font-weight:600;user-select:all}
-footer{padding-block:32px 48px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;color:var(--muted)}
-
-.shot-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 400ms cubic-bezier(0.23,1,0.32,1)}
-@media (hover:hover) and (pointer:fine){.shot:hover .shot-img{transform:scale(1.035)}}
 /* До и после */
 .ba-list{display:flex;flex-direction:column;gap:56px}
 .ba{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px;align-items:center}
 @media (max-width:900px){.ba{grid-template-columns:minmax(0,1fr);gap:24px}}
-.cmp{position:relative;aspect-ratio:4/3;max-width:100%;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--surface);touch-action:pan-y;user-select:none}
-.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
+.cmp{position:relative;aspect-ratio:4/3;max-width:100%;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--bg2);touch-action:pan-y;user-select:none;box-shadow:0 20px 40px rgba(60,40,20,0.08)}
+.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top left}
 .cmp-before{clip-path:inset(0 calc(100% - var(--x)) 0 0)}
-.cmp-line{position:absolute;top:0;bottom:0;left:var(--x);width:2px;margin-left:-1px;background:#FFFFFF;box-shadow:0 0 0 1px rgba(0,0,0,0.15);pointer-events:none}
-.cmp-line i{position:absolute;top:50%;left:50%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:#FFFFFF;box-shadow:0 6px 18px rgba(0,0,0,0.25);transition:transform 160ms cubic-bezier(0.23,1,0.32,1)}
+.cmp-line{position:absolute;top:0;bottom:0;left:var(--x);width:2px;margin-left:-1px;background:#FFF;box-shadow:0 0 0 1px rgba(0,0,0,0.15);pointer-events:none}
+.cmp-line i{position:absolute;top:50%;left:50%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:#FFF;box-shadow:0 6px 18px rgba(0,0,0,0.25);transition:transform 160ms var(--ease-out)}
 .cmp-line i::before,.cmp-line i::after{content:"";position:absolute;top:50%;width:0;height:0;margin-top:-6px;border:6px solid transparent}
-.cmp-line i::before{left:7px;border-right-color:#121417}
-.cmp-line i::after{right:7px;border-left-color:#121417}
+.cmp-line i::before{left:7px;border-right-color:#1A1714}
+.cmp-line i::after{right:7px;border-left-color:#1A1714}
 .cmp:active .cmp-line i{transform:scale(0.92)}
 .cmp input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize}
-.cmp input:focus-visible ~ .cmp-line i,.cmp:focus-within .cmp-line i{outline:2px solid var(--accent);outline-offset:3px}
-.cmp-tag{position:absolute;top:12px;font-family:var(--f-mono);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;background:rgba(18,20,23,0.78);color:#FFFFFF;padding:4px 10px;border-radius:999px;pointer-events:none}
+.cmp:focus-within .cmp-line i{outline:2px solid var(--accent);outline-offset:3px}
+.cmp-tag{position:absolute;top:12px;font-family:var(--f-mono);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;background:rgba(26,23,20,0.78);color:#FFF;padding:4px 10px;border-radius:999px;pointer-events:none}
 .cmp-tag.l{left:12px}.cmp-tag.r{right:12px}
-.ba-text h3{font-size:26px;font-weight:700;letter-spacing:-0.02em}
+.ba-text h3{font-size:26px;font-weight:700;margin-top:6px}
 .ba-text ul{list-style:none;padding:0;margin:20px 0 8px;display:flex;flex-direction:column;gap:16px}
 .ba-text li{display:flex;flex-direction:column;gap:4px;padding-left:16px;border-left:2px solid var(--line)}
-.ba-text .was{color:var(--muted);font-size:14px;text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--muted) 50%,transparent)}
+.ba-text .was{color:var(--muted);font-size:14px;text-decoration:line-through;text-decoration-color:rgba(103,94,85,0.5)}
 .ba-text .now{font-weight:500}
 
-/* Логотипы на главной */
+/* Сетка сайтов */
+.sites{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.site{display:flex;flex-direction:column;gap:14px;text-decoration:none;color:var(--fg);min-width:0}
+.site.wide{grid-column:span 2}
+.site-img{display:block;aspect-ratio:4/3;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--sand)}
+.site.wide .site-img{aspect-ratio:2.25/1}
+.site-img img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform 500ms var(--ease-out)}
+.site-meta{display:flex;flex-direction:column;gap:2px}
+.site-meta b{font-family:var(--f-display);font-size:19px;letter-spacing:-0.02em}
+.site-meta .desc{color:var(--muted);font-size:15px}
+.site:active{transform:scale(0.99)}
+@media (hover:hover) and (pointer:fine){.site:hover .site-img img{transform:scale(1.03)}.site:hover b{color:var(--accent)}}
+@media (max-width:900px){.sites{grid-template-columns:repeat(2,minmax(0,1fr))}.site.wide{grid-column:1 / -1}.site.wide .site-img{aspect-ratio:4/3;height:auto}}
+@media (max-width:560px){.sites{grid-template-columns:minmax(0,1fr)}}
+
+/* Логотипы */
 .lg-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
 @media (max-width:900px){.lg-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.lg-tile{aspect-ratio:1;max-width:100%;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-decoration:none;border:1px solid var(--line);transition:transform 200ms cubic-bezier(0.23,1,0.32,1);animation:rise 600ms cubic-bezier(0.23,1,0.32,1) both}
+.lg-tile{aspect-ratio:1;max-width:100%;border-radius:18px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);transition:transform 200ms var(--ease-out)}
 .lg-tile:active{transform:scale(0.97)}
-.lg-mk{width:44%;aspect-ratio:1;transition:transform 400ms cubic-bezier(0.23,1,0.32,1)}
+.lg-mk{width:46%;aspect-ratio:1;transition:transform 400ms var(--ease-out)}
 .lg-mk svg{width:100%;height:100%;display:block}
-.lg-name{font-family:var(--f-display);font-weight:600;font-size:14px}
-.lg-tile .pt{transform-box:fill-box;transform-origin:center;animation:pt-in 640ms cubic-bezier(0.23,1,0.32,1) both;animation-delay:calc(var(--k,0) * 90ms + 200ms)}
+.lg-tile .pt{transform-box:fill-box;transform-origin:center;animation:pt-in 640ms var(--ease-out) both;animation-delay:calc(var(--k,0) * 90ms + 200ms)}
 @keyframes pt-in{from{opacity:0;transform:scale(0.82) translateY(6px)}to{opacity:1;transform:none}}
 @media (hover:hover) and (pointer:fine){.lg-tile:hover{transform:translateY(-3px)}.lg-tile:hover .lg-mk{transform:scale(1.06)}}
-@media (prefers-reduced-motion: reduce){.lg-tile,.lg-mk,.lg-tile .pt{transition:none;animation:none}}
 
+/* Карусели */
+.car-head{display:flex;justify-content:flex-end;margin:-16px 0 0}
+.arrows{display:flex;gap:8px;align-items:center}
+.count{font-variant-numeric:tabular-nums;font-weight:600;color:var(--muted);min-width:4.2em;text-align:right}
+.arr{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--bg2);color:var(--fg);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform 140ms var(--ease-out),background-color 160ms ease}
+.arr:active{transform:scale(0.94)}
+.arr:disabled{opacity:0.35;cursor:default}
+@media (hover:hover) and (pointer:fine){.arr:hover{background:var(--sand)}}
+.car{list-style:none;margin:16px 0 0;padding:4px max(16px, calc((100vw - 1240px) / 2 + 16px)) 28px;display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:max(16px, calc((100vw - 1240px) / 2 + 16px));overscroll-behavior-x:contain;cursor:grab;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.car.dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.car.dragging img{pointer-events:none}
+.car img{-webkit-user-drag:none;user-select:none}
+.mpc{flex:0 0 auto;width:min(300px, calc(100vw - 80px));scroll-snap-align:start}
+.mpc img{width:100%;height:auto;border-radius:14px;box-shadow:0 16px 34px rgba(60,40,20,0.12),0 0 0 1px rgba(60,40,20,0.06)}
+
+/* 3D */
+.stage3d{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.m3{position:relative;display:flex;flex-direction:column;align-items:center;text-decoration:none;color:var(--fg);background:radial-gradient(110% 80% at 50% 35%,#FFFFFF,#EFE7DC);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:transform 220ms var(--ease-out)}
+.m3 img{width:100%;height:auto;aspect-ratio:4/5;object-fit:contain;transition:transform 500ms var(--ease-out)}
+.m3 span{position:absolute;left:14px;bottom:12px;font-weight:600;font-size:14px}
+.m3:active{transform:scale(0.98)}
+@media (hover:hover) and (pointer:fine){.m3:hover img{transform:scale(1.05) rotate(-2deg)}}
+@media (max-width:900px){.stage3d{grid-template-columns:repeat(2,minmax(0,1fr))}.m3:first-child{grid-column:1 / -1}.m3:first-child img{aspect-ratio:16/10}}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;align-items:center}
+
+/* Процесс и услуги */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;list-style:none;padding:0;margin:0;counter-reset:s}
+.steps li{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:24px;counter-increment:s}
+.steps li::before{content:counter(s, decimal-leading-zero);font-family:var(--f-mono);font-size:13px;color:var(--accent)}
+.steps h3{font-size:19px;font-weight:700;margin-top:14px;letter-spacing:-0.01em}
+.steps p{margin:8px 0 0;color:var(--muted);font-size:15px}
+.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));border-top:1px solid var(--line)}
+.svc div{padding:20px 24px 20px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px}
+.svc span{font-family:var(--f-display);font-weight:600;font-size:18px;letter-spacing:-0.01em}
+.svc em{font-style:normal;font-family:var(--f-mono);font-size:12.5px;color:var(--muted);white-space:nowrap;align-self:center}
+
+/* Контакты */
+.contact{background:var(--accent);color:#FFF;border-radius:28px;padding:clamp(28px,6vw,64px);display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-end}
+.contact h2{font-size:clamp(2rem,5vw,3.6rem);font-weight:800;letter-spacing:-0.04em;line-height:1}
+.rows{display:flex;flex-direction:column;gap:14px;min-width:0}
+.crow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.crow .mono{opacity:0.8}
+.copy{font:inherit;font-size:15px;font-weight:600;min-height:44px;padding:0 16px;border-radius:10px;border:1.5px solid rgba(255,255,255,0.45);background:transparent;color:#FFF;cursor:pointer;transition:transform 140ms var(--ease-out),background-color 160ms ease}
+.copy:active{transform:scale(0.97)}
+.val{font-family:var(--f-display);font-size:20px;font-weight:600;user-select:all;color:#FFF}
+footer{padding-block:32px 48px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;color:var(--muted)}
 @media (prefers-reduced-motion: reduce){
-  .sel::before,.handle,.dim,.frame{animation:none}
-  .mini,.shot,.btn{transition:none}
+  .lg-tile .pt{animation:none}
+  .btn,.cat,.site-img img,.m3,.m3 img,.lg-tile,.lg-mk,.arr{transition:none}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="top">
+<header class="top">
+  <div class="wrap">
     <a class="logo" href="#top"><i aria-hidden="true"></i>Shuka</a>
-    <nav aria-label="Разделы">
-      <a href="#works">Работы</a>
-      <a href="#before-after">До и после</a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#sites">Сайты</a>
       <a href="#logos">Логотипы</a>
-      <a href="#process">Процесс</a>
+      <a href="#cards">Карточки</a>
+      <a href="#models">3D</a>
       <a href="#services">Услуги</a>
-      <a href="#contact">Контакты</a>
     </nav>
-  </header>
+    <a class="btn btn-main" href="#contact">Написать</a>
+  </div>
+</header>
 
-  <section class="hero" id="top">
+<main id="top">
+  <section class="wrap hero">
     <span class="status"><b aria-hidden="true"></b>Открыт к проектам</span>
-    <div>
-      <div class="sel">
-        <h1>Веб-дизайнер. Делаю сайты, которые <span>понятны с&nbsp;первого экрана</span></h1>
-        <i class="handle h1" aria-hidden="true"></i><i class="handle h2" aria-hidden="true"></i><i class="handle h3" aria-hidden="true"></i><i class="handle h4" aria-hidden="true"></i>
-        <span class="dim mono" aria-hidden="true">Hero · Fill × Hug</span>
-      </div>
-    </div>
-    <p class="lead">Лендинги, сайты для малого бизнеса и интерфейсы сервисов. Сначала разбираюсь, что должен сделать посетитель, потом рисую страницу, которая его к этому ведёт — с живыми состояниями, анимацией и адаптивом.</p>
+    <h1>Веб-дизайнер. Делаю сайты, которые <span>понятны с&nbsp;первого экрана</span></h1>
+    <p class="lead">Сайты и лендинги, логотипы, карточки для маркетплейсов и 3D-модели товаров. Сначала разбираюсь, что должен сделать покупатель, а потом рисую то, что его к этому ведёт.</p>
     <div class="cta">
-      <a class="btn btn-main" href="#works">Смотреть работы</a>
+      <a class="btn btn-main" href="#sites">Смотреть работы</a>
       <a class="btn btn-line" href="#contact">Обсудить проект</a>
     </div>
+    <nav class="cats" aria-label="Категории работ">
+      <a class="cat" href="#sites"><i>01</i><b>Сайты и лендинги</b><span>с примерами «до и после»</span></a>
+      <a class="cat" href="#logos"><i>02</i><b>Логотипы</b><span>10 фирменных знаков</span></a>
+      <a class="cat" href="#cards"><i>03</i><b>Карточки Ozon / WB</b><span>техника, игрушки, одежда</span></a>
+      <a class="cat" href="#models"><i>04</i><b>3D-моделирование</b><span>модели и рендеры товаров</span></a>
+    </nav>
   </section>
 
-  <section class="block" id="works">
-    <div class="head">
-      <div>
-        <div class="eyebrow">Избранное</div>
-        <h2>Работы</h2>
+  <section class="block alt" id="sites">
+    <div class="wrap">
+      <div class="head">
+        <div><div class="eyebrow">01 · Сайты и лендинги</div><h2>Было — стало</h2></div>
+        <p>Потяните разделитель, чтобы сравнить старый первый экран и новый.</p>
       </div>
-      <p>Каждая работа открывается живой страницей: можно полистать, понажимать кнопки и посмотреть адаптив с телефона.</p>
-    </div>
-
-    <div class="grid">
-      <article class="frame">
-        <div class="frame-label mono"><span>Лендинг</span><span>1440 × 4200</span></div>
-        <a class="shot" href="works/tishina.html" aria-label="Открыть макет лендинга «Тишина»">
-          <div class="mini m1" aria-hidden="true"><div class="txt"><i class="t1"></i><i class="t2"></i><i class="t3"></i><i class="t4"></i><i class="pill"></i></div><div class="ring"></div></div>
-        </a>
-        <div class="meta">
-          <h3>Тишина</h3>
-          <p>Лендинг приложения для глубокой работы: таймер фокуса, фоновые звуки, тарифы и FAQ.</p>
-          <div class="swatches" aria-label="Палитра"><i class="sw" style="background:#0B1020"></i><i class="sw" style="background:#121A2E"></i><i class="sw" style="background:#C8F26A"></i><i class="sw" style="background:#EEF1F7"></i><span class="mono" style="color:var(--muted);margin-left:6px">Unbounded / Manrope</span></div>
-          <div class="tags"><span class="tag">продуктовый лендинг</span><span class="tag">тёмная тема</span><span class="tag">анимация</span></div>
-          <a class="open" href="works/tishina.html">Открыть работу <span aria-hidden="true">→</span></a>
-        </div>
-      </article>
-
-      <article class="frame">
-        <div class="frame-label mono"><span>Сайт малого бизнеса</span><span>1440 × 3900</span></div>
-        <a class="shot" href="works/stebel.html" aria-label="Открыть макет сайта студии «Стебель»">
-          <div class="mini m2" aria-hidden="true"><div class="txt"><i class="t1"></i><i class="t2"></i><i class="pill"></i></div><div class="arch"></div></div>
-        </a>
-        <div class="meta">
-          <h3>Стебель</h3>
-          <p>Сайт цветочной студии: каталог с фильтром по поводу, подписка на букеты, доставка и контакты.</p>
-          <div class="swatches" aria-label="Палитра"><i class="sw" style="background:#EDEFE8"></i><i class="sw" style="background:#1C2B22"></i><i class="sw" style="background:#B8432B"></i><i class="sw" style="background:#DDE3D5"></i><span class="mono" style="color:var(--muted);margin-left:6px">Yeseva One / Golos</span></div>
-          <div class="tags"><span class="tag">e-commerce</span><span class="tag">иллюстрации</span><span class="tag">интерактив</span></div>
-          <a class="open" href="works/stebel.html">Открыть работу <span aria-hidden="true">→</span></a>
-        </div>
-      </article>
-
-      <article class="frame">
-        <div class="frame-label mono"><span>SaaS / дашборд</span><span>1440 × 1240</span></div>
-        <a class="shot" href="works/kadens.html" aria-label="Открыть макет дашборда «Каденс»">
-          <div class="mini m3" aria-hidden="true">
-            <div class="side"><i></i><i></i><i></i><i></i><i></i></div>
-            <div class="body"><div class="kpis"><i></i><i></i><i></i></div>
-              <div class="chart"><svg viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M0 40 L15 34 L28 36 L42 26 L56 28 L70 18 L85 20 L100 8" fill="none" stroke="#2557F5" stroke-width="2.2" vector-effect="non-scaling-stroke"/><path d="M0 44 L20 40 L40 37 L60 32 L80 29 L100 24" fill="none" stroke="#E07B1F" stroke-width="1.6" stroke-dasharray="3 2" vector-effect="non-scaling-stroke"/></svg></div>
-            </div>
-          </div>
-        </a>
-        <div class="meta">
-          <h3>Каденс</h3>
-          <p>Дашборд выручки для подписочного сервиса: KPI, график с периодами, источники денег и таблица оплат.</p>
-          <div class="swatches" aria-label="Палитра"><i class="sw" style="background:#F3F5F8"></i><i class="sw" style="background:#0F172A"></i><i class="sw" style="background:#2557F5"></i><i class="sw" style="background:#E07B1F"></i><span class="mono" style="color:var(--muted);margin-left:6px">Onest</span></div>
-          <div class="tags"><span class="tag">SaaS</span><span class="tag">дата-визуализация</span><span class="tag">интерфейс</span></div>
-          <a class="open" href="works/kadens.html">Открыть работу <span aria-hidden="true">→</span></a>
-        </div>
-      </article>
-      <article class="frame">
-        <div class="frame-label mono"><span>Редизайн · poedinki.ru</span><span>1440 × 4808</span></div>
-        <a class="shot" href="works/poedinki.html" aria-label="Открыть редизайн сайта Федерации управленческой борьбы">
-          <div class="mini m4" aria-hidden="true"><div class="l"><i class="w"></i><i class="c"></i></div><div class="mid"><i class="h1"></i><i class="h2"></i><i class="p"></i><i class="b"></i></div><div class="r"><i class="w"></i><i class="c"></i></div></div>
-        </a>
-        <div class="meta">
-          <h3>Управленческие поединки</h3>
-          <p>Редизайн сайта Федерации управленческой борьбы: ринг двух сторон с живым таймером поединка, табло турниров с фильтром, FUB_id и Академия.</p>
-          <div class="swatches" aria-label="Палитра"><i class="sw" style="background:#D92B3A"></i><i class="sw" style="background:#2348D0"></i><i class="sw" style="background:#111318"></i><i class="sw" style="background:#F4F5F7"></i><span class="mono" style="color:var(--muted);margin-left:6px">Oswald / Commissioner</span></div>
-          <div class="tags"><span class="tag">редизайн</span><span class="tag">некоммерческая организация</span><span class="tag">моушн</span></div>
-          <a class="open" href="works/poedinki.html">Открыть работу <span aria-hidden="true">→</span></a>
-        </div>
-      </article>
-      <article class="frame">
-        <div class="frame-label mono"><span>Редизайн · ms-polimer.ru</span><span>1440 × 4748</span></div>
-        <a class="shot" href="works/ms-polimer.html" aria-label="Открыть редизайн сайта МС-Полимер">
-          <div class="mini m5" aria-hidden="true"><div class="txt"><i class="t1"></i><i class="t2"></i><i class="t3"></i><i class="pill"></i></div><div class="stagebox"><i class="sh1"></i><i class="sh2"></i><i class="bag"></i></div></div>
-        </a>
-        <div class="meta">
-          <h3>МС-Полимер</h3>
-          <p>Редизайн сайта производителя пакетов: слои плёнки и «печать» логотипа в первом экране, каталог и конфигуратор тиража с живым превью пакета.</p>
-          <div class="swatches" aria-label="Палитра"><i class="sw" style="background:#EAF0EF"></i><i class="sw" style="background:#0E2A2F"></i><i class="sw" style="background:#C9450B"></i><i class="sw" style="background:#17757C"></i><span class="mono" style="color:var(--muted);margin-left:6px">Exo 2 / Fira Sans</span></div>
-          <div class="tags"><span class="tag">редизайн</span><span class="tag">B2B-производство</span><span class="tag">конфигуратор</span></div>
-          <a class="open" href="works/ms-polimer.html">Открыть работу <span aria-hidden="true">→</span></a>
-        </div>
-      </article>
-      <article class="frame">
-        <div class="frame-label mono"><span>Мобильное приложение</span><span>iOS · 26 экранов</span></div>
-        <a class="shot" href="works/umeltsy.html" aria-label="Открыть кейс приложения «Умельцы нашего дома»">
-          <img class="shot-img" src="img/app/thumb.jpg" alt="" width="1200" height="900" loading="lazy">
-        </a>
-        <div class="meta">
-          <h3>Умельцы нашего дома</h3>
-          <p>Приложение, где соседи по ЖК помогают друг другу: четыре сценария от регистрации до оплаты и промо-скриншоты для App Store.</p>
-          <div class="swatches" aria-label="Палитра"><i class="sw" style="background:#9B5428"></i><i class="sw" style="background:#E8964A"></i><i class="sw" style="background:#EAD8C6"></i><i class="sw" style="background:#3D2C22"></i><span class="mono" style="color:var(--muted);margin-left:6px">Unbounded / Golos Text</span></div>
-          <div class="tags"><span class="tag">мобильное приложение</span><span class="tag">UX-сценарии</span><span class="tag">App Store</span></div>
-          <a class="open" href="works/umeltsy.html">Открыть работу <span aria-hidden="true">→</span></a>
-        </div>
-      </article>
-      <article class="frame">
-        <div class="frame-label mono"><span>Лендинг с метриками</span><span>1440 × 3730</span></div>
-        <a class="shot" href="works/skvoz.html" aria-label="Открыть лендинг сервиса «Сквозь»">
-          <img class="shot-img" src="img/thumbs/skvoz.jpg" alt="" width="1200" height="900" loading="lazy">
-        </a>
-        <div class="meta">
-          <h3>Сквозь</h3>
-          <p>Лендинг сервиса сквозной аналитики: живой дашборд с переключением периода, воронка продаж и калькулятор рекламного бюджета.</p>
-          <div class="swatches" aria-label="Палитра"><i class="sw" style="background:#10151C"></i><i class="sw" style="background:#FF5A1F"></i><i class="sw" style="background:#0E8F80"></i><i class="sw" style="background:#F3F4EF"></i><span class="mono" style="color:var(--muted);margin-left:6px">Tektur / Golos Text</span></div>
-          <div class="tags"><span class="tag">лендинг</span><span class="tag">метрики</span><span class="tag">калькулятор</span></div>
-          <a class="open" href="works/skvoz.html">Открыть работу <span aria-hidden="true">→</span></a>
-        </div>
-      </article>
-      <article class="frame">
-        <div class="frame-label mono"><span>3D-моделирование</span><span>WebGL · 2 модели</span></div>
-        <a class="shot" href="works/3d.html" aria-label="Открыть 3D-модели керамики «Обжиг»">
-          <img class="shot-img" src="img/thumbs/3d.jpg" alt="" width="1200" height="900" loading="lazy">
-        </a>
-        <div class="meta">
-          <h3>Обжиг · 3D</h3>
-          <p>Кружка и чайник в 3D: модель можно покрутить в браузере, сменить глазурь и посмотреть сетку. Рендеры пошли в карточки товаров.</p>
-          <div class="swatches" aria-label="Палитра"><i class="sw" style="background:#8FA88A"></i><i class="sw" style="background:#2A4E95"></i><i class="sw" style="background:#B4532E"></i><i class="sw" style="background:#EFE4D2"></i><span class="mono" style="color:var(--muted);margin-left:6px">three.js</span></div>
-          <div class="tags"><span class="tag">3D</span><span class="tag">WebGL</span><span class="tag">рендеры</span></div>
-          <a class="open" href="works/3d.html">Открыть работу <span aria-hidden="true">→</span></a>
-        </div>
-      </article>
-      <article class="frame">
-        <div class="frame-label mono"><span>Карточки для маркетплейсов</span><span>Ozon · WB · 3:4</span></div>
-        <a class="shot" href="works/marketplace.html" aria-label="Открыть карточки товаров для маркетплейсов">
-          <img class="shot-img" src="img/thumbs/marketplace.jpg" alt="" width="1200" height="900" loading="lazy">
-        </a>
-        <div class="meta">
-          <h3>Обжиг · карточки товаров</h3>
-          <p>Десять слайдов для Ozon и Wildberries: главный, преимущества, размеры, цвета и уход. Фото товара — рендеры 3D-моделей.</p>
-          <div class="swatches" aria-label="Палитра"><i class="sw" style="background:#B5552F"></i><i class="sw" style="background:#2B211B"></i><i class="sw" style="background:#2A4E95"></i><i class="sw" style="background:#F3ECE3"></i><span class="mono" style="color:var(--muted);margin-left:6px">Unbounded / Golos Text</span></div>
-          <div class="tags"><span class="tag">инфографика</span><span class="tag">Ozon</span><span class="tag">Wildberries</span></div>
-          <a class="open" href="works/marketplace.html">Открыть работу <span aria-hidden="true">→</span></a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="block" id="before-after">
-    <div class="head">
-      <div>
-        <div class="eyebrow">До и после</div>
-        <h2>Что изменилось в редизайнах</h2>
-      </div>
-      <p>Потяните разделитель, чтобы сравнить первый экран старого сайта и нового.</p>
-    </div>
-    <div class="ba-list">
+      <div class="ba-list">
       <article class="ba">
         <div class="cmp" style="--x:50%">
-          <img src="img/after-poedinki.jpg" alt="Новая главная страница: ринг с таймером поединка" width="1024" height="768" loading="lazy">
-          <img class="cmp-before" src="img/before-poedinki.jpg" alt="Старая главная страница сайта Федерации управленческой борьбы" width="1024" height="768" loading="lazy">
+          <img src="img/after-poedinki.jpg" alt="Новый дизайн: сайт спортивной федерации" width="1024" height="768" loading="lazy" draggable="false">
+          <img class="cmp-before" src="img/before-poedinki.jpg" alt="Старый дизайн: сайт спортивной федерации" width="1024" height="768" loading="lazy" draggable="false">
           <span class="cmp-line" aria-hidden="true"><i></i></span>
           <span class="cmp-tag l">Было</span><span class="cmp-tag r">Стало</span>
-          <input type="range" min="0" max="100" value="50" id="cmp-poedinki" aria-label="Сравнить старый и новый дизайн: Управленческие поединки">
+          <input type="range" min="0" max="100" value="50" id="cmp-poedinki" aria-label="Сравнить старый и новый дизайн: Сайт спортивной федерации">
         </div>
         <div class="ba-text">
-          <h3>Управленческие поединки</h3>
-          <ul><li><span class="was">Первый экран занят меню из восьми пунктов, баннерами и колонками ссылок</span><span class="now">Ринг двух сторон с живым таймером: суть поединка понятна за секунду</span></li><li><span class="was">Вступление и регистрация FUB_id теряются среди ссылок</span><span class="now">Кнопки «Вступить» и «Найти турнир» на первом экране, FUB_id — отдельным блоком</span></li><li><span class="was">Турниры — длинный список мелким текстом</span><span class="now">Табло турниров с фильтром по типу: финалы, кубки, молодёжь</span></li></ul>
-          <a class="open" href="works/poedinki.html">Открыть редизайн <span aria-hidden="true">→</span></a>
+          <span class="kind">Редизайн</span>
+          <h3>Сайт спортивной федерации</h3>
+          <ul><li><span class="was">Первый экран занят меню, баннерами и колонками ссылок</span><span class="now">Понятный первый экран с живым таймером: суть соревнований видна сразу</span></li><li><span class="was">Вступление и регистрация теряются среди ссылок</span><span class="now">Главные кнопки на виду, регистрация — отдельным блоком</span></li><li><span class="was">Турниры — длинный список мелким текстом</span><span class="now">Табло турниров с фильтром по типу</span></li></ul>
+          <a class="more" href="works/poedinki.html">Открыть сайт целиком <span aria-hidden="true">→</span></a>
         </div>
       </article>
       <article class="ba">
         <div class="cmp" style="--x:50%">
-          <img src="img/after-ms-polimer.jpg" alt="Новая главная страница с иллюстрацией пакета" width="1024" height="768" loading="lazy">
-          <img class="cmp-before" src="img/before-ms-polimer.jpg" alt="Старая главная страница сайта МС-Полимер" width="1024" height="768" loading="lazy">
+          <img src="img/after-ms-polimer.jpg" alt="Новый дизайн: сайт производителя упаковки" width="1024" height="768" loading="lazy" draggable="false">
+          <img class="cmp-before" src="img/before-ms-polimer.jpg" alt="Старый дизайн: сайт производителя упаковки" width="1024" height="768" loading="lazy" draggable="false">
           <span class="cmp-line" aria-hidden="true"><i></i></span>
           <span class="cmp-tag l">Было</span><span class="cmp-tag r">Стало</span>
-          <input type="range" min="0" max="100" value="50" id="cmp-ms-polimer" aria-label="Сравнить старый и новый дизайн: МС-Полимер">
+          <input type="range" min="0" max="100" value="50" id="cmp-ms-polimer" aria-label="Сравнить старый и новый дизайн: Сайт производителя упаковки">
         </div>
         <div class="ba-text">
-          <h3>МС-Полимер</h3>
-          <ul><li><span class="was">Логотип наезжает на текст преимуществ, пункты меню едва читаются</span><span class="now">Чистая шапка: бесплатный телефон, часы работы и кнопка расчёта</span></li><li><span class="was">Общие слова «100%» вместо фактов о заказе</span><span class="now">Главное сразу: от 200 кг, бесплатная доставка по Екатеринбургу, 3–5 дней по России</span></li><li><span class="was">Заявка — только имя и телефон</span><span class="now">Конфигуратор тиража: тип, размер, толщина и печать с живым превью пакета</span></li></ul>
-          <a class="open" href="works/ms-polimer.html">Открыть редизайн <span aria-hidden="true">→</span></a>
+          <span class="kind">Редизайн</span>
+          <h3>Сайт производителя упаковки</h3>
+          <ul><li><span class="was">Логотип наезжает на текст, пункты меню едва читаются</span><span class="now">Чистая шапка: телефон, часы работы и кнопка расчёта</span></li><li><span class="was">Общие слова «100%» вместо фактов о заказе</span><span class="now">Главное сразу: минимальный заказ, доставка и сроки</span></li><li><span class="was">Заявка — только имя и телефон</span><span class="now">Конфигуратор заказа с живым превью товара</span></li></ul>
+          <a class="more" href="works/ms-polimer.html">Открыть сайт целиком <span aria-hidden="true">→</span></a>
         </div>
       </article>
+      </div>
+      <h3 class="sub">Другие сайты и интерфейсы</h3>
+      <div class="sites">
+      <a class="site wide" href="works/skvoz.html">
+        <span class="site-img"><img src="img/thumbs/skvoz.jpg" alt="" width="1200" height="900" loading="lazy"></span>
+        <span class="site-meta"><span class="kind">Лендинг</span><b>Лендинг сервиса аналитики</b><span class="desc">Живой дашборд, воронка продаж и калькулятор бюджета.</span></span>
+      </a>
+      <a class="site" href="works/tishina.html">
+        <span class="site-img"><img src="img/thumbs/tishina.jpg" alt="" width="1200" height="900" loading="lazy"></span>
+        <span class="site-meta"><span class="kind">Лендинг</span><b>Лендинг приложения для концентрации</b><span class="desc">Тёмная тема, анимированный таймер и тарифы.</span></span>
+      </a>
+      <a class="site" href="works/stebel.html">
+        <span class="site-img"><img src="img/thumbs/stebel.jpg" alt="" width="1200" height="900" loading="lazy"></span>
+        <span class="site-meta"><span class="kind">Сайт бизнеса</span><b>Сайт цветочной студии</b><span class="desc">Каталог с фильтром, подписка и доставка.</span></span>
+      </a>
+      <a class="site" href="works/kadens.html">
+        <span class="site-img"><img src="img/thumbs/kadens.jpg" alt="" width="1200" height="900" loading="lazy"></span>
+        <span class="site-meta"><span class="kind">Интерфейс</span><b>Дашборд выручки</b><span class="desc">KPI, график с периодами и таблица оплат.</span></span>
+      </a>
+      <a class="site" href="works/umeltsy.html">
+        <span class="site-img"><img src="img/app/thumb.jpg" alt="" width="1200" height="900" loading="lazy"></span>
+        <span class="site-meta"><span class="kind">Приложение</span><b>Мобильное приложение для соседей</b><span class="desc">Четыре сценария и промо для App Store.</span></span>
+      </a>
+      </div>
     </div>
   </section>
 
   <section class="block" id="logos">
-    <div class="head">
-      <div>
-        <div class="eyebrow">Айдентика</div>
-        <h2>Логотипы</h2>
+    <div class="wrap">
+      <div class="head">
+        <div><div class="eyebrow">02 · Логотипы</div><h2>Фирменные знаки</h2></div>
+        <a class="more" href="works/logos.html">Все логотипы и варианты <span aria-hidden="true">→</span></a>
       </div>
+      <div class="lg-grid"><a class="lg-tile" href="works/logos.html" style="background:#F4E9D8" aria-label="Логотип «Бархан»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="bc1"><ellipse cx="50" cy="50" rx="34" ry="44" transform="rotate(-25 50 50)"/></clipPath><linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6B4129"/><stop offset="1" stop-color="#2A170E"/></linearGradient></defs><g class="pt" style="--k:0"><ellipse cx="50" cy="50" rx="34" ry="44" transform="rotate(-25 50 50)" fill="url(#bg1)"/></g><g clip-path="url(#bc1)"><g class="pt" style="--k:1"><circle cx="66" cy="36" r="7.5" fill="#F7DDB0"/></g><g class="pt" style="--k:2"><path d="M0 62 Q25 50 50 60 T100 55 V100 H0 Z" fill="#D9A65A" opacity="0.55"/></g><g class="pt" style="--k:3"><path d="M0 74 Q30 62 55 72 T100 69 V100 H0 Z" fill="#D9A65A" opacity="0.85"/></g><g class="pt" style="--k:4"><path d="M0 86 Q35 76 60 86 T100 82 V100 H0 Z" fill="#F2D3A0"/></g></g><g class="pt" style="--k:5"><path d="M33 13 C 58 34, 40 64, 67 87" fill="none" stroke="#F4E9D8" stroke-width="5" stroke-linecap="round"/></g></svg></span></a><a class="lg-tile" href="works/logos.html" style="background:#E6EEE7" aria-label="Логотип «Северка»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="sn2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF9A4D"/><stop offset="1" stop-color="#D9531A"/></linearGradient></defs><g class="pt" style="--k:0"><path d="M4 84 L32 42 L58 84 Z" fill="#7FA88C"/></g><g class="pt" style="--k:1"><path d="M46 84 L72 48 L96 84 Z" fill="#4F7A61"/></g><g class="pt" style="--k:2"><path d="M38 50 L50 50 L50 84 L28 84 Z" fill="#1F3B2D"/><path d="M50 50 L62 50 L72 84 L50 84 Z" fill="#2E5240"/></g><g class="pt" style="--k:3"><path d="M50 10 L38 50 L50 50 Z" fill="#D9531A"/><path d="M50 10 L62 50 L50 50 Z" fill="url(#sn2)"/><circle cx="50" cy="50" r="2.6" fill="#F7E7D6"/></g><g class="pt" style="--k:4"><path d="M8 90 H92" stroke="#1F3B2D" stroke-width="3.5" stroke-linecap="round"/></g></svg></span></a><a class="lg-tile" href="works/logos.html" style="background:#EEF2FA" aria-label="Логотип «Кварта»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="kg3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#1FA37F"/><stop offset="1" stop-color="#6FE3C1"/></linearGradient><linearGradient id="kn3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2E4386"/><stop offset="1" stop-color="#16244F"/></linearGradient></defs><g class="pt" style="--k:0"><path d="M48 10 V48 A38 38 0 0 1 10 10 Z" fill="url(#kn3)"/></g><g class="pt" style="--k:1"><path d="M90 48 H52 A38 38 0 0 1 90 10 Z" fill="url(#kg3)"/></g><g class="pt" style="--k:2"><path d="M52 90 V52 A38 38 0 0 1 90 90 Z" fill="url(#kn3)"/></g><g class="pt" style="--k:3"><path d="M10 52 H48 A38 38 0 0 1 10 90 Z" fill="url(#kn3)"/></g></svg></span></a><a class="lg-tile" href="works/logos.html" style="background:#FFE6F1" aria-label="Логотип «Пиксельный кот»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="pc4" gradientUnits="userSpaceOnUse" x1="8" y1="0" x2="90" y2="0"><stop offset="0" stop-color="#2A1E5C"/><stop offset="1" stop-color="#8A3FD6"/></linearGradient></defs><g class="pt" style="--k:0"><g shape-rendering="crispEdges"><rect x="8" y="14" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="8" y="23" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="17" y="23" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="62" y="23" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="8" y="32" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="17" y="32" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="26" y="32" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="35" y="32" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="44" y="32" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="53" y="32" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="62" y="32" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="8" y="41" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="17" y="41" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="26" y="41" width="9.02" height="9.02" fill="#FF5FA2"/><rect x="35" y="41" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="44" y="41" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="53" y="41" width="9.02" height="9.02" fill="#FF5FA2"/><rect x="62" y="41" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="8" y="50" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="17" y="50" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="26" y="50" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="35" y="50" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="44" y="50" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="53" y="50" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="62" y="50" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="8" y="59" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="17" y="59" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="26" y="59" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="35" y="59" width="9.02" height="9.02" fill="#FF5FA2"/><rect x="44" y="59" width="9.02" height="9.02" fill="#FF5FA2"/><rect x="53" y="59" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="62" y="59" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="17" y="68" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="26" y="68" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="35" y="68" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="44" y="68" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="53" y="68" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="62" y="68" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="26" y="77" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="35" y="77" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="44" y="77" width="9.02" height="9.02" fill="url(#pc4)"/><rect x="53" y="77" width="9.02" height="9.02" fill="url(#pc4)"/></g></g><g class="pt" style="--k:1"><g shape-rendering="crispEdges"><rect x="78" y="17" width="7" height="7" fill="#7B3FD0" opacity="0.95"/><rect x="81" y="22" width="7" height="7" fill="#7B3FD0" opacity="0.85"/><rect x="76" y="34" width="7" height="7" fill="#7B3FD0" opacity="0.75"/><rect x="83" y="42" width="7" height="7" fill="#7B3FD0" opacity="0.65"/><rect x="79" y="50" width="7" height="7" fill="#7B3FD0" opacity="0.55"/><rect x="76" y="62" width="7" height="7" fill="#7B3FD0" opacity="0.45"/></g></g><g class="pt" style="--k:2"><g shape-rendering="crispEdges"><rect x="88" y="30" width="5" height="5" fill="#FF5FA2"/><rect x="93" y="47" width="4" height="4" fill="#FF5FA2" opacity="0.8"/><rect x="87" y="64" width="4" height="4" fill="#FF5FA2" opacity="0.6"/></g></g></svg></span></a><a class="lg-tile" href="works/logos.html" style="background:#F2EBE2" aria-label="Логотип «Ремесло»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="rw5" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6E4829"/><stop offset="1" stop-color="#4A2E19"/></linearGradient></defs><g class="pt" style="--k:0"><rect x="20" y="6" width="22" height="88" rx="3" fill="url(#rw5)"/><path d="M27 18 V86 M35 28 V78" stroke="#8A6040" stroke-width="1.8" stroke-linecap="round"/></g><g class="pt" style="--k:1"><path d="M42 6 A33 33 0 0 1 42 72 Z" fill="#4A2E19"/></g><g class="pt" style="--k:2"><path d="M42 12 A27 27 0 0 1 42 66 Z" fill="#C9A27A"/></g><g class="pt" style="--k:3"><path d="M42 19 A20 20 0 0 1 42 59 Z" fill="#E6CBA6"/></g><g class="pt" style="--k:4"><path d="M42 26 A13 13 0 0 1 42 52 Z" fill="#C9A27A"/></g><g class="pt" style="--k:5"><path d="M42 33 A6 6 0 0 1 42 45 Z" fill="#E6CBA6"/><path d="M44 39 L68 29" stroke="#4A2E19" stroke-width="2" stroke-linecap="round"/></g></svg></span></a><a class="lg-tile" href="works/logos.html" style="background:#FFF4DF" aria-label="Логотип «Полдень»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="pg6" cx="0.42" cy="0.38" r="0.7"><stop offset="0" stop-color="#FFD66B"/><stop offset="0.6" stop-color="#F0A52B"/><stop offset="1" stop-color="#C9661A"/></radialGradient></defs><g class="pt" style="--k:0"><circle cx="50" cy="53" r="40" fill="url(#pg6)"/></g><g class="pt" style="--k:1"><circle cx="64.5" cy="27.9" r="2.2" fill="#FFF1D0"/><circle cx="75.1" cy="38.5" r="2.2" fill="#FFF1D0"/><circle cx="79.0" cy="53.0" r="2.2" fill="#FFF1D0"/><circle cx="75.1" cy="67.5" r="2.2" fill="#FFF1D0"/><circle cx="64.5" cy="78.1" r="2.2" fill="#FFF1D0"/><circle cx="50.0" cy="82.0" r="2.2" fill="#FFF1D0"/><circle cx="35.5" cy="78.1" r="2.2" fill="#FFF1D0"/><circle cx="24.9" cy="67.5" r="2.2" fill="#FFF1D0"/><circle cx="21.0" cy="53.0" r="2.2" fill="#FFF1D0"/><circle cx="24.9" cy="38.5" r="2.2" fill="#FFF1D0"/><circle cx="35.5" cy="27.9" r="2.2" fill="#FFF1D0"/></g><g class="pt" style="--k:2"><path d="M50 60 V20" stroke="#7A3410" stroke-width="3.5" stroke-linecap="round"/><ellipse cx="44.5" cy="26" rx="3.6" ry="6.5" transform="rotate(-28 44.5 26)" fill="#7A3410"/><ellipse cx="55.5" cy="26" rx="3.6" ry="6.5" transform="rotate(28 55.5 26)" fill="#7A3410"/><ellipse cx="44.5" cy="34" rx="3.6" ry="6.5" transform="rotate(-28 44.5 34)" fill="#7A3410"/><ellipse cx="55.5" cy="34" rx="3.6" ry="6.5" transform="rotate(28 55.5 34)" fill="#7A3410"/><ellipse cx="44.5" cy="42" rx="3.6" ry="6.5" transform="rotate(-28 44.5 42)" fill="#7A3410"/><ellipse cx="55.5" cy="42" rx="3.6" ry="6.5" transform="rotate(28 55.5 42)" fill="#7A3410"/><ellipse cx="50" cy="17" rx="3.4" ry="6" fill="#7A3410"/></g><g class="pt" style="--k:3"><circle cx="50" cy="60" r="4.5" fill="#7A3410"/><circle cx="50" cy="60" r="1.6" fill="#FFF1D0"/></g></svg></span></a><a class="lg-tile" href="works/logos.html" style="background:#E3F2F0" aria-label="Логотип «Гнездо»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="gn7" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3BC3B8"/><stop offset="1" stop-color="#0B6F72"/></linearGradient></defs><g class="pt" style="--k:0"><path d="M38.8 18.9 L48.8 24.7 L48.8 36.3 L38.8 42.1 L28.7 36.3 L28.7 24.7 Z" fill="#22303A" stroke="none" stroke-width="3" stroke-linejoin="round"/></g><g class="pt" style="--k:1"><path d="M61.2 18.9 L71.3 24.7 L71.3 36.3 L61.2 42.1 L51.2 36.3 L51.2 24.7 Z" fill="none" stroke="#22303A" stroke-width="3" stroke-linejoin="round"/></g><g class="pt" style="--k:2"><path d="M72.5 38.4 L82.5 44.2 L82.5 55.8 L72.5 61.6 L62.5 55.8 L62.5 44.2 Z" fill="none" stroke="#22303A" stroke-width="3" stroke-linejoin="round"/></g><g class="pt" style="--k:0"><path d="M61.2 57.9 L71.3 63.7 L71.3 75.3 L61.2 81.1 L51.2 75.3 L51.2 63.7 Z" fill="none" stroke="#22303A" stroke-width="3" stroke-linejoin="round"/></g><g class="pt" style="--k:1"><path d="M38.8 57.9 L48.8 63.7 L48.8 75.3 L38.8 81.1 L28.7 75.3 L28.7 63.7 Z" fill="none" stroke="#22303A" stroke-width="3" stroke-linejoin="round"/></g><g class="pt" style="--k:2"><path d="M27.5 38.4 L37.5 44.2 L37.5 55.8 L27.5 61.6 L17.5 55.8 L17.5 44.2 Z" fill="none" stroke="#22303A" stroke-width="3" stroke-linejoin="round"/></g><g class="pt" style="--k:3"><path d="M50.0 37.5 L60.8 43.8 L60.8 56.2 L50.0 62.5 L39.2 56.2 L39.2 43.8 Z" fill="url(#gn7)"/><circle cx="50" cy="50" r="3.2" fill="#FFFFFF"/></g></svg></span></a><a class="lg-tile" href="works/logos.html" style="background:#F1F2F4" aria-label="Логотип «Петля»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="pl8" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="90" y2="0"><stop offset="0" stop-color="#3D5AFE"/><stop offset="0.5" stop-color="#9B5CFF"/><stop offset="1" stop-color="#FF6A9A"/></linearGradient></defs><g class="pt" style="--k:0"><path d="M50 50 C 62 32, 88 32, 88 50 C 88 68, 62 68, 50 50 C 38 32, 12 32, 12 50 C 12 68, 38 68, 50 50 Z" fill="none" stroke="url(#pl8)" stroke-width="10" stroke-linejoin="round"/></g><g class="pt" style="--k:1"><path d="M61 38.5 C 56 42, 53 46, 50 50 C 47 54, 44 58, 39 61.5" fill="none" stroke="#F1F2F4" stroke-width="16" stroke-linecap="butt"/><path d="M61 38.5 C 56 42, 53 46, 50 50 C 47 54, 44 58, 39 61.5" fill="none" stroke="url(#pl8)" stroke-width="10"/></g></svg></span></a><a class="lg-tile" href="works/logos.html" style="background:#F1F2F4" aria-label="Логотип «Слои»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="s19" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFB36B"/><stop offset="1" stop-color="#F25A2B"/></linearGradient><linearGradient id="s29" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF7A8A"/><stop offset="1" stop-color="#C2306B"/></linearGradient></defs><g class="pt" style="--k:0"><path d="M50 60 L88 78 L50 96 L12 78 Z" fill="#16181D"/></g><g class="pt" style="--k:1"><path d="M50 41 L88 59 L50 77 L12 59 Z" fill="url(#s29)" opacity="0.88"/></g><g class="pt" style="--k:2"><path d="M50 22 L88 40 L50 58 L12 40 Z" fill="url(#s19)" opacity="0.94"/><path d="M14.5 40 L50 23.2 L85.5 40" fill="none" stroke="#FFFFFF" stroke-opacity="0.65" stroke-width="1.6" stroke-linejoin="round"/></g></svg></span></a><a class="lg-tile" href="works/logos.html" style="background:#F1F2F4" aria-label="Логотип «Модуль»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="pt" style="--k:0"><path d="M48 48 H10 A38 38 0 0 1 48 10 Z" fill="#16181D"/></g><g class="pt" style="--k:1"><rect x="52" y="10" width="38" height="38" fill="#16181D"/><circle cx="71" cy="29" r="11" fill="#E5B000"/></g><g class="pt" style="--k:2"><rect x="10" y="52" width="38" height="38" fill="#DCDFE5"/><path d="M10 90 A19 19 0 0 1 48 90 Z" fill="#E5B000"/></g><g class="pt" style="--k:3"><path d="M52 90 H90 V52 Z" fill="#16181D"/><circle cx="64" cy="64" r="5" fill="#E5B000"/></g></svg></span></a></div>
     </div>
-    <div class="lg-grid"><a class="lg-tile" href="works/logos.html" style="background:#F4E9D8" aria-label="Логотип «Бархан»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="bc51"><ellipse cx="50" cy="50" rx="34" ry="44" transform="rotate(-25 50 50)"/></clipPath><linearGradient id="bg51" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6B4129"/><stop offset="1" stop-color="#2A170E"/></linearGradient></defs><g class="pt" style="--k:0"><ellipse cx="50" cy="50" rx="34" ry="44" transform="rotate(-25 50 50)" fill="url(#bg51)"/></g><g clip-path="url(#bc51)"><g class="pt" style="--k:1"><circle cx="66" cy="36" r="7.5" fill="#F7DDB0"/></g><g class="pt" style="--k:2"><path d="M0 62 Q25 50 50 60 T100 55 V100 H0 Z" fill="#D9A65A" opacity="0.55"/></g><g class="pt" style="--k:3"><path d="M0 74 Q30 62 55 72 T100 69 V100 H0 Z" fill="#D9A65A" opacity="0.85"/></g><g class="pt" style="--k:4"><path d="M0 86 Q35 76 60 86 T100 82 V100 H0 Z" fill="#F2D3A0"/></g></g><g class="pt" style="--k:5"><path d="M33 13 C 58 34, 40 64, 67 87" fill="none" stroke="#F4E9D8" stroke-width="5" stroke-linecap="round"/></g></svg></span><span class="lg-name" style="color:#3B2418">Бархан</span></a><a class="lg-tile" href="works/logos.html" style="background:#E6EEE7" aria-label="Логотип «Северка»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="sn52" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF9A4D"/><stop offset="1" stop-color="#D9531A"/></linearGradient></defs><g class="pt" style="--k:0"><path d="M4 84 L32 42 L58 84 Z" fill="#7FA88C"/></g><g class="pt" style="--k:1"><path d="M46 84 L72 48 L96 84 Z" fill="#4F7A61"/></g><g class="pt" style="--k:2"><path d="M38 50 L50 50 L50 84 L28 84 Z" fill="#1F3B2D"/><path d="M50 50 L62 50 L72 84 L50 84 Z" fill="#2E5240"/></g><g class="pt" style="--k:3"><path d="M50 10 L38 50 L50 50 Z" fill="#D9531A"/><path d="M50 10 L62 50 L50 50 Z" fill="url(#sn52)"/><circle cx="50" cy="50" r="2.6" fill="#F7E7D6"/></g><g class="pt" style="--k:4"><path d="M8 90 H92" stroke="#1F3B2D" stroke-width="3.5" stroke-linecap="round"/></g></svg></span><span class="lg-name" style="color:#1F3B2D">Северка</span></a><a class="lg-tile" href="works/logos.html" style="background:#EEF2FA" aria-label="Логотип «Кварта»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="kg53" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#1FA37F"/><stop offset="1" stop-color="#6FE3C1"/></linearGradient><linearGradient id="kn53" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2E4386"/><stop offset="1" stop-color="#16244F"/></linearGradient></defs><g class="pt" style="--k:0"><path d="M48 10 V48 A38 38 0 0 1 10 10 Z" fill="url(#kn53)"/></g><g class="pt" style="--k:1"><path d="M90 48 H52 A38 38 0 0 1 90 10 Z" fill="url(#kg53)"/></g><g class="pt" style="--k:2"><path d="M52 90 V52 A38 38 0 0 1 90 90 Z" fill="url(#kn53)"/></g><g class="pt" style="--k:3"><path d="M10 52 H48 A38 38 0 0 1 10 90 Z" fill="url(#kn53)"/></g></svg></span><span class="lg-name" style="color:#1B2B5E">Кварта</span></a><a class="lg-tile" href="works/logos.html" style="background:#FFE6F1" aria-label="Логотип «Пиксельный кот»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="pc54" gradientUnits="userSpaceOnUse" x1="8" y1="0" x2="90" y2="0"><stop offset="0" stop-color="#2A1E5C"/><stop offset="1" stop-color="#8A3FD6"/></linearGradient></defs><g class="pt" style="--k:0"><g shape-rendering="crispEdges"><rect x="8" y="14" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="8" y="23" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="17" y="23" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="62" y="23" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="8" y="32" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="17" y="32" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="26" y="32" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="35" y="32" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="44" y="32" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="53" y="32" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="62" y="32" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="8" y="41" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="17" y="41" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="26" y="41" width="9.02" height="9.02" fill="#FF5FA2"/><rect x="35" y="41" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="44" y="41" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="53" y="41" width="9.02" height="9.02" fill="#FF5FA2"/><rect x="62" y="41" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="8" y="50" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="17" y="50" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="26" y="50" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="35" y="50" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="44" y="50" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="53" y="50" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="62" y="50" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="8" y="59" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="17" y="59" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="26" y="59" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="35" y="59" width="9.02" height="9.02" fill="#FF5FA2"/><rect x="44" y="59" width="9.02" height="9.02" fill="#FF5FA2"/><rect x="53" y="59" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="62" y="59" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="17" y="68" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="26" y="68" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="35" y="68" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="44" y="68" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="53" y="68" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="62" y="68" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="26" y="77" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="35" y="77" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="44" y="77" width="9.02" height="9.02" fill="url(#pc54)"/><rect x="53" y="77" width="9.02" height="9.02" fill="url(#pc54)"/></g></g><g class="pt" style="--k:1"><g shape-rendering="crispEdges"><rect x="78" y="17" width="7" height="7" fill="#7B3FD0" opacity="0.95"/><rect x="81" y="22" width="7" height="7" fill="#7B3FD0" opacity="0.85"/><rect x="76" y="34" width="7" height="7" fill="#7B3FD0" opacity="0.75"/><rect x="83" y="42" width="7" height="7" fill="#7B3FD0" opacity="0.65"/><rect x="79" y="50" width="7" height="7" fill="#7B3FD0" opacity="0.55"/><rect x="76" y="62" width="7" height="7" fill="#7B3FD0" opacity="0.45"/></g></g><g class="pt" style="--k:2"><g shape-rendering="crispEdges"><rect x="88" y="30" width="5" height="5" fill="#FF5FA2"/><rect x="93" y="47" width="4" height="4" fill="#FF5FA2" opacity="0.8"/><rect x="87" y="64" width="4" height="4" fill="#FF5FA2" opacity="0.6"/></g></g></svg></span><span class="lg-name" style="color:#2A1E5C">Пиксельный кот</span></a><a class="lg-tile" href="works/logos.html" style="background:#F2EBE2" aria-label="Логотип «Ремесло»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="rw55" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6E4829"/><stop offset="1" stop-color="#4A2E19"/></linearGradient></defs><g class="pt" style="--k:0"><rect x="20" y="6" width="22" height="88" rx="3" fill="url(#rw55)"/><path d="M27 18 V86 M35 28 V78" stroke="#8A6040" stroke-width="1.8" stroke-linecap="round"/></g><g class="pt" style="--k:1"><path d="M42 6 A33 33 0 0 1 42 72 Z" fill="#4A2E19"/></g><g class="pt" style="--k:2"><path d="M42 12 A27 27 0 0 1 42 66 Z" fill="#C9A27A"/></g><g class="pt" style="--k:3"><path d="M42 19 A20 20 0 0 1 42 59 Z" fill="#E6CBA6"/></g><g class="pt" style="--k:4"><path d="M42 26 A13 13 0 0 1 42 52 Z" fill="#C9A27A"/></g><g class="pt" style="--k:5"><path d="M42 33 A6 6 0 0 1 42 45 Z" fill="#E6CBA6"/><path d="M44 39 L68 29" stroke="#4A2E19" stroke-width="2" stroke-linecap="round"/></g></svg></span><span class="lg-name" style="color:#5A3A22">Ремесло</span></a><a class="lg-tile" href="works/logos.html" style="background:#FFF4DF" aria-label="Логотип «Полдень»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="pg56" cx="0.42" cy="0.38" r="0.7"><stop offset="0" stop-color="#FFD66B"/><stop offset="0.6" stop-color="#F0A52B"/><stop offset="1" stop-color="#C9661A"/></radialGradient></defs><g class="pt" style="--k:0"><circle cx="50" cy="53" r="40" fill="url(#pg56)"/></g><g class="pt" style="--k:1"><circle cx="64.5" cy="27.9" r="2.2" fill="#FFF1D0"/><circle cx="75.1" cy="38.5" r="2.2" fill="#FFF1D0"/><circle cx="79.0" cy="53.0" r="2.2" fill="#FFF1D0"/><circle cx="75.1" cy="67.5" r="2.2" fill="#FFF1D0"/><circle cx="64.5" cy="78.1" r="2.2" fill="#FFF1D0"/><circle cx="50.0" cy="82.0" r="2.2" fill="#FFF1D0"/><circle cx="35.5" cy="78.1" r="2.2" fill="#FFF1D0"/><circle cx="24.9" cy="67.5" r="2.2" fill="#FFF1D0"/><circle cx="21.0" cy="53.0" r="2.2" fill="#FFF1D0"/><circle cx="24.9" cy="38.5" r="2.2" fill="#FFF1D0"/><circle cx="35.5" cy="27.9" r="2.2" fill="#FFF1D0"/></g><g class="pt" style="--k:2"><path d="M50 60 V20" stroke="#7A3410" stroke-width="3.5" stroke-linecap="round"/><ellipse cx="44.5" cy="26" rx="3.6" ry="6.5" transform="rotate(-28 44.5 26)" fill="#7A3410"/><ellipse cx="55.5" cy="26" rx="3.6" ry="6.5" transform="rotate(28 55.5 26)" fill="#7A3410"/><ellipse cx="44.5" cy="34" rx="3.6" ry="6.5" transform="rotate(-28 44.5 34)" fill="#7A3410"/><ellipse cx="55.5" cy="34" rx="3.6" ry="6.5" transform="rotate(28 55.5 34)" fill="#7A3410"/><ellipse cx="44.5" cy="42" rx="3.6" ry="6.5" transform="rotate(-28 44.5 42)" fill="#7A3410"/><ellipse cx="55.5" cy="42" rx="3.6" ry="6.5" transform="rotate(28 55.5 42)" fill="#7A3410"/><ellipse cx="50" cy="17" rx="3.4" ry="6" fill="#7A3410"/></g><g class="pt" style="--k:3"><circle cx="50" cy="60" r="4.5" fill="#7A3410"/><circle cx="50" cy="60" r="1.6" fill="#FFF1D0"/></g></svg></span><span class="lg-name" style="color:#A9501B">Полдень</span></a><a class="lg-tile" href="works/logos.html" style="background:#E3F2F0" aria-label="Логотип «Гнездо»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="gn57" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3BC3B8"/><stop offset="1" stop-color="#0B6F72"/></linearGradient></defs><g class="pt" style="--k:0"><path d="M38.8 18.9 L48.8 24.7 L48.8 36.3 L38.8 42.1 L28.7 36.3 L28.7 24.7 Z" fill="#22303A" stroke="none" stroke-width="3" stroke-linejoin="round"/></g><g class="pt" style="--k:1"><path d="M61.2 18.9 L71.3 24.7 L71.3 36.3 L61.2 42.1 L51.2 36.3 L51.2 24.7 Z" fill="none" stroke="#22303A" stroke-width="3" stroke-linejoin="round"/></g><g class="pt" style="--k:2"><path d="M72.5 38.4 L82.5 44.2 L82.5 55.8 L72.5 61.6 L62.5 55.8 L62.5 44.2 Z" fill="none" stroke="#22303A" stroke-width="3" stroke-linejoin="round"/></g><g class="pt" style="--k:0"><path d="M61.2 57.9 L71.3 63.7 L71.3 75.3 L61.2 81.1 L51.2 75.3 L51.2 63.7 Z" fill="none" stroke="#22303A" stroke-width="3" stroke-linejoin="round"/></g><g class="pt" style="--k:1"><path d="M38.8 57.9 L48.8 63.7 L48.8 75.3 L38.8 81.1 L28.7 75.3 L28.7 63.7 Z" fill="none" stroke="#22303A" stroke-width="3" stroke-linejoin="round"/></g><g class="pt" style="--k:2"><path d="M27.5 38.4 L37.5 44.2 L37.5 55.8 L27.5 61.6 L17.5 55.8 L17.5 44.2 Z" fill="none" stroke="#22303A" stroke-width="3" stroke-linejoin="round"/></g><g class="pt" style="--k:3"><path d="M50.0 37.5 L60.8 43.8 L60.8 56.2 L50.0 62.5 L39.2 56.2 L39.2 43.8 Z" fill="url(#gn57)"/><circle cx="50" cy="50" r="3.2" fill="#FFFFFF"/></g></svg></span><span class="lg-name" style="color:#22303A">Гнездо</span></a><a class="lg-tile" href="works/logos.html" style="background:#F1F2F4" aria-label="Логотип «Петля»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="pl58" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="90" y2="0"><stop offset="0" stop-color="#3D5AFE"/><stop offset="0.5" stop-color="#9B5CFF"/><stop offset="1" stop-color="#FF6A9A"/></linearGradient></defs><g class="pt" style="--k:0"><path d="M50 50 C 62 32, 88 32, 88 50 C 88 68, 62 68, 50 50 C 38 32, 12 32, 12 50 C 12 68, 38 68, 50 50 Z" fill="none" stroke="url(#pl58)" stroke-width="10" stroke-linejoin="round"/></g><g class="pt" style="--k:1"><path d="M61 38.5 C 56 42, 53 46, 50 50 C 47 54, 44 58, 39 61.5" fill="none" stroke="#F1F2F4" stroke-width="16" stroke-linecap="butt"/><path d="M61 38.5 C 56 42, 53 46, 50 50 C 47 54, 44 58, 39 61.5" fill="none" stroke="url(#pl58)" stroke-width="10"/></g></svg></span><span class="lg-name" style="color:#16181D">Петля</span></a><a class="lg-tile" href="works/logos.html" style="background:#F1F2F4" aria-label="Логотип «Слои»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="s159" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFB36B"/><stop offset="1" stop-color="#F25A2B"/></linearGradient><linearGradient id="s259" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF7A8A"/><stop offset="1" stop-color="#C2306B"/></linearGradient></defs><g class="pt" style="--k:0"><path d="M50 60 L88 78 L50 96 L12 78 Z" fill="#16181D"/></g><g class="pt" style="--k:1"><path d="M50 41 L88 59 L50 77 L12 59 Z" fill="url(#s259)" opacity="0.88"/></g><g class="pt" style="--k:2"><path d="M50 22 L88 40 L50 58 L12 40 Z" fill="url(#s159)" opacity="0.94"/><path d="M14.5 40 L50 23.2 L85.5 40" fill="none" stroke="#FFFFFF" stroke-opacity="0.65" stroke-width="1.6" stroke-linejoin="round"/></g></svg></span><span class="lg-name" style="color:#16181D">Слои</span></a><a class="lg-tile" href="works/logos.html" style="background:#F1F2F4" aria-label="Логотип «Модуль»"><span class="lg-mk"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="pt" style="--k:0"><path d="M48 48 H10 A38 38 0 0 1 48 10 Z" fill="#16181D"/></g><g class="pt" style="--k:1"><rect x="52" y="10" width="38" height="38" fill="#16181D"/><circle cx="71" cy="29" r="11" fill="#E5B000"/></g><g class="pt" style="--k:2"><rect x="10" y="52" width="38" height="38" fill="#DCDFE5"/><path d="M10 90 A19 19 0 0 1 48 90 Z" fill="#E5B000"/></g><g class="pt" style="--k:3"><path d="M52 90 H90 V52 Z" fill="#16181D"/><circle cx="64" cy="64" r="5" fill="#E5B000"/></g></svg></span><span class="lg-name" style="color:#16181D">Модуль</span></a></div>
-    <a class="open" href="works/logos.html" style="margin-top:20px">Все логотипы и варианты <span aria-hidden="true">→</span></a>
   </section>
 
-  <section class="block" id="process">
-    <div class="head">
-      <div>
-        <div class="eyebrow">Как идёт работа</div>
-        <h2>От брифа до готового макета</h2>
+  <section class="block alt" id="cards">
+    <div class="wrap">
+      <div class="head">
+        <div><div class="eyebrow">03 · Карточки Ozon / WB</div><h2>Инфографика для маркетплейсов</h2></div>
+        <p>Техника, игрушки и одежда: главный слайд, преимущества, размеры и цвета. Каждый слайд отвечает на один вопрос покупателя.</p>
       </div>
-      <p>Показываю промежуточный результат на каждом шаге, чтобы правки приходили рано и стоили дёшево.</p>
+      <div class="car-head"><div class="arrows">
+        <span class="count" data-for="cards-s" aria-live="polite">1 / 12</span>
+        <button type="button" class="arr" data-dir="-1" data-target="cards-s" aria-label="Предыдущая карточка"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+        <button type="button" class="arr" data-dir="1" data-target="cards-s" aria-label="Следующая карточка"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></button>
+      </div></div>
     </div>
-    <ol class="steps">
-      <li><h3>Бриф</h3><p>Разбираемся, кто приходит на сайт и что он должен сделать: купить, записаться, оставить заявку.</p></li>
-      <li><h3>Структура</h3><p>Собираю порядок экранов и тексты. Согласуем смысл до того, как появятся цвета и шрифты.</p></li>
-      <li><h3>Дизайн</h3><p>Визуальный стиль, все блоки, мобильная версия, состояния кнопок и анимации.</p></li>
-      <li><h3>Передача</h3><p>Живой макет со ссылкой, палитра и шрифты — готово для разработчика или конструктора.</p></li>
-    </ol>
+    <ol class="car" id="cards-s" tabindex="0" aria-label="Карточки товаров"><li class="mpc"><img src="img/cards/card-1.jpg" alt="Карточка товара: Наушники — главный слайд" width="600" height="800" loading="lazy" draggable="false"></li><li class="mpc"><img src="img/cards/card-2.jpg" alt="Карточка товара: Наушники — преимущества" width="600" height="800" loading="lazy" draggable="false"></li><li class="mpc"><img src="img/cards/card-3.jpg" alt="Карточка товара: Наушники — автономность" width="600" height="800" loading="lazy" draggable="false"></li><li class="mpc"><img src="img/cards/card-4.jpg" alt="Карточка товара: Наушники — цвета" width="600" height="800" loading="lazy" draggable="false"></li><li class="mpc"><img src="img/cards/card-5.jpg" alt="Карточка товара: Плюшевый мишка — главный слайд" width="600" height="800" loading="lazy" draggable="false"></li><li class="mpc"><img src="img/cards/card-6.jpg" alt="Карточка товара: Плюшевый мишка — безопасность" width="600" height="800" loading="lazy" draggable="false"></li><li class="mpc"><img src="img/cards/card-7.jpg" alt="Карточка товара: Плюшевый мишка — размер" width="600" height="800" loading="lazy" draggable="false"></li><li class="mpc"><img src="img/cards/card-8.jpg" alt="Карточка товара: Плюшевый мишка — цвета" width="600" height="800" loading="lazy" draggable="false"></li><li class="mpc"><img src="img/cards/card-9.jpg" alt="Карточка товара: Шапка — главный слайд" width="600" height="800" loading="lazy" draggable="false"></li><li class="mpc"><img src="img/cards/card-10.jpg" alt="Карточка товара: Шапка — преимущества" width="600" height="800" loading="lazy" draggable="false"></li><li class="mpc"><img src="img/cards/card-11.jpg" alt="Карточка товара: Шапка — таблица размеров" width="600" height="800" loading="lazy" draggable="false"></li><li class="mpc"><img src="img/cards/card-12.jpg" alt="Карточка товара: Шапка — цвета" width="600" height="800" loading="lazy" draggable="false"></li></ol>
+    <div class="wrap"><a class="more" href="works/marketplace.html">Открыть все карточки <span aria-hidden="true">→</span></a></div>
+  </section>
+
+  <section class="block" id="models">
+    <div class="wrap">
+      <div class="head">
+        <div><div class="eyebrow">04 · 3D-моделирование</div><h2>Товары в 3D</h2></div>
+        <p>Модели можно покрутить прямо в браузере, сменить цвет и посмотреть сетку. Из них же сделаны фото для карточек товаров.</p>
+      </div>
+      <div class="stage3d"><a class="m3" href="works/3d.html" style="--i:0"><img src="img/3d/mug-cream.png" alt="3D-модель: кружка" width="800" height="1000" loading="lazy"><span>Кружка</span></a><a class="m3" href="works/3d.html" style="--i:1"><img src="img/3d/pot-cobalt.png" alt="3D-модель: чайник" width="800" height="1000" loading="lazy"><span>Чайник</span></a><a class="m3" href="works/3d.html" style="--i:2"><img src="img/3d/hp-coral.png" alt="3D-модель: наушники" width="800" height="1000" loading="lazy"><span>Наушники</span></a><a class="m3" href="works/3d.html" style="--i:3"><img src="img/3d/bear-caramel.png" alt="3D-модель: плюшевый мишка" width="800" height="1000" loading="lazy"><span>Плюшевый мишка</span></a><a class="m3" href="works/3d.html" style="--i:4"><img src="img/3d/hat-mustard.png" alt="3D-модель: шапка" width="800" height="1000" loading="lazy"><span>Шапка</span></a></div>
+      <div class="cta-row"><a class="btn btn-main" href="works/3d.html">Покрутить модели</a><span class="kind">WebGL · 5 моделей</span></div>
+    </div>
+  </section>
+
+  <section class="block alt" id="process">
+    <div class="wrap">
+      <div class="head">
+        <div><div class="eyebrow">Как идёт работа</div><h2>От брифа до готового макета</h2></div>
+        <p>Показываю промежуточный результат на каждом шаге, чтобы правки приходили рано и стоили дёшево.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Бриф</h3><p>Разбираемся, кто приходит на сайт или в карточку и что он должен сделать: купить, записаться, оставить заявку.</p></li>
+        <li><h3>Структура</h3><p>Собираю порядок экранов или слайдов и тексты. Согласуем смысл до того, как появятся цвета и шрифты.</p></li>
+        <li><h3>Дизайн</h3><p>Визуальный стиль, мобильная версия, состояния кнопок и анимации. Для товаров — 3D и рендеры.</p></li>
+        <li><h3>Передача</h3><p>Живой макет со ссылкой или файлы в нужных форматах — готово к запуску.</p></li>
+      </ol>
+    </div>
   </section>
 
   <section class="block" id="services">
-    <div class="head">
-      <div>
-        <div class="eyebrow">Что делаю</div>
-        <h2>Услуги</h2>
+    <div class="wrap">
+      <div class="head"><div><div class="eyebrow">Что делаю</div><h2>Услуги</h2></div></div>
+      <div class="svc">
+        <div><span>Лендинг под продукт или запуск</span><em>от 1 дня</em></div>
+        <div><span>Сайт для малого бизнеса</span><em>от 1 дня</em></div>
+        <div><span>Редизайн существующего сайта</span><em>от 1 дня</em></div>
+        <div><span>Интерфейс сервиса или приложения</span><em>от 1 дня</em></div>
+        <div><span>Логотип и фирменный знак</span><em>от 1 дня</em></div>
+        <div><span>Карточки для Ozon и Wildberries</span><em>от 1 дня</em></div>
+        <div><span>3D-модель и рендеры товара</span><em>от 1 дня</em></div>
       </div>
-    </div>
-    <div class="svc">
-      <div><span>Карточки для Ozon и Wildberries</span><em>от 1 дня</em></div>
-      <div><span>3D-модель и рендеры товара</span><em>от 1 дня</em></div>
-      <div><span>Логотип и фирменный знак</span><em>от 1 дня</em></div>
-      <div><span>Лендинг под продукт или запуск</span><em>от 1 дня</em></div>
-      <div><span>Сайт для малого бизнеса</span><em>от 1 дня</em></div>
-      <div><span>Интерфейс сервиса или дашборд</span><em>от 1 дня</em></div>
-      <div><span>Редизайн существующего сайта</span><em>от 1 дня</em></div>
     </div>
   </section>
 
-  <section class="block" id="contact" style="border-top:0">
+  <section class="wrap" id="contact" style="padding-block:0 32px">
     <div class="contact">
       <h2>Есть задача?<br>Напишите.</h2>
       <div class="rows">
-        <div class="crow"><span class="mono">Telegram</span><a class="val" id="tg" href="https://t.me/shukagodx" target="_blank" rel="noopener" style="color:inherit">@shukagodx</a><button class="copy" type="button" id="copy-tg" data-target="tg">Скопировать</button></div>
-        <div class="crow"><span class="mono">Почта</span><span class="val" id="mail">dede3551@gmail.com</span><button class="copy" type="button" id="copy-mail" data-target="mail">Скопировать</button></div>
+        <div class="crow"><span class="mono">Telegram</span><a class="val" id="tg" href="https://t.me/shukagodx" target="_blank" rel="noopener">@shukagodx</a><button class="copy" type="button" data-target="tg">Скопировать</button></div>
+        <div class="crow"><span class="mono">Почта</span><span class="val" id="mail">dede3551@gmail.com</span><button class="copy" type="button" data-target="mail">Скопировать</button></div>
       </div>
     </div>
   </section>
-
-  <footer class="mono">
-    <span>© Shuka</span>
-    <span>Все работы — концепты; редизайны не являются официальными сайтами компаний</span>
-  </footer>
-</div>
+</main>
+<footer class="wrap mono"><span>© Shuka</span><span>Работы — концепты; редизайны не являются официальными сайтами компаний</span></footer>
 
 <script>
 document.querySelectorAll('.copy').forEach(function(btn){
-  btn.addEventListener('click', function(){
-    var el = document.getElementById(btn.dataset.target);
-    var text = el.textContent.trim();
-    var done = function(){ btn.textContent = 'Скопировано'; setTimeout(function(){ btn.textContent = 'Скопировать'; }, 1600); };
-    var fallback = function(){ var r = document.createRange(); r.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Выделено — Ctrl+C'; };
-    try { navigator.clipboard.writeText(text).then(done, fallback); } catch(e){ fallback(); }
+  btn.addEventListener('click',function(){
+    var el=document.getElementById(btn.dataset.target), text=el.textContent.trim();
+    var done=function(){btn.textContent='Скопировано';setTimeout(function(){btn.textContent='Скопировать'},1600)};
+    var fallback=function(){var r=document.createRange();r.selectNodeContents(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Выделено — Ctrl+C'};
+    try{navigator.clipboard.writeText(text).then(done,fallback)}catch(e){fallback()}
   });
 });
-</script>
-
-
-<script>
 [].forEach.call(document.querySelectorAll('.cmp'),function(c){
-  var r=c.querySelector('input');
-  function set(){c.style.setProperty('--x',r.value+'%')}
-  r.addEventListener('input',set);set();
+  var r=c.querySelector('input'); function set(){c.style.setProperty('--x',r.value+'%')}
+  r.addEventListener('input',set); set();
 });
+</script>
+<script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function items(c){return [].slice.call(c.children)}
+  function current(c){
+    var base=c.getBoundingClientRect().left+parseFloat(getComputedStyle(c).scrollPaddingLeft||0);
+    var best=0,bd=1e9;
+    items(c).forEach(function(it,i){var d=Math.abs(it.getBoundingClientRect().left-base);if(d<bd){bd=d;best=i}});
+    return best;
+  }
+  function go(c,i){
+    var list=items(c); i=Math.max(0,Math.min(list.length-1,i));
+    var pad=parseFloat(getComputedStyle(c).scrollPaddingLeft||0);
+    c.scrollTo({left:c.scrollLeft+list[i].getBoundingClientRect().left-c.getBoundingClientRect().left-pad,behavior:reduce?'auto':'smooth'});
+  }
+  function update(c){
+    var i=current(c),n=items(c).length,max=c.scrollWidth-c.clientWidth;
+    var cnt=document.querySelector('.count[data-for="'+c.id+'"]'); if(cnt) cnt.textContent=(i+1)+' / '+n;
+    [].forEach.call(document.querySelectorAll('.arr[data-target="'+c.id+'"]'),function(b){
+      b.disabled = (+b.dataset.dir<0) ? c.scrollLeft<=2 : c.scrollLeft>=max-2;
+    });
+  }
+  [].forEach.call(document.querySelectorAll('.car'),function(c){
+    var raf=0;
+    c.addEventListener('scroll',function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(function(){update(c)})},{passive:true});
+    c.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'){e.preventDefault();go(c,current(c)+1)}
+      if(e.key==='ArrowLeft'){e.preventDefault();go(c,current(c)-1)}
+    });
+    /* перетаскивание мышью; на тач-экранах работает родная прокрутка */
+    var down=false,sx=0,sl=0,moved=0,vx=0,lx=0,lt=0;
+    c.addEventListener('pointerdown',function(e){
+      if(e.pointerType!=='mouse'||e.button!==0) return;
+      down=true;moved=0;sx=e.clientX;sl=c.scrollLeft;lx=e.clientX;lt=performance.now();vx=0;
+    });
+    window.addEventListener('pointermove',function(e){
+      if(!down) return;
+      var dx=e.clientX-sx; moved=Math.max(moved,Math.abs(dx));
+      if(moved>4&&!c.classList.contains('dragging')) c.classList.add('dragging');
+      if(c.classList.contains('dragging')){
+        c.scrollLeft=sl-dx;
+        var now=performance.now(); vx=(e.clientX-lx)/Math.max(1,now-lt); lx=e.clientX; lt=now;
+      }
+    });
+    window.addEventListener('pointerup',function(){
+      if(!down) return; down=false;
+      if(c.classList.contains('dragging')){
+        c.classList.remove('dragging');
+        var i=current(c); if(Math.abs(vx)>0.4) i+= vx<0?1:-1;
+        go(c,i);
+      }
+    });
+    update(c);
+  });
+  [].forEach.call(document.querySelectorAll('.arr'),function(b){
+    b.addEventListener('click',function(){var c=document.getElementById(b.dataset.target);go(c,current(c)+(+b.dataset.dir))});
+  });
+})();
 </script>
 </body>
 </html>

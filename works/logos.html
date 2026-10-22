@@ -20,7 +20,7 @@
 <style>
 /* Layout: лист брендбука — крупная плашка знака, под ней полоса вариантов использования, ниже паспорт знака */
 :root{
-  --bg:#F1F3F5; --surface:#FFFFFF; --fg:#121417; --muted:#545B68; --line:#D6DBE2;
+  --bg:#FBF8F3; --surface:#FFFFFF; --fg:#1A1714; --muted:#675E55; --line:#E8DFD3;
   --accent:#3D5AFE; --accent-ink:#FFFFFF; --accent-soft:#E3E8FF;
   --f-display:"Geologica","Segoe UI",system-ui,sans-serif;
   --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
@@ -28,12 +28,6 @@
   --ease-out:cubic-bezier(0.23,1,0.32,1);
   color-scheme:light;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#111316; --surface:#181B20; --fg:#EDEFF2; --muted:#A1A8B4; --line:#2B3038;
-  --accent:#8195FF; --accent-ink:#0D1020; --accent-soft:#1E2445; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#111316; --surface:#181B20; --fg:#EDEFF2; --muted:#A1A8B4; --line:#2B3038;
-  --accent:#8195FF; --accent-ink:#0D1020; --accent-soft:#1E2445; color-scheme:dark}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.6}
