@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Карточки для Ozon и Wildberries · Shuka</title>
+<meta name="description" content="Инфографика карточек товаров для маркетплейсов: главный слайд, преимущества, размеры, цвета и уход — для керамики бренда «Обжиг».">
+<meta property="og:title" content="Карточки для Ozon и Wildberries · Shuka">
+<meta property="og:description" content="Десять карточек товаров для маркетплейсов: кружка и чайник бренда «Обжиг».">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shukagodx.github.io/works/marketplace.html">
+<meta property="og:site_name" content="Shuka — веб-дизайнер">
+<meta property="og:image" content="https://shukagodx.github.io/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' fill='none' stroke='%233D5AFE' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700&family=Golos+Text:wght@400;500;600;700&family=Geologica:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: стол селлера — две ленты карточек 3:4, каждая карточка рассказывает одно свойство товара */
+:root{
+  color-scheme:light;
+  --bg:#EFEBE6; --paper:#FFFFFF; --ink:#1E1C1A; --muted:#5E5850; --line:#DAD3CA; --accent:#B5552F;
+  --f-display:"Geologica","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --f-card:"Unbounded","Arial Black",sans-serif;
+  --f-card-b:"Golos Text","Segoe UI",sans-serif;
+  --ease-out:cubic-bezier(0.23,1,0.32,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6}
+img{max-width:100%;display:block}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,.car:focus-visible{outline:2px solid var(--ink);outline-offset:4px;border-radius:8px}
+h1,h2{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-0.03em}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:20px}
+.home{font-weight:600;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:8px;min-height:44px}
+.home i{width:12px;height:12px;border:2px solid #3D5AFE;display:inline-block}
+.tag{font-family:var(--f-mono);font-size:12.5px;color:var(--muted);background:var(--paper);border:1px solid var(--line);padding:5px 12px;border-radius:999px}
+.intro{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:16px 56px;align-items:end;padding-block:24px 16px}
+.intro h1{font-size:clamp(2.2rem,5.4vw,4.4rem);font-weight:800;line-height:1}
+.intro h1 span{color:var(--accent)}
+.intro p{margin:0;color:var(--muted);max-width:520px}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.facts span{font-family:var(--f-mono);font-size:13px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+
+.prod{padding-block:40px 8px}
+.car-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.car-head h2{font-size:clamp(1.5rem,2.8vw,2.2rem);font-weight:700}
+.car-head p{margin:6px 0 0;color:var(--muted)}
+.arrows{display:flex;gap:8px;align-items:center}
+.count{font-variant-numeric:tabular-nums;font-weight:600;color:var(--muted);min-width:4.2em;text-align:right}
+.arr{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform 140ms var(--ease-out),background-color 160ms ease}
+.arr:active{transform:scale(0.94)}
+.arr:disabled{opacity:0.35;cursor:default}
+.car{list-style:none;margin:20px 0 0;padding:4px max(16px, calc((100vw - 1240px) / 2 + 16px)) 28px;display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:max(16px, calc((100vw - 1240px) / 2 + 16px));overscroll-behavior-x:contain;cursor:grab;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.car.dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.car.dragging img{pointer-events:none}
+.slot{flex:0 0 auto;width:min(420px, calc(100vw - 64px));scroll-snap-align:start;display:flex;flex-direction:column;gap:10px}
+.slot-n{font-family:var(--f-mono);font-size:12.5px;color:var(--muted)}
+
+/* Карточка 3:4 — все размеры в cqw */
+.mp{container-type:inline-size;position:relative;aspect-ratio:3/4;width:100%;border-radius:16px;overflow:hidden;box-shadow:0 18px 40px rgba(30,28,26,0.12),0 0 0 1px rgba(30,28,26,0.06);font-family:var(--f-card-b);user-select:none}
+.mp > *{position:absolute}
+.mp .ov{inset:0;width:100%;height:100%;pointer-events:none}
+.mp .pr{height:auto;pointer-events:none}
+.hd .brand{display:block;font-family:var(--f-card);font-weight:700;font-size:2.889cqw;letter-spacing:0.18em;margin-bottom:1.556cqw}
+.hd h3{margin:0;font-family:var(--f-card);font-weight:700;font-size:7.111cqw;line-height:1.08;letter-spacing:-0.02em;text-wrap:balance}
+.hd .sub{margin:1.556cqw 0 0;font-size:3.333cqw;font-weight:500}
+.blob{aspect-ratio:1;border-radius:50%}
+.stamp{aspect-ratio:1;border-radius:50%;background:#B5552F;color:#FFF;display:flex;align-items:center;justify-content:center;text-align:center;transform:rotate(-12deg);box-shadow:0 1.111cqw 2.667cqw rgba(0,0,0,0.15)}
+.stamp span{font-family:var(--f-card);font-weight:700;font-size:2.667cqw;line-height:1.15;text-transform:uppercase}
+.pills{display:flex;gap:1.333cqw;flex-wrap:nowrap}
+.pills span{flex:1;display:flex;align-items:center;justify-content:center;gap:1.111cqw;padding:2.000cqw 1.333cqw;border-radius:2.444cqw;font-weight:700;font-size:2.667cqw;box-shadow:0 0.667cqw 2.000cqw rgba(0,0,0,0.08);white-space:nowrap}
+.pills svg{width:3.556cqw;height:3.556cqw;flex:none}
+.co{display:flex;flex-direction:column;gap:0.444cqw;padding:1.778cqw 2.222cqw;border-radius:2.000cqw;background:rgba(255,255,255,0.1);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.18);color:#FFF}
+.co b{font-family:var(--f-card);font-size:3.000cqw;line-height:1.15}
+.co span{font-size:2.556cqw;line-height:1.3;color:rgba(255,255,255,0.78)}
+.dim{font-family:var(--f-card);font-weight:700;font-size:3.778cqw;color:#2B211B;background:#FFF;padding:0.889cqw 1.778cqw;border-radius:1.333cqw;white-space:nowrap}
+.dim.v{transform:rotate(-90deg);transform-origin:center}
+.big{font-family:var(--f-card);font-weight:700;font-size:13.333cqw;line-height:0.9;letter-spacing:-0.04em}
+.big small{font-size:5.556cqw;margin-left:1.111cqw;letter-spacing:0}
+.swg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.778cqw}
+.swg.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.swg figure{margin:0;background:#FFF;border-radius:2.444cqw;padding:1.556cqw 1.556cqw 1.333cqw;display:flex;flex-direction:column;gap:0.444cqw}
+.swg img{width:100%;height:auto}
+.swg figcaption{font-family:var(--f-card);font-weight:700;font-size:2.667cqw;color:#2B211B;padding-left:0.889cqw}
+.swg .note{background:#2B211B;color:#FFF;justify-content:center;padding:2.889cqw}
+.swg .note b{font-family:var(--f-card);font-size:2.667cqw;line-height:1.15}
+.swg .note span{font-size:2.111cqw;line-height:1.3;color:rgba(255,255,255,0.75);margin-top:0.889cqw}
+.swg.two img{margin-block:1.111cqw}
+.care{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2.889cqw}
+.care li{display:flex;gap:2.222cqw;align-items:center}
+.care li svg{width:7.111cqw;height:7.111cqw;flex:none;background:#FFF;border-radius:2.000cqw;padding:1.333cqw}
+.care b{display:block;font-family:var(--f-card);font-size:3.111cqw;color:#22301F;line-height:1.15}
+.care span{font-size:2.667cqw;color:#4E5B4B;line-height:1.3}
+.plus{display:flex;align-items:center;justify-content:center;gap:2.000cqw;font-family:var(--f-card);font-weight:700;font-size:4.000cqw;color:#2B211B}
+.plus span{background:#FFF;padding:1.556cqw 2.889cqw;border-radius:2.000cqw}
+.plus i{font-style:normal;color:#B5552F}
+
+.why{padding-block:72px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px}
+.why div{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:22px}
+.why h3{margin:0;font-family:var(--f-display);font-size:18px;letter-spacing:-0.01em}
+.why p{margin:8px 0 0;color:var(--muted);font-size:15px}
+.end{padding-block:72px 96px;text-align:center}
+.end h2{font-size:clamp(1.6rem,3.4vw,2.6rem)}
+.end p{color:var(--muted);margin:12px auto 0;max-width:480px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border-radius:999px;background:var(--ink);color:#FFF;font-weight:600;text-decoration:none;margin-top:24px;transition:transform 160ms var(--ease-out),background-color 200ms ease}
+.btn:active{transform:scale(0.97)}
+@media (hover:hover) and (pointer:fine){.btn:hover{background:var(--accent)}.arr:hover{background:var(--line)}}
+.pf-back{position:fixed;z-index:50;left:max(16px,env(safe-area-inset-left,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 16px 0 12px;border-radius:999px;background:rgba(17,19,24,0.88);color:#fff;font:600 14px/1 system-ui,sans-serif;text-decoration:none;backdrop-filter:blur(8px);box-shadow:0 8px 24px rgba(0,0,0,0.2);transition:transform 160ms var(--ease-out)}
+.pf-back:active{transform:scale(0.97)}
+@media (prefers-reduced-motion:reduce){.arr,.btn{transition:none}}
+</style>
+</head>
+<body>
+<header class="wrap top">
+  <a class="home" href="../index.html"><i aria-hidden="true"></i>Shuka</a>
+  <span class="tag">Инфографика для маркетплейсов</span>
+</header>
+<main>
+  <section class="wrap intro">
+    <h1>Карточки для <span>Ozon и Wildberries</span></h1>
+    <div>
+      <p>Слайды для карточек керамики бренда «Обжиг»: главный слайд, преимущества, размеры, цвета и уход. Каждый отвечает на один вопрос покупателя. Фото товара — рендеры моих 3D-моделей.</p>
+      <div class="facts"><span>3:4 · 900×1200</span><span>10 слайдов</span><span>читается в превью</span></div>
+    </div>
+  </section>
+
+  <section class="prod" id="mug" aria-labelledby="mug-t">
+    <div class="wrap car-head">
+      <div><h2 id="mug-t">Кружка «Утро» · 350 мл</h2><p>Пять слайдов: от главного до ухода и упаковки.</p></div>
+      <div class="arrows">
+        <span class="count" data-for="mug-s" aria-live="polite">1 / 5</span>
+        <button type="button" class="arr" data-dir="-1" data-target="mug-s" aria-label="Предыдущая карточка"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+        <button type="button" class="arr" data-dir="1" data-target="mug-s" aria-label="Следующая карточка"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></button>
+      </div>
+    </div>
+    <ol class="car" id="mug-s" tabindex="0" aria-label="Карточки: Кружка «Утро» · 350 мл"><li class="slot"><span class="slot-n">1 · Главная</span><div class="mp" style="background:linear-gradient(165deg,#F7EFE5 0%,#ECDCCB 100%)">
+  <div class="blob" style="left:9.00%;top:38.00%;width:82.222cqw;background:#E2C3A5"></div>
+  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#B5552F">ОБЖИГ</span><h3 style="color:#2B211B">Кружка ручной работы</h3><p class="sub" style="color:#6B5D52">Глазурь «Шалфей» · 350 мл</p></div>
+  <div class="stamp" style="left:75.11%;top:21.83%;width:18.889cqw"><span>ручная<br>работа</span></div>
+  <img class="pr" src="../img/mp/mug-sage.png" alt="Кружка в глазури «Шалфей»" style="left:13.33%;top:35.00%;width:77.78%" width="700" height="578" loading="lazy" draggable="false">
+  <div class="pills" style="left:5.33%;top:88.50%;width:89.333cqw"><span style="background:#FFFFFF;color:#2B211B"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2B211B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20h12M8 20c-2-3-3-6-2-10h12c1 4 0 7-2 10M7 10c0-3 2-5 5-5s5 2 5 5"/></svg>Керамика</span><span style="background:#FFFFFF;color:#2B211B"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2B211B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 8h16M8 5.5h.01M11 5.5h.01"/><circle cx="12" cy="14.5" r="3.5"/></svg>Можно в ПММ</span><span style="background:#FFFFFF;color:#2B211B"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2B211B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><rect x="5" y="8" width="10" height="8" rx="1"/><path d="M18 9v.01M18 12v.01M18 15v.01"/></svg>Можно в СВЧ</span></div>
+</div></li><li class="slot"><span class="slot-n">2 · Преимущества</span><div class="mp" style="background:radial-gradient(120% 80% at 50% 60%,#3B2E25 0%,#211914 100%)">
+  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#E8964A">ОБЖИГ</span><h3 style="color:#FFFFFF">Почему из неё приятно пить</h3></div>
+  <img class="pr" src="../img/mp/mug-cream.png" alt="Кружка в глазури «Сливки»" style="left:13.33%;top:39.17%;width:75.56%" width="680" height="561" loading="lazy" draggable="false">
+  <svg class="ov" viewBox="0 0 900 1200" aria-hidden="true"><path d="M250 400 L379 522" stroke="#E8964A" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/><circle cx="379" cy="522" r="11" fill="#E8964A" stroke="#FFF" stroke-width="4"/><path d="M720 470 L640 700" stroke="#E8964A" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/><circle cx="640" cy="700" r="11" fill="#E8964A" stroke="#FFF" stroke-width="4"/><path d="M330 1040 L390 990" stroke="#E8964A" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/><circle cx="390" cy="990" r="11" fill="#E8964A" stroke="#FFF" stroke-width="4"/></svg><div class="co" style="left:6.67%;top:25.00%;width:36.667cqw"><b>Толстые стенки</b><span>чай остывает медленнее</span></div><div class="co" style="left:62.22%;top:25.00%;width:33.333cqw"><b>Ручка на 4 пальца</b><span>держать удобно даже в варежке</span></div><div class="co" style="left:7.11%;top:86.67%;width:48.889cqw"><b>Ножка без глазури</b><span>кружка не скользит по столу</span></div>
+</div></li><li class="slot"><span class="slot-n">3 · Размеры</span><div class="mp" style="background:#F3ECE3">
+  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#B5552F">ОБЖИГ</span><h3 style="color:#2B211B">Размеры</h3><p class="sub" style="color:#6B5D52">Объём до края — 350 мл</p></div>
+  <img class="pr" src="../img/mp/mug-cream.png" alt="Кружка в глазури «Сливки»" style="left:20.00%;top:35.00%;width:62.22%" width="560" height="462" loading="lazy" draggable="false">
+  <svg class="ov" viewBox="0 0 900 1200" aria-hidden="true">
+    <g stroke="#2B211B" stroke-width="3" fill="none" stroke-linecap="round">
+      <path d="M150 447 V872"/><path d="M134 447 H166 M134 872 H166"/>
+      <path d="M216 930 H553"/><path d="M216 914 V946 M553 914 V946"/>
+    </g>
+  </svg>
+  <div class="dim v" style="left:3.11%;top:53.33%">9,2 см</div>
+  <div class="dim" style="left:36.67%;top:79.33%">Ø 8 см</div>
+  <div class="big" style="left:55.56%;top:85.83%;color:#B5552F">350<small>мл</small></div>
+</div></li><li class="slot"><span class="slot-n">4 · Цвета</span><div class="mp" style="background:#F3ECE3">
+  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#B5552F">ОБЖИГ</span><h3 style="color:#2B211B">5 оттенков глазури</h3></div>
+  <div class="swg" style="left:5.33%;top:27.50%;width:89.333cqw"><figure><img src="../img/mp/mug-cream.png" alt="Кружка в глазури «Сливки»" width="314" height="260" loading="lazy" draggable="false"><figcaption>Сливки</figcaption></figure><figure><img src="../img/mp/mug-sage.png" alt="Кружка в глазури «Шалфей»" width="314" height="260" loading="lazy" draggable="false"><figcaption>Шалфей</figcaption></figure><figure><img src="../img/mp/mug-cobalt.png" alt="Кружка в глазури «Кобальт»" width="314" height="260" loading="lazy" draggable="false"><figcaption>Кобальт</figcaption></figure><figure><img src="../img/mp/mug-terra.png" alt="Кружка в глазури «Терракота»" width="314" height="260" loading="lazy" draggable="false"><figcaption>Терракота</figcaption></figure><figure><img src="../img/mp/mug-graphite.png" alt="Кружка в глазури «Графит»" width="314" height="260" loading="lazy" draggable="false"><figcaption>Графит</figcaption></figure><figure class="note"><b>Каждая уникальна</b><span>Глазурь ложится по-разному, оттенок может немного отличаться</span></figure></div>
+</div></li><li class="slot"><span class="slot-n">5 · Уход</span><div class="mp" style="background:linear-gradient(170deg,#E9EFE6,#D8E3D4)">
+  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#4F6B4B">ОБЖИГ</span><h3 style="color:#2B211B">Уход и упаковка</h3></div>
+  <ul class="care" style="left:7.11%;top:25.00%;width:66.667cqw">
+    <li><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#4F6B4B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 8h16M8 5.5h.01M11 5.5h.01"/><circle cx="12" cy="14.5" r="3.5"/></svg><span><b>Посудомоечная машина</b>Обычный режим до 65 °C</span></li>
+    <li><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#4F6B4B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><rect x="5" y="8" width="10" height="8" rx="1"/><path d="M18 9v.01M18 12v.01M18 15v.01"/></svg><span><b>Микроволновка</b>Без металлической отделки</span></li>
+    <li><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#4F6B4B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c4 0 7-3 7-7 0-3-2-5-3-7-1 2-2 3-3 3 0-2-1-4-3-6 0 4-5 6-5 10 0 4 3 7 7 7z"/><path d="M3 3l18 18"/></svg><span><b>Без открытого огня</b>Не ставить на плиту</span></li>
+    <li><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#4F6B4B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg><span><b>Крафтовая коробка</b>С бумажной стружкой, без пластика</span></li>
+  </ul>
+  <img class="pr" src="../img/mp/mug-terra.png" alt="Кружка в глазури «Терракота»" style="left:52.22%;top:63.33%;width:46.67%" width="420" height="347" loading="lazy" draggable="false">
+</div></li></ol>
+  </section>
+
+  <section class="prod" id="pot" aria-labelledby="pot-t">
+    <div class="wrap car-head">
+      <div><h2 id="pot-t">Чайник «Вечер» · 1,2 л</h2><p>Пять слайдов: главный, детали, размеры, цвета и набор.</p></div>
+      <div class="arrows">
+        <span class="count" data-for="pot-s" aria-live="polite">1 / 5</span>
+        <button type="button" class="arr" data-dir="-1" data-target="pot-s" aria-label="Предыдущая карточка"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+        <button type="button" class="arr" data-dir="1" data-target="pot-s" aria-label="Следующая карточка"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></button>
+      </div>
+    </div>
+    <ol class="car" id="pot-s" tabindex="0" aria-label="Карточки: Чайник «Вечер» · 1,2 л"><li class="slot"><span class="slot-n">1 · Главная</span><div class="mp" style="background:linear-gradient(165deg,#EEF2FA 0%,#D5DEEF 100%)">
+  <div class="blob" style="left:6%;top:40%;width:88.889cqw;background:#C2CFEA"></div>
+  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#2A4E95">ОБЖИГ</span><h3 style="color:#2B211B">Заварочный чайник ручной работы</h3><p class="sub" style="color:#6B5D52">Глазурь «Кобальт» · 1,2 л</p></div>
+  <img class="pr" src="../img/mp/pot-cobalt.png" alt="Чайник в глазури «Кобальт»" style="left:5.56%;top:39.17%;width:88.89%" width="800" height="509" loading="lazy" draggable="false">
+  <div class="pills" style="left:5.33%;top:88.50%;width:89.333cqw"><span style="background:#FFFFFF;color:#1C2440"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1C2440" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20h12M8 20c-2-3-3-6-2-10h12c1 4 0 7-2 10M7 10c0-3 2-5 5-5s5 2 5 5"/></svg>Керамика</span><span style="background:#FFFFFF;color:#1C2440"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1C2440" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h12v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM16 10h2a2 2 0 0 1 0 4h-2"/></svg>На 4 чашки</span><span style="background:#FFFFFF;color:#1C2440"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1C2440" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V11M11 10V4.5a1.5 1.5 0 0 1 3 0V11M14 10.5V6a1.5 1.5 0 0 1 3 0v7c0 4-3 8-7 8-3 0-5-2-6.5-4.5L2 13.5a1.6 1.6 0 0 1 2.6-1.8L8 15"/></svg>Ручная работа</span></div>
+</div></li><li class="slot"><span class="slot-n">2 · Преимущества</span><div class="mp" style="background:radial-gradient(120% 80% at 50% 60%,#26315A 0%,#141A30 100%)">
+  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#8FB0FF">ОБЖИГ</span><h3 style="color:#FFFFFF">Продуман до мелочей</h3></div>
+  <img class="pr" src="../img/mp/pot-terra.png" alt="Чайник в глазури «Терракота»" style="left:6.67%;top:41.67%;width:86.67%" width="780" height="496" loading="lazy" draggable="false">
+  <svg class="ov" viewBox="0 0 900 1200" aria-hidden="true"><path d="M300 420 L390 563" stroke="#8FB0FF" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/><circle cx="390" cy="563" r="11" fill="#8FB0FF" stroke="#FFF" stroke-width="4"/><path d="M760 440 L728 675" stroke="#8FB0FF" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/><circle cx="728" cy="675" r="11" fill="#8FB0FF" stroke="#FFF" stroke-width="4"/><path d="M180 1000 L132 732" stroke="#8FB0FF" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/><circle cx="132" cy="732" r="11" fill="#8FB0FF" stroke="#FFF" stroke-width="4"/></svg><div class="co" style="left:7.11%;top:25.00%;width:36.667cqw"><b>Крышка с упором</b><span>не выпадает, когда наливаете</span></div><div class="co" style="left:62.22%;top:25.00%;width:33.333cqw"><b>Длинный носик</b><span>льёт ровной струёй без подтёков</span></div><div class="co" style="left:7.11%;top:83.33%;width:46.667cqw"><b>Широкая ручка</b><span>удобно держать полный чайник</span></div>
+</div></li><li class="slot"><span class="slot-n">3 · Размеры</span><div class="mp" style="background:#EEF2FA">
+  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#2A4E95">ОБЖИГ</span><h3 style="color:#2B211B">Размеры</h3><p class="sub" style="color:#6B5D52">Объём 1,2 л — на 4 чашки</p></div>
+  <img class="pr" src="../img/mp/pot-cream.png" alt="Чайник в глазури «Сливки»" style="left:12.22%;top:39.17%;width:75.56%" width="680" height="433" loading="lazy" draggable="false">
+  <svg class="ov" viewBox="0 0 900 1200" aria-hidden="true">
+    <g stroke="#1C2440" stroke-width="3" fill="none" stroke-linecap="round">
+      <path d="M92 499 V832"/><path d="M76 499 H108 M76 832 H108"/>
+      <path d="M149 880 H708"/><path d="M149 864 V896 M708 864 V896"/>
+    </g>
+  </svg>
+  <div class="dim v" style="left:-2.22%;top:53.33%">10 см</div>
+  <div class="dim" style="left:38.89%;top:75.17%">17 см</div>
+  <div class="big" style="left:62.22%;top:85.83%;color:#2A4E95">1,2<small>л</small></div>
+</div></li><li class="slot"><span class="slot-n">4 · Цвета</span><div class="mp" style="background:#EEF2FA">
+  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#2A4E95">ОБЖИГ</span><h3 style="color:#2B211B">4 цвета под ваш сервиз</h3></div>
+  <div class="swg two" style="left:5.33%;top:25.00%;width:89.333cqw"><figure><img src="../img/mp/pot-cobalt.png" alt="Чайник в глазури «Кобальт»" width="347" height="221" loading="lazy" draggable="false"><figcaption>Кобальт</figcaption></figure><figure><img src="../img/mp/pot-terra.png" alt="Чайник в глазури «Терракота»" width="347" height="221" loading="lazy" draggable="false"><figcaption>Терракота</figcaption></figure><figure><img src="../img/mp/pot-cream.png" alt="Чайник в глазури «Сливки»" width="347" height="221" loading="lazy" draggable="false"><figcaption>Сливки</figcaption></figure><figure><img src="../img/mp/pot-sage.png" alt="Чайник в глазури «Шалфей»" width="347" height="221" loading="lazy" draggable="false"><figcaption>Шалфей</figcaption></figure></div>
+</div></li><li class="slot"><span class="slot-n">5 · Набор</span><div class="mp" style="background:linear-gradient(165deg,#F7EFE5,#E9D8C6)">
+  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#B5552F">ОБЖИГ</span><h3 style="color:#2B211B">Соберите набор</h3><p class="sub" style="color:#6B5D52">Чайник и кружки в одной глазури</p></div>
+  <img class="pr" src="../img/mp/mug-cobalt.png" alt="Кружка в глазури «Кобальт»" style="left:4.44%;top:53.33%;width:40.00%" width="360" height="297" loading="lazy" draggable="false">
+  <img class="pr" src="../img/mp/mug-cobalt.png" alt="Кружка в глазури «Кобальт»" style="left:58.89%;top:55.00%;width:36.67%" width="330" height="272" loading="lazy" draggable="false">
+  <img class="pr" src="../img/mp/pot-cobalt.png" alt="Чайник в глазури «Кобальт»" style="left:18.89%;top:41.67%;width:64.44%" width="580" height="369" loading="lazy" draggable="false">
+  <div class="plus" style="left:7.11%;top:86.67%;width:85.778cqw"><span>1 чайник</span><i>+</i><span>2 кружки</span></div>
+</div></li></ol>
+  </section>
+  <section class="wrap why" aria-label="Принципы">
+    <div><h3>Один слайд — одна мысль</h3><p>Покупатель листает быстро, поэтому на каждом слайде один ответ: что это, чем хорошо, какого размера, какие цвета.</p></div>
+    <div><h3>Читается в превью</h3><p>Крупный заголовок и контраст: главный слайд понятен даже в маленькой плитке каталога.</p></div>
+    <div><h3>Единый стиль</h3><p>Фирменные цвета, один шрифт и одинаковая сетка: карточки бренда узнаются в выдаче.</p></div>
+  </section>
+  <section class="wrap end">
+    <h2>Нужны карточки для вашего товара?</h2>
+    <p>Сделаю инфографику для Ozon и Wildberries, а если нет фото — смоделирую товар в 3D.</p>
+    <a class="btn" href="../index.html#contact">Обсудить проект</a>
+  </section>
+</main>
+<a href="../index.html" class="pf-back" aria-label="Вернуться к портфолио"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>Портфолио</a>
+<script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function items(c){return [].slice.call(c.children)}
+  function current(c){
+    var base=c.getBoundingClientRect().left+parseFloat(getComputedStyle(c).scrollPaddingLeft||0);
+    var best=0,bd=1e9;
+    items(c).forEach(function(it,i){var d=Math.abs(it.getBoundingClientRect().left-base);if(d<bd){bd=d;best=i}});
+    return best;
+  }
+  function go(c,i){
+    var list=items(c); i=Math.max(0,Math.min(list.length-1,i));
+    var pad=parseFloat(getComputedStyle(c).scrollPaddingLeft||0);
+    c.scrollTo({left:c.scrollLeft+list[i].getBoundingClientRect().left-c.getBoundingClientRect().left-pad,behavior:reduce?'auto':'smooth'});
+  }
+  function update(c){
+    var i=current(c),n=items(c).length,max=c.scrollWidth-c.clientWidth;
+    var cnt=document.querySelector('.count[data-for="'+c.id+'"]'); if(cnt) cnt.textContent=(i+1)+' / '+n;
+    [].forEach.call(document.querySelectorAll('.arr[data-target="'+c.id+'"]'),function(b){
+      b.disabled = (+b.dataset.dir<0) ? c.scrollLeft<=2 : c.scrollLeft>=max-2;
+    });
+  }
+  [].forEach.call(document.querySelectorAll('.car'),function(c){
+    var raf=0;
+    c.addEventListener('scroll',function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(function(){update(c)})},{passive:true});
+    c.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'){e.preventDefault();go(c,current(c)+1)}
+      if(e.key==='ArrowLeft'){e.preventDefault();go(c,current(c)-1)}
+    });
+    /* перетаскивание мышью; на тач-экранах работает родная прокрутка */
+    var down=false,sx=0,sl=0,moved=0,vx=0,lx=0,lt=0;
+    c.addEventListener('pointerdown',function(e){
+      if(e.pointerType!=='mouse'||e.button!==0) return;
+      down=true;moved=0;sx=e.clientX;sl=c.scrollLeft;lx=e.clientX;lt=performance.now();vx=0;
+    });
+    window.addEventListener('pointermove',function(e){
+      if(!down) return;
+      var dx=e.clientX-sx; moved=Math.max(moved,Math.abs(dx));
+      if(moved>4&&!c.classList.contains('dragging')) c.classList.add('dragging');
+      if(c.classList.contains('dragging')){
+        c.scrollLeft=sl-dx;
+        var now=performance.now(); vx=(e.clientX-lx)/Math.max(1,now-lt); lx=e.clientX; lt=now;
+      }
+    });
+    window.addEventListener('pointerup',function(){
+      if(!down) return; down=false;
+      if(c.classList.contains('dragging')){
+        c.classList.remove('dragging');
+        var i=current(c); if(Math.abs(vx)>0.4) i+= vx<0?1:-1;
+        go(c,i);
+      }
+    });
+    update(c);
+  });
+  [].forEach.call(document.querySelectorAll('.arr'),function(b){
+    b.addEventListener('click',function(){var c=document.getElementById(b.dataset.target);go(c,current(c)+(+b.dataset.dir))});
+  });
+})();
+</script>
+</body>
+</html>

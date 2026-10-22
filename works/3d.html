@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Обжиг — 3D-моделирование · Shuka</title>
+<meta name="description" content="Интерактивные 3D-модели керамики: кружка и чайник с разными глазурями, сеткой модели и рендерами для карточек товаров.">
+<meta property="og:title" content="Обжиг — 3D-моделирование · Shuka">
+<meta property="og:description" content="Интерактивные 3D-модели кружки и чайника: покрутите, смените глазурь, посмотрите сетку.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shukagodx.github.io/works/3d.html">
+<meta property="og:site_name" content="Shuka — веб-дизайнер">
+<meta property="og:image" content="https://shukagodx.github.io/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' fill='none' stroke='%233D5AFE' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: студия предметной съёмки — модель на подиуме по центру, пульт с глазурями снизу, ниже техпаспорт и рендеры */
+:root{
+  color-scheme:light;
+  --bg:#ECE7E0; --bg2:#F6F2EC; --ink:#1E1C1A; --muted:#5E5850; --line:#D8D0C5; --accent:#B5552F; --chip:#FFFFFF;
+  --f-display:"Geologica","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --ease-out:cubic-bezier(0.23,1,0.32,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6}
+img{max-width:100%;display:block}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:8px}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-0.03em}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:20px}
+.home{font-weight:600;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:8px;min-height:44px}
+.home i{width:12px;height:12px;border:2px solid #3D5AFE;display:inline-block}
+.tag{font-family:var(--f-mono);font-size:12.5px;color:var(--muted);background:var(--bg2);border:1px solid var(--line);padding:5px 12px;border-radius:999px}
+
+.intro{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:16px 56px;align-items:end;padding-block:24px 8px}
+.intro h1{font-size:clamp(2.4rem,6vw,4.8rem);font-weight:800;line-height:0.98}
+.intro h1 span{color:var(--accent)}
+.intro p{margin:0;color:var(--muted);max-width:520px}
+
+/* Студия */
+.studio{position:relative;margin-top:24px;border-radius:28px;overflow:hidden;background:radial-gradient(120% 90% at 50% 30%,#FBF8F4 0%,#EFE8DF 55%,#E2D9CD 100%);border:1px solid var(--line);height:min(72vh,680px);min-height:440px;touch-action:pan-y}
+#view{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab}
+#view.drag{cursor:grabbing}
+.hint{position:absolute;left:50%;bottom:104px;transform:translateX(-50%);font-family:var(--f-mono);font-size:12.5px;color:var(--muted);background:rgba(255,255,255,0.7);padding:5px 12px;border-radius:999px;pointer-events:none;transition:opacity 400ms ease;white-space:nowrap}
+.hint.gone{opacity:0}
+.badge{position:absolute;left:20px;top:18px;display:flex;flex-direction:column;gap:2px;font-family:var(--f-mono);font-size:12px;color:var(--muted);pointer-events:none}
+.badge b{font-family:var(--f-display);font-size:20px;color:var(--ink);font-weight:700;letter-spacing:-0.02em}
+.zoom{position:absolute;right:16px;top:16px;display:flex;flex-direction:column;gap:8px}
+.ctl{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,0.85);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);transition:transform 140ms var(--ease-out),background-color 160ms ease}
+.ctl:active{transform:scale(0.94)}
+.ctl[aria-pressed="true"]{background:var(--ink);color:#FFF;border-color:var(--ink)}
+.dock{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.86);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:20px;padding:8px;max-width:calc(100% - 32px);overflow-x:auto;box-shadow:0 12px 30px rgba(30,28,26,0.08)}
+.seg{display:flex;background:var(--bg);border-radius:13px;padding:3px;flex:none}
+.seg button{font:inherit;font-weight:600;font-size:14px;min-height:40px;padding:0 14px;border:0;border-radius:10px;background:transparent;color:var(--muted);cursor:pointer;transition:background-color 180ms ease,color 180ms ease}
+.seg button[aria-pressed="true"]{background:#FFF;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,0.12)}
+.sep{width:1px;height:28px;background:var(--line);flex:none}
+.glazes{display:flex;gap:6px;flex:none}
+.gz{width:40px;height:40px;border-radius:50%;border:0;padding:0;cursor:pointer;position:relative;background:var(--c);box-shadow:inset 0 -6px 10px rgba(0,0,0,0.18),inset 0 4px 8px rgba(255,255,255,0.35);transition:transform 160ms var(--ease-out)}
+.gz:active{transform:scale(0.92)}
+.gz[aria-pressed="true"]::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--ink)}
+.glaze-name{font-family:var(--f-mono);font-size:12.5px;color:var(--muted);min-width:7.5em;flex:none}
+.wire-btn{font:inherit;font-weight:600;font-size:14px;min-height:40px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:#FFF;color:var(--ink);cursor:pointer;display:flex;align-items:center;gap:8px;flex:none}
+.wire-btn[aria-pressed="true"]{background:var(--ink);color:#FFF;border-color:var(--ink)}
+.fallback{position:absolute;inset:0;display:none;align-items:center;justify-content:center;text-align:center;padding:24px;color:var(--muted)}
+@media (max-width:700px){.studio{height:600px}.glaze-name{display:none}.hint{display:none}.dock{flex-wrap:wrap;justify-content:center;overflow:visible}.sep{display:none}}
+
+/* Техпаспорт и процесс */
+section.block{padding-block:72px 0}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px 40px;margin-bottom:28px}
+.eyebrow{font-family:var(--f-mono);font-size:12.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent)}
+.head h2{font-size:clamp(1.8rem,3.6vw,2.8rem);font-weight:700;line-height:1.05;margin-top:10px}
+.head p{max-width:440px;margin:0;color:var(--muted)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px;list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:20px;counter-increment:s;display:flex;flex-direction:column;gap:12px}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--f-mono);font-size:13px;color:var(--accent)}
+.steps h3{font-size:19px;font-weight:700}
+.steps p{margin:0;color:var(--muted);font-size:15px}
+.steps svg{width:100%;height:auto;aspect-ratio:4/3;background:#FFF;border-radius:12px;border:1px solid var(--line)}
+.renders{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px}
+.renders figure{margin:0;background:radial-gradient(110% 80% at 50% 30%,#FFFFFF,#EDE6DC);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.renders img{width:100%;height:auto;aspect-ratio:4/5;object-fit:contain}
+.renders figcaption{display:flex;justify-content:space-between;gap:8px;padding:12px 16px;font-size:14px;border-top:1px solid var(--line);background:var(--bg2)}
+.renders figcaption span{font-family:var(--f-mono);color:var(--muted);font-size:12.5px}
+.end{padding-block:72px 96px;text-align:center}
+.end h2{font-size:clamp(1.6rem,3.4vw,2.6rem)}
+.end p{color:var(--muted);margin:12px auto 0;max-width:480px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border-radius:999px;background:var(--ink);color:#FFF;font-weight:600;text-decoration:none;margin-top:24px;transition:transform 160ms var(--ease-out),background-color 200ms ease}
+.btn:active{transform:scale(0.97)}
+@media (hover:hover) and (pointer:fine){.btn:hover{background:var(--accent)}}
+.pf-back{position:fixed;z-index:50;left:max(16px,env(safe-area-inset-left,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 16px 0 12px;border-radius:999px;background:rgba(17,19,24,0.88);color:#fff;font:600 14px/1 system-ui,sans-serif;text-decoration:none;backdrop-filter:blur(8px);box-shadow:0 8px 24px rgba(0,0,0,0.2);transition:transform 160ms var(--ease-out)}
+.pf-back:active{transform:scale(0.97)}
+/* Режим рендера кадров для карточек */
+body.render-mode{background:transparent}
+body.render-mode > *:not(#render-stage){display:none!important}
+#render-stage{display:none}
+body.render-mode #render-stage{display:block;position:fixed;inset:0}
+@media (prefers-reduced-motion:reduce){.ctl,.gz,.btn,.hint{transition:none}}
+</style>
+</head>
+<body>
+<header class="wrap top">
+  <a class="home" href="../index.html"><i aria-hidden="true"></i>Shuka</a>
+  <span class="tag">3D-моделирование · WebGL</span>
+</header>
+<main>
+  <section class="wrap intro">
+    <h1>Обжиг. <span>Керамика в 3D</span></h1>
+    <p>Модели кружки и чайника для студии керамики. Их можно покрутить прямо в браузере, сменить глазурь и посмотреть сетку модели. Из этих же моделей сделаны кадры для карточек товаров на маркетплейсах.</p>
+  </section>
+
+  <div class="wrap">
+    <div class="studio" id="studio">
+      <canvas id="view" aria-label="Интерактивная 3D-модель. Потяните, чтобы повернуть."></canvas>
+      <div class="badge" aria-live="polite"><span id="m-kind">модель</span><b id="m-name">Кружка «Утро»</b><span id="m-tris">— треугольников</span></div>
+      <div class="zoom">
+        <button class="ctl" type="button" id="zin" aria-label="Приблизить"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+        <button class="ctl" type="button" id="zout" aria-label="Отдалить"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg></button>
+        <button class="ctl" type="button" id="spin" aria-pressed="true" aria-label="Автоповорот"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"></path><path d="M21 4v5h-5"></path></svg></button>
+      </div>
+      <p class="hint" id="hint">Потяните, чтобы повернуть</p>
+      <div class="dock" role="toolbar" aria-label="Настройки модели">
+        <div class="seg" role="group" aria-label="Модель">
+          <button type="button" data-model="mug" aria-pressed="true">Кружка</button>
+          <button type="button" data-model="pot" aria-pressed="false">Чайник</button>
+        </div>
+        <span class="sep" aria-hidden="true"></span>
+        <div class="glazes" role="group" aria-label="Глазурь" id="glazes"></div>
+        <span class="glaze-name" id="glaze-name">Сливки</span>
+        <span class="sep" aria-hidden="true"></span>
+        <button type="button" class="wire-btn" id="wire" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18M15 3v18"></path></svg>Сетка</button>
+      </div>
+      <div class="fallback" id="fallback">Ваш браузер не поддерживает WebGL, поэтому 3D-модель не показывается. Ниже — готовые рендеры.</div>
+    </div>
+  </div>
+
+  <section class="wrap block">
+    <div class="head">
+      <div><div class="eyebrow">Как сделано</div><h2>От профиля до глазури</h2></div>
+      <p>Обе модели построены из кривой профиля, которую вращают вокруг оси, плюс отдельные детали: ручка, носик и крышка.</p>
+    </div>
+    <ol class="steps">
+      <li><svg id="sv-profile" viewBox="0 0 240 180" role="img" aria-label="Кривая профиля кружки"></svg><h3>Профиль</h3><p>Рисую половину силуэта: толщину стенки, закругление края и ножку.</p></li>
+      <li><svg viewBox="0 0 240 180" role="img" aria-label="Тело вращения">
+        <ellipse cx="120" cy="40" rx="52" ry="12" fill="none" stroke="#B5552F" stroke-width="2"/>
+        <path d="M68 40 V140 M172 40 V140" stroke="#1E1C1A" stroke-width="2"/>
+        <ellipse cx="120" cy="140" rx="52" ry="12" fill="none" stroke="#1E1C1A" stroke-width="2"/>
+        <g stroke="#D8D0C5" stroke-width="1"><path d="M94 30 V150"/><path d="M120 28 V152"/><path d="M146 30 V150"/><path d="M68 73 Q120 97 172 73"/><path d="M68 106 Q120 130 172 106"/></g>
+        <path d="M196 70 a20 20 0 1 1 -10 -16" fill="none" stroke="#B5552F" stroke-width="2" stroke-linecap="round"/><path d="M186 50 l2 8 l-8 0" fill="none" stroke="#B5552F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg><h3>Вращение</h3><p>Профиль вращается вокруг оси в 96 сегментов: получается ровное тело без швов.</p></li>
+      <li><svg viewBox="0 0 240 180" role="img" aria-label="Ручка по кривой">
+        <rect x="40" y="40" width="100" height="110" rx="10" fill="#F6F2EC" stroke="#1E1C1A" stroke-width="2"/>
+        <path d="M140 60 C 190 58, 196 128, 140 126" fill="none" stroke="#B5552F" stroke-width="10" stroke-linecap="round"/>
+        <g fill="#FFF" stroke="#1E1C1A" stroke-width="1.5"><circle cx="140" cy="60" r="4"/><circle cx="178" cy="72" r="4"/><circle cx="182" cy="108" r="4"/><circle cx="140" cy="126" r="4"/></g>
+      </svg><h3>Детали</h3><p>Ручку и носик веду трубкой по кривой. Носик сужается к концу, как у настоящего чайника.</p></li>
+      <li><svg viewBox="0 0 240 180" role="img" aria-label="Материалы: глазурь и необожжённая глина">
+        <defs><radialGradient id="gl" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#FFFFFF"/><stop offset="0.25" stop-color="#9DB397"/><stop offset="1" stop-color="#5D7359"/></radialGradient></defs>
+        <circle cx="86" cy="90" r="46" fill="url(#gl)"/><circle cx="168" cy="90" r="30" fill="#C98F6B"/><circle cx="160" cy="82" r="3" fill="#B07856"/><circle cx="176" cy="98" r="2.5" fill="#B07856"/>
+        <text x="86" y="160" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#5E5850">глазурь</text><text x="168" y="160" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#5E5850">глина</text>
+      </svg><h3>Материалы и свет</h3><p>Глянцевая глазурь с бликами, матовая ножка из глины и мягкий студийный свет с тенью.</p></li>
+    </ol>
+  </section>
+
+  <section class="wrap block">
+    <div class="head">
+      <div><div class="eyebrow">Рендеры</div><h2>Кадры для каталога</h2></div>
+      <p>Готовые изображения на прозрачном фоне. Из них собраны карточки товаров для маркетплейсов.</p>
+    </div>
+    <div class="renders">
+      <figure><img src="../img/3d/mug-cream.png" alt="Кружка в глазури «Сливки»" width="800" height="1000" loading="lazy"><figcaption>Кружка «Утро»<span>Сливки</span></figcaption></figure>
+      <figure><img src="../img/3d/mug-sage.png" alt="Кружка в глазури «Шалфей»" width="800" height="1000" loading="lazy"><figcaption>Кружка «Утро»<span>Шалфей</span></figcaption></figure>
+      <figure><img src="../img/3d/pot-cobalt.png" alt="Чайник в глазури «Кобальт»" width="800" height="1000" loading="lazy"><figcaption>Чайник «Вечер»<span>Кобальт</span></figcaption></figure>
+      <figure><img src="../img/3d/pot-terra.png" alt="Чайник в глазури «Терракота»" width="800" height="1000" loading="lazy"><figcaption>Чайник «Вечер»<span>Терракота</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section class="wrap end">
+    <h2>Нужна 3D-модель товара?</h2>
+    <p>Смоделирую предмет и сделаю рендеры для сайта, каталога или карточек маркетплейса.</p>
+    <a class="btn" href="../index.html#contact">Обсудить проект</a>
+  </section>
+</main>
+<div id="render-stage"></div>
+<a href="../index.html" class="pf-back" aria-label="Вернуться к портфолио"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>Портфолио</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var GLAZES=[
+    {id:'cream',name:'Сливки',c:'#EFE4D2'},
+    {id:'sage',name:'Шалфей',c:'#8FA88A'},
+    {id:'cobalt',name:'Кобальт',c:'#2A4E95'},
+    {id:'terra',name:'Терракота',c:'#B4532E'},
+    {id:'graphite',name:'Графит',c:'#2F3034'}
+  ];
+  var MUG=[[0,0.55],[3.25,0.55],[3.45,0.62],[3.6,0.9],[3.72,1.4],[3.8,4],[3.9,8.2],[3.98,8.85],[3.94,9.12],[3.8,9.18],[3.66,9.05],[3.6,8.6],[3.52,4],[3.42,1.25],[3.2,1.05],[0,1.0]];
+  var MUG_FOOT=[[0,0],[3.0,0],[3.2,0.08],[3.3,0.3],[3.28,0.6],[0,0.6]];
+
+  // профиль на схеме
+  (function(){
+    var s=document.getElementById('sv-profile'); if(!s) return;
+    var pts=MUG.map(function(p){return [120+p[0]*14, 160-p[1]*14]});
+    var d='M'+pts.map(function(p){return p[0].toFixed(1)+' '+p[1].toFixed(1)}).join(' L');
+    s.innerHTML='<path d="M120 20 V168" stroke="#D8D0C5" stroke-dasharray="4 4"/><path d="'+d+'" fill="#F3E9DD" stroke="#1E1C1A" stroke-width="2" stroke-linejoin="round"/>'+
+      pts.filter(function(_,i){return i%3===0}).map(function(p){return '<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="3.5" fill="#FFF" stroke="#B5552F" stroke-width="1.6"/>'}).join('');
+  })();
+
+  var params=new URLSearchParams(location.search);
+  var RENDER=params.get('render');
+  var studio=document.getElementById('studio');
+  var canvas=document.getElementById('view');
+  if(RENDER){
+    document.body.classList.add('render-mode');
+    document.getElementById('render-stage').appendChild(canvas);
+    canvas.style.cursor='default';
+  }
+  if(typeof THREE==='undefined'){document.getElementById('fallback').style.display='flex';return}
+  var renderer;
+  try{renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true,preserveDrawingBuffer:!!RENDER});}
+  catch(e){document.getElementById('fallback').style.display='flex';return}
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+  renderer.outputEncoding=THREE.sRGBEncoding;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure=1.0;
+  renderer.shadowMap.enabled=true;
+  renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+  renderer.setClearColor(0x000000,0);
+
+  var scene=new THREE.Scene();
+  var camera=new THREE.PerspectiveCamera(28,1,0.1,200);
+
+  // студийное окружение для отражений глазури
+  (function(){
+    var env=new THREE.Scene();
+    var room=new THREE.Mesh(new THREE.SphereGeometry(50,32,16),new THREE.MeshBasicMaterial({color:0x6f675f,side:THREE.BackSide}));
+    env.add(room);
+    function box(w,h,x,y,z,ry,c){var m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({color:c||0xffffff,side:THREE.DoubleSide}));m.position.set(x,y,z);m.lookAt(0,4,0);env.add(m)}
+    box(30,20,-30,22,18,0,0xffffff); box(24,30,34,14,-6,0,0xfff4e8); box(40,8,0,40,0,0,0xffffff); box(60,20,0,-20,0,0,0x8a7e70);
+    var pm=new THREE.PMREMGenerator(renderer);
+    scene.environment=pm.fromScene(env,0.03).texture;
+  })();
+
+  var hemi=new THREE.HemisphereLight(0xfffaf2,0xb9ab98,0.45); scene.add(hemi);
+  var key=new THREE.DirectionalLight(0xffffff,1.35); key.position.set(-8,16,10); key.castShadow=true;
+  key.shadow.mapSize.set(2048,2048); key.shadow.camera.left=-24; key.shadow.camera.right=24; key.shadow.camera.top=24; key.shadow.camera.bottom=-24; key.shadow.radius=6; key.shadow.bias=-0.0006;
+  scene.add(key);
+  var rim=new THREE.DirectionalLight(0xfff0e0,0.6); rim.position.set(10,8,-10); scene.add(rim);
+
+  var ground=new THREE.Mesh(new THREE.PlaneGeometry(80,80),new THREE.ShadowMaterial({opacity:0.16}));
+  ground.rotation.x=-Math.PI/2; ground.receiveShadow=true; scene.add(ground);
+
+  var glazeMat=new THREE.MeshPhysicalMaterial({color:GLAZES[0].c,roughness:0.32,metalness:0,clearcoat:0.8,clearcoatRoughness:0.15,envMapIntensity:0.7});
+  var clayMat=new THREE.MeshStandardMaterial({color:new THREE.Color('#C98F6B').convertSRGBToLinear(),roughness:0.92,metalness:0});
+  glazeMat.color.convertSRGBToLinear();
+  var wireMat=new THREE.LineBasicMaterial({color:0x1e1c1a,transparent:true,opacity:0.32});
+
+  function lathe(pts,seg){return new THREE.LatheGeometry(pts.map(function(p){return new THREE.Vector2(p[0],p[1])}),seg||96)}
+  function tube(points,r,taper,seg){
+    var curve=new THREE.CatmullRomCurve3(points.map(function(p){return new THREE.Vector3(p[0],p[1],p[2]||0)}));
+    var tub=seg||80, rad=24, g=new THREE.TubeGeometry(curve,tub,r,rad,false);
+    if(taper){
+      var pos=g.attributes.position, v=new THREE.Vector3();
+      for(var i=0;i<=tub;i++){
+        var t=i/tub, c=curve.getPointAt(t), s=1-taper*t;
+        for(var j=0;j<=rad;j++){var k=i*(rad+1)+j; v.fromBufferAttribute(pos,k).sub(c).multiplyScalar(s).add(c); pos.setXYZ(k,v.x,v.y,v.z)}
+      }
+      g.computeVertexNormals();
+    }
+    return g;
+  }
+  function mesh(g,m){var o=new THREE.Mesh(g,m);o.castShadow=true;o.receiveShadow=true;return o}
+  function cap(g,mat){var o=mesh(g,mat);return o}
+
+  function buildMug(){
+    var grp=new THREE.Group();
+    grp.add(mesh(lathe(MUG),glazeMat));
+    grp.add(mesh(lathe(MUG_FOOT),clayMat));
+    grp.add(mesh(tube([[3.7,7.6],[5.3,7.7],[6.35,6.4],[6.2,4.4],[5.1,3.1],[3.75,2.7]],0.5,0),glazeMat));
+    grp.userData={name:'Кружка «Утро»',kind:'кружка · 350 мл',h:9.2,dist:40,ty:4.6};
+    return grp;
+  }
+  function buildPot(){
+    var grp=new THREE.Group();
+    var body=[[0,0.5],[2.9,0.5],[3.25,0.7],[4.4,1.6],[5.1,3.0],[5.25,4.2],[4.95,5.5],[4.2,6.5],[3.3,7.05],[3.0,7.2],[3.0,7.35],[2.85,7.35],[2.75,7.1],[0,7.1]];
+    var foot=[[0,0],[2.7,0],[2.95,0.1],[3.05,0.35],[3.0,0.6],[0,0.6]];
+    var lid=[[0,7.25],[3.15,7.25],[3.18,7.4],[2.9,7.75],[2.1,8.25],[1.0,8.55],[0.55,8.6],[0,8.6]];
+    var knob=[[0,8.5],[0.45,8.55],[0.5,8.8],[0.85,9.2],[0.95,9.55],[0.75,9.9],[0.35,10.05],[0,10.08]];
+    grp.add(mesh(lathe(body),glazeMat));
+    grp.add(mesh(lathe(foot),clayMat));
+    grp.add(mesh(lathe(lid),glazeMat));
+    grp.add(mesh(lathe(knob,48),glazeMat));
+    grp.add(mesh(tube([[4.7,2.4],[6.4,3.4],[7.4,5.0],[8.0,6.6],[8.7,7.4]],0.78,0.55,90),glazeMat));
+    grp.add(mesh(tube([[-4.35,5.9],[-6.4,6.6],[-7.7,5.2],[-7.4,3.1],[-5.6,1.9],[-4.75,2.0]],0.55,0),glazeMat));
+    grp.userData={name:'Чайник «Вечер»',kind:'чайник · 1,2 л',h:10.1,dist:50,ty:5.0};
+    return grp;
+  }
+  var models={mug:buildMug(),pot:buildPot()};
+  var wires={};
+  Object.keys(models).forEach(function(k){
+    var w=new THREE.Group();
+    models[k].children.forEach(function(m){var l=new THREE.LineSegments(new THREE.WireframeGeometry(m.geometry),wireMat);w.add(l)});
+    w.visible=false; models[k].add(w); wires[k]=w;
+  });
+  function tris(g){var n=0;g.traverse(function(o){if(o.isMesh){n+=o.geometry.index?o.geometry.index.count/3:o.geometry.attributes.position.count/3}});return Math.round(n)}
+
+  var pivot=new THREE.Group(); scene.add(pivot);
+  var current=null, curKey=params.get('model')||(RENDER?RENDER:'mug');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // состояние камеры и вращения
+  var rotY=-0.55, rotX=0.18, velY=0, targetZoom=1, zoom=1, auto=!RENDER, dragging=false;
+  var appear={t:1,from:0.86};
+
+  function setModel(k,instant){
+    if(current) pivot.remove(current);
+    curKey=k; current=models[k]; pivot.add(current);
+    current.position.y=0;
+    var u=current.userData;
+    document.getElementById('m-name').textContent=u.name;
+    document.getElementById('m-kind').textContent=u.kind;
+    document.getElementById('m-tris').textContent=tris(current).toLocaleString('ru-RU')+' треугольников';
+    appear.t=instant||reduce?1:0;
+    [].forEach.call(document.querySelectorAll('[data-model]'),function(b){b.setAttribute('aria-pressed',b.dataset.model===k?'true':'false')});
+  }
+
+  // глазури
+  var gwrap=document.getElementById('glazes'), gname=document.getElementById('glaze-name');
+  var targetColor=new THREE.Color(GLAZES[0].c).convertSRGBToLinear();
+  GLAZES.forEach(function(g,i){
+    var b=document.createElement('button'); b.type='button'; b.className='gz'; b.style.setProperty('--c',g.c);
+    b.setAttribute('aria-label','Глазурь «'+g.name+'»'); b.setAttribute('aria-pressed',i===0?'true':'false');
+    b.addEventListener('click',function(){setGlaze(g.id)});
+    gwrap.appendChild(b);
+  });
+  function setGlaze(id,instant){
+    var g=GLAZES.filter(function(x){return x.id===id})[0]||GLAZES[0];
+    targetColor.set(g.c).convertSRGBToLinear(); if(instant||reduce) glazeMat.color.copy(targetColor);
+    gname.textContent=g.name;
+    [].forEach.call(gwrap.children,function(b,i){b.setAttribute('aria-pressed',GLAZES[i].id===g.id?'true':'false')});
+  }
+
+  [].forEach.call(document.querySelectorAll('[data-model]'),function(b){b.addEventListener('click',function(){if(b.dataset.model!==curKey) setModel(b.dataset.model)})});
+  var wireBtn=document.getElementById('wire');
+  wireBtn.addEventListener('click',function(){
+    var on=wireBtn.getAttribute('aria-pressed')!=='true'; wireBtn.setAttribute('aria-pressed',on?'true':'false');
+    Object.keys(wires).forEach(function(k){wires[k].visible=on});
+    glazeMat.transparent=on; glazeMat.opacity=on?0.55:1; clayMat.transparent=on; clayMat.opacity=on?0.55:1;
+  });
+  var spinBtn=document.getElementById('spin');
+  spinBtn.addEventListener('click',function(){auto=!auto;spinBtn.setAttribute('aria-pressed',auto?'true':'false')});
+  if(reduce){auto=false;spinBtn.setAttribute('aria-pressed','false')}
+  document.getElementById('zin').addEventListener('click',function(){targetZoom=Math.max(0.6,targetZoom-0.15)});
+  document.getElementById('zout').addEventListener('click',function(){targetZoom=Math.min(1.5,targetZoom+0.15)});
+
+  // перетаскивание
+  var hint=document.getElementById('hint'), lastX=0,lastY=0,lastT=0;
+  canvas.addEventListener('pointerdown',function(e){
+    dragging=true; canvas.setPointerCapture(e.pointerId); canvas.classList.add('drag');
+    lastX=e.clientX; lastY=e.clientY; lastT=performance.now(); velY=0; hint.classList.add('gone');
+  });
+  canvas.addEventListener('pointermove',function(e){
+    if(!dragging) return;
+    var now=performance.now(), dx=e.clientX-lastX, dy=e.clientY-lastY;
+    rotY+=dx*0.008; rotX=Math.max(-0.15,Math.min(0.75,rotX+dy*0.005));
+    velY=dx*0.008/Math.max(8,now-lastT)*16;
+    lastX=e.clientX; lastY=e.clientY; lastT=now;
+  });
+  function end(){dragging=false;canvas.classList.remove('drag')}
+  canvas.addEventListener('pointerup',end); canvas.addEventListener('pointercancel',end);
+  canvas.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'){rotY-=0.2}if(e.key==='ArrowRight'){rotY+=0.2}});
+  canvas.tabIndex=0;
+
+  function resize(){
+    var w=canvas.clientWidth||canvas.parentNode.clientWidth, h=canvas.clientHeight||canvas.parentNode.clientHeight;
+    if(RENDER){w=+params.get('w')||800;h=+params.get('h')||1000;canvas.style.width=w+'px';canvas.style.height=h+'px';renderer.setPixelRatio(1)}
+    renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize',resize);
+
+  function ease(t){return 1-Math.pow(1-t,3)}
+  var last=performance.now(), visible=true;
+  if('IntersectionObserver' in window && !RENDER){new IntersectionObserver(function(es){visible=es[0].isIntersecting}).observe(studio)}
+  function frame(now){
+    var dt=Math.min(0.05,(now-last)/1000); last=now;
+    if(!dragging){ rotY+=velY; velY*=0.92; if(auto&&Math.abs(velY)<0.002) rotY+=dt*0.35; }
+    zoom+=(targetZoom-zoom)*0.12;
+    glazeMat.color.lerp(targetColor,0.14);
+    if(appear.t<1){appear.t=Math.min(1,appear.t+dt/0.6)}
+    var s=appear.from+(1-appear.from)*ease(appear.t);
+    pivot.scale.setScalar(s); pivot.rotation.y=rotY+(1-ease(appear.t))*-0.9;
+    var u=current.userData, d=u.dist*zoom;
+    var portrait=camera.aspect<0.9; if(portrait) d*=1.35/Math.max(0.55,camera.aspect)*0.75;
+    camera.position.set(0,u.ty+Math.sin(rotX)*d,Math.cos(rotX)*d);
+    camera.lookAt(0,u.ty*(RENDER?0.95:0.9),0);
+    renderer.render(scene,camera);
+  }
+  function loop(now){ if(visible||RENDER) frame(now); requestAnimationFrame(loop) }
+
+  setModel(curKey,true);
+  setGlaze(params.get('glaze')||'cream',true);
+  if(RENDER){ rotY=+(params.get('ry')||-0.55); rotX=+(params.get('rx')||0.2); targetZoom=zoom=+(params.get('z')||1); }
+  resize();
+  requestAnimationFrame(function(t){last=t;frame(t);frame(t+16);window.renderDone=true;loop(t)});
+})();
+</script>
+</body>
+</html>
