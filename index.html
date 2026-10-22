@@ -7,6 +7,13 @@
 <meta name="description" content="Лендинги, сайты для малого бизнеса и интерфейсы сервисов. Портфолио и контакты.">
 <meta property="og:title" content="Shuka — веб-дизайнер">
 <meta property="og:description" content="Лендинги, сайты для малого бизнеса и интерфейсы сервисов. Портфолио и контакты.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shukagodx.github.io/">
+<meta property="og:site_name" content="Shuka — веб-дизайнер">
+<meta property="og:image" content="https://shukagodx.github.io/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' fill='none' stroke='%233D5AFE' stroke-width='4'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -165,6 +172,29 @@ section.block{padding-block:72px;border-top:1px solid var(--line)}
 .val{font-family:var(--f-display);font-size:20px;font-weight:600;user-select:all}
 footer{padding-block:32px 48px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;color:var(--muted)}
 
+/* До и после */
+.ba-list{display:flex;flex-direction:column;gap:56px}
+.ba{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px;align-items:center}
+@media (max-width:900px){.ba{grid-template-columns:minmax(0,1fr);gap:24px}}
+.cmp{position:relative;aspect-ratio:4/3;max-width:100%;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--surface);touch-action:pan-y;user-select:none}
+.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
+.cmp-before{clip-path:inset(0 calc(100% - var(--x)) 0 0)}
+.cmp-line{position:absolute;top:0;bottom:0;left:var(--x);width:2px;margin-left:-1px;background:#FFFFFF;box-shadow:0 0 0 1px rgba(0,0,0,0.15);pointer-events:none}
+.cmp-line i{position:absolute;top:50%;left:50%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:#FFFFFF;box-shadow:0 6px 18px rgba(0,0,0,0.25);transition:transform 160ms cubic-bezier(0.23,1,0.32,1)}
+.cmp-line i::before,.cmp-line i::after{content:"";position:absolute;top:50%;width:0;height:0;margin-top:-6px;border:6px solid transparent}
+.cmp-line i::before{left:7px;border-right-color:#121417}
+.cmp-line i::after{right:7px;border-left-color:#121417}
+.cmp:active .cmp-line i{transform:scale(0.92)}
+.cmp input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize}
+.cmp input:focus-visible ~ .cmp-line i,.cmp:focus-within .cmp-line i{outline:2px solid var(--accent);outline-offset:3px}
+.cmp-tag{position:absolute;top:12px;font-family:var(--f-mono);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;background:rgba(18,20,23,0.78);color:#FFFFFF;padding:4px 10px;border-radius:999px;pointer-events:none}
+.cmp-tag.l{left:12px}.cmp-tag.r{right:12px}
+.ba-text h3{font-size:26px;font-weight:700;letter-spacing:-0.02em}
+.ba-text ul{list-style:none;padding:0;margin:20px 0 8px;display:flex;flex-direction:column;gap:16px}
+.ba-text li{display:flex;flex-direction:column;gap:4px;padding-left:16px;border-left:2px solid var(--line)}
+.ba-text .was{color:var(--muted);font-size:14px;text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--muted) 50%,transparent)}
+.ba-text .now{font-weight:500}
+
 /* Логотипы на главной */
 .lg-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
 @media (max-width:900px){.lg-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -190,6 +220,7 @@ footer{padding-block:32px 48px;display:flex;flex-wrap:wrap;justify-content:space
     <a class="logo" href="#top"><i aria-hidden="true"></i>Shuka</a>
     <nav aria-label="Разделы">
       <a href="#works">Работы</a>
+      <a href="#before-after">До и после</a>
       <a href="#logos">Логотипы</a>
       <a href="#process">Процесс</a>
       <a href="#services">Услуги</a>
@@ -298,6 +329,46 @@ footer{padding-block:32px 48px;display:flex;flex-wrap:wrap;justify-content:space
     </div>
   </section>
 
+  <section class="block" id="before-after">
+    <div class="head">
+      <div>
+        <div class="eyebrow">До и после</div>
+        <h2>Что изменилось в редизайнах</h2>
+      </div>
+      <p>Потяните разделитель, чтобы сравнить первый экран старого сайта и нового.</p>
+    </div>
+    <div class="ba-list">
+      <article class="ba">
+        <div class="cmp" style="--x:50%">
+          <img src="img/after-poedinki.jpg" alt="Новая главная страница: ринг с таймером поединка" width="1024" height="768" loading="lazy">
+          <img class="cmp-before" src="img/before-poedinki.jpg" alt="Старая главная страница сайта Федерации управленческой борьбы" width="1024" height="768" loading="lazy">
+          <span class="cmp-line" aria-hidden="true"><i></i></span>
+          <span class="cmp-tag l">Было</span><span class="cmp-tag r">Стало</span>
+          <input type="range" min="0" max="100" value="50" id="cmp-poedinki" aria-label="Сравнить старый и новый дизайн: Управленческие поединки">
+        </div>
+        <div class="ba-text">
+          <h3>Управленческие поединки</h3>
+          <ul><li><span class="was">Первый экран занят меню из восьми пунктов, баннерами и колонками ссылок</span><span class="now">Ринг двух сторон с живым таймером: суть поединка понятна за секунду</span></li><li><span class="was">Вступление и регистрация FUB_id теряются среди ссылок</span><span class="now">Кнопки «Вступить» и «Найти турнир» на первом экране, FUB_id — отдельным блоком</span></li><li><span class="was">Турниры — длинный список мелким текстом</span><span class="now">Табло турниров с фильтром по типу: финалы, кубки, молодёжь</span></li></ul>
+          <a class="open" href="works/poedinki.html">Открыть редизайн <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="ba">
+        <div class="cmp" style="--x:50%">
+          <img src="img/after-ms-polimer.jpg" alt="Новая главная страница с иллюстрацией пакета" width="1024" height="768" loading="lazy">
+          <img class="cmp-before" src="img/before-ms-polimer.jpg" alt="Старая главная страница сайта МС-Полимер" width="1024" height="768" loading="lazy">
+          <span class="cmp-line" aria-hidden="true"><i></i></span>
+          <span class="cmp-tag l">Было</span><span class="cmp-tag r">Стало</span>
+          <input type="range" min="0" max="100" value="50" id="cmp-ms-polimer" aria-label="Сравнить старый и новый дизайн: МС-Полимер">
+        </div>
+        <div class="ba-text">
+          <h3>МС-Полимер</h3>
+          <ul><li><span class="was">Логотип наезжает на текст преимуществ, пункты меню едва читаются</span><span class="now">Чистая шапка: бесплатный телефон, часы работы и кнопка расчёта</span></li><li><span class="was">Общие слова «100%» вместо фактов о заказе</span><span class="now">Главное сразу: от 200 кг, бесплатная доставка по Екатеринбургу, 3–5 дней по России</span></li><li><span class="was">Заявка — только имя и телефон</span><span class="now">Конфигуратор тиража: тип, размер, толщина и печать с живым превью пакета</span></li></ul>
+          <a class="open" href="works/ms-polimer.html">Открыть редизайн <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    </div>
+  </section>
+
   <section class="block" id="logos">
     <div class="head">
       <div>
@@ -369,5 +440,13 @@ document.querySelectorAll('.copy').forEach(function(btn){
 });
 </script>
 
+
+<script>
+[].forEach.call(document.querySelectorAll('.cmp'),function(c){
+  var r=c.querySelector('input');
+  function set(){c.style.setProperty('--x',r.value+'%')}
+  r.addEventListener('input',set);set();
+});
+</script>
 </body>
 </html>
