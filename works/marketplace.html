@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Карточки для Ozon и Wildberries · Shuka</title>
-<meta name="description" content="Инфографика карточек товаров для Ozon и Wildberries: техника, игрушки и одежда — главный слайд, преимущества, размеры и цвета.">
+<meta name="description" content="Карточки товаров для Ozon и Wildberries: одежда, товары для дома и техника — товар в жизни плюс инфографика.">
 <meta property="og:title" content="Карточки для Ozon и Wildberries · Shuka">
-<meta property="og:description" content="Карточки товаров для маркетплейсов: наушники, плюшевый мишка и шапка.">
+<meta property="og:description" content="Карточки товаров для маркетплейсов: свитер, чугунный чайник и наушники.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://shukagodx.github.io/works/marketplace.html">
 <meta property="og:site_name" content="Shuka — веб-дизайнер">
@@ -64,6 +64,7 @@ h1,h2{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-0.
 .slot-n{font-family:var(--f-mono);font-size:12.5px;color:var(--muted)}
 
 /* Карточка 3:4 — все размеры в cqw */
+.mpi{display:block;aspect-ratio:3/4;width:100%;height:auto;border-radius:16px;box-shadow:0 18px 40px rgba(30,28,26,0.12),0 0 0 1px rgba(30,28,26,0.06);user-select:none;-webkit-user-drag:none;background:#E4DED6}
 .mp{container-type:inline-size;position:relative;aspect-ratio:3/4;width:100%;border-radius:16px;overflow:hidden;box-shadow:0 18px 40px rgba(30,28,26,0.12),0 0 0 1px rgba(30,28,26,0.06);font-family:var(--f-card-b);user-select:none}
 .mp > *{position:absolute}
 .mp .ov{inset:0;width:100%;height:100%;pointer-events:none}
@@ -136,114 +137,54 @@ h1,h2{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-0.
   <section class="wrap intro">
     <h1>Карточки для <span>Ozon и Wildberries</span></h1>
     <div>
-      <p>Слайды для трёх категорий: техника, игрушки и одежда. Главный слайд, преимущества, размеры и цвета — каждый отвечает на один вопрос покупателя. Фото товаров — рендеры моих 3D-моделей.</p>
+      <p>Слайды для трёх категорий: одежда, товары для дома и техника. Товар показан в жизни — на модели, на столе, в руках, — а инфографика отвечает на вопросы покупателя: из чего, чем удобно, какие цвета.</p>
       <div class="facts"><span>3:4 · 900×1200</span><span>12 слайдов</span><span>читается в превью</span></div>
     </div>
   </section>
 
+  <section class="prod" id="sw" aria-labelledby="sw-t">
+    <div class="wrap car-head">
+      <div><h2 id="sw-t">Одежда · свитер крупной вязки</h2><p>Товар на модели, детали вязки, преимущества и цвета.</p></div>
+      <div class="arrows">
+        <span class="count" data-for="sw-s" aria-live="polite">1 / 4</span>
+        <button type="button" class="arr" data-dir="-1" data-target="sw-s" aria-label="Предыдущая карточка"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+        <button type="button" class="arr" data-dir="1" data-target="sw-s" aria-label="Следующая карточка"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></button>
+      </div>
+    </div>
+    <ol class="car" id="sw-s" tabindex="0" aria-label="Карточки: Одежда · свитер крупной вязки"><li class="slot"><span class="slot-n">1 · Главная</span><img class="mpi" src="../img/mp/sw1.jpg" alt="Карточка свитера — главная" width="900" height="1200" loading="lazy" draggable="false"></li><li class="slot"><span class="slot-n">2 · Детали</span><img class="mpi" src="../img/mp/sw2.jpg" alt="Карточка свитера — детали" width="900" height="1200" loading="lazy" draggable="false"></li><li class="slot"><span class="slot-n">3 · Преимущества</span><img class="mpi" src="../img/mp/sw3.jpg" alt="Карточка свитера — преимущества" width="900" height="1200" loading="lazy" draggable="false"></li><li class="slot"><span class="slot-n">4 · Цвета</span><img class="mpi" src="../img/mp/sw4.jpg" alt="Карточка свитера — цвета" width="900" height="1200" loading="lazy" draggable="false"></li></ol>
+  </section>
+
+  <section class="prod" id="tp" aria-labelledby="tp-t">
+    <div class="wrap car-head">
+      <div><h2 id="tp-t">Дом · чугунный чайник</h2><p>Предмет в интерьере, свойства материала, комплект и цвета.</p></div>
+      <div class="arrows">
+        <span class="count" data-for="tp-s" aria-live="polite">1 / 4</span>
+        <button type="button" class="arr" data-dir="-1" data-target="tp-s" aria-label="Предыдущая карточка"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+        <button type="button" class="arr" data-dir="1" data-target="tp-s" aria-label="Следующая карточка"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></button>
+      </div>
+    </div>
+    <ol class="car" id="tp-s" tabindex="0" aria-label="Карточки: Дом · чугунный чайник"><li class="slot"><span class="slot-n">1 · Главная</span><img class="mpi" src="../img/mp/tp1.jpg" alt="Карточка чугунного чайника — главная" width="900" height="1200" loading="lazy" draggable="false"></li><li class="slot"><span class="slot-n">2 · Преимущества</span><img class="mpi" src="../img/mp/tp2.jpg" alt="Карточка чугунного чайника — преимущества" width="900" height="1200" loading="lazy" draggable="false"></li><li class="slot"><span class="slot-n">3 · Комплект</span><img class="mpi" src="../img/mp/tp3.jpg" alt="Карточка чугунного чайника — комплект" width="900" height="1200" loading="lazy" draggable="false"></li><li class="slot"><span class="slot-n">4 · Цвета</span><img class="mpi" src="../img/mp/tp4.jpg" alt="Карточка чугунного чайника — цвета" width="900" height="1200" loading="lazy" draggable="false"></li></ol>
+  </section>
+
   <section class="prod" id="hp" aria-labelledby="hp-t">
     <div class="wrap car-head">
-      <div><h2 id="hp-t">Техника · беспроводные наушники</h2><p>Главный слайд, преимущества, автономность и цвета.</p></div>
+      <div><h2 id="hp-t">Техника · беспроводные наушники</h2><p>Лайфстайл-кадр, конструкция, комфорт и цвета.</p></div>
       <div class="arrows">
         <span class="count" data-for="hp-s" aria-live="polite">1 / 4</span>
         <button type="button" class="arr" data-dir="-1" data-target="hp-s" aria-label="Предыдущая карточка"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
         <button type="button" class="arr" data-dir="1" data-target="hp-s" aria-label="Следующая карточка"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></button>
       </div>
     </div>
-    <ol class="car" id="hp-s" tabindex="0" aria-label="Карточки: Техника · беспроводные наушники"><li class="slot"><span class="slot-n">1 · Главная</span><div class="mp" style="background:linear-gradient(160deg,#FFF3EC 0%,#FBD9CA 100%)">
-  <div class="blob" style="left:14%;top:35%;width:71.111cqw;background:#F7B9A3"></div>
-  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#D2482A">ТЕХНИКА</span><h3 style="color:#1D1B19">Беспроводные наушники</h3><p class="sub" style="color:#5F5A54">Шумоподавление · до 40 часов</p></div>
-  <div class="stamp" style="left:76.67%;top:20.83%;width:17.778cqw;background:#1D1B19"><span>40<br>часов</span></div>
-  <img class="pr" src="../img/mp/hp-coral.png" alt="Беспроводные наушники" style="left:18.89%;top:31.67%;width:62.22%" width="560" height="523" loading="lazy" draggable="false">
-  <div class="pills" style="left:5.33%;top:88.50%;width:89.333cqw"><span style="background:#FFFFFF;color:#1D1B19"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1D1B19" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><rect x="5" y="8" width="10" height="8" rx="1"/><path d="M18 9v.01M18 12v.01M18 15v.01"/></svg>Bluetooth 5.3</span><span style="background:#FFFFFF;color:#1D1B19"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1D1B19" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h12v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM16 10h2a2 2 0 0 1 0 4h-2"/></svg>Шумодав</span><span style="background:#FFFFFF;color:#1D1B19"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1D1B19" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg>Чехол</span></div>
-</div></li><li class="slot"><span class="slot-n">2 · Преимущества</span><div class="mp" style="background:radial-gradient(120% 80% at 50% 60%,#33302D 0%,#151413 100%)">
-  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#FF8A6B">ТЕХНИКА</span><h3 style="color:#FFFFFF">Удобно носить весь день</h3></div>
-  <img class="pr" src="../img/mp/hp-black-alt.png" alt="Беспроводные наушники, чёрные" style="left:15.56%;top:35.00%;width:71.11%" width="640" height="653" loading="lazy" draggable="false">
-  <svg class="ov" viewBox="0 0 900 1200" aria-hidden="true"><path d="M373 330 L393 504" stroke="#FF8A6B" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/><circle cx="393" cy="504" r="11" fill="#FF8A6B" stroke="#FFF" stroke-width="4"/><path d="M220 1000 L266 817" stroke="#FF8A6B" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/><circle cx="266" cy="817" r="11" fill="#FF8A6B" stroke="#FFF" stroke-width="4"/><path d="M700 330 L621 877" stroke="#FF8A6B" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/><circle cx="621" cy="877" r="11" fill="#FF8A6B" stroke="#FFF" stroke-width="4"/></svg><div class="co" style="left:7.11%;top:25.00%;width:36.667cqw"><b>Мягкое оголовье</b><span>не давит даже через 3 часа</span></div><div class="co" style="left:7.11%;top:83.33%;width:42.222cqw"><b>Амбушюры с памятью</b><span>повторяют форму уха</span></div><div class="co" style="left:62.22%;top:25.00%;width:33.333cqw"><b>Сенсор на чашке</b><span>громкость и треки касанием</span></div>
-</div></li><li class="slot"><span class="slot-n">3 · Автономность</span><div class="mp" style="background:#FFF6F1">
-  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#D2482A">ТЕХНИКА</span><h3 style="color:#1D1B19">Заряд на всю неделю</h3></div>
-  <div class="big" style="left:7.11%;top:27.50%;color:#D2482A;font-size:28.889cqw">40<small>ч</small></div>
-  <div class="spec" style="left:7.11%;top:53.33%;width:52.222cqw">
-    <div><b>10 мин</b><span>зарядки — 5 часов музыки</span></div>
-    <div><b>USB-C</b><span>один кабель с телефоном</span></div>
-    <div><b>250 г</b><span>легче, чем кажется</span></div>
-  </div>
-  <img class="pr" src="../img/mp/hp-white.png" alt="Беспроводные наушники, белые" style="left:52.22%;top:46.67%;width:46.67%" width="420" height="392" loading="lazy" draggable="false">
-</div></li><li class="slot"><span class="slot-n">4 · Цвета</span><div class="mp" style="background:#FFF6F1">
-  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#D2482A">ТЕХНИКА</span><h3 style="color:#1D1B19">5 цветов под ваш стиль</h3></div>
-  <div class="swg" style="left:5.33%;top:27.50%;width:89.333cqw"><figure><img src="../img/mp/hp-coral.png" alt="Наушники, цвет «Коралл»" loading="lazy" draggable="false"><figcaption style="color:#1D1B19">Коралл</figcaption></figure><figure><img src="../img/mp/hp-black.png" alt="Наушники, цвет «Чёрный»" loading="lazy" draggable="false"><figcaption style="color:#1D1B19">Чёрный</figcaption></figure><figure><img src="../img/mp/hp-white.png" alt="Наушники, цвет «Белый»" loading="lazy" draggable="false"><figcaption style="color:#1D1B19">Белый</figcaption></figure><figure><img src="../img/mp/hp-sage.png" alt="Наушники, цвет «Шалфей»" loading="lazy" draggable="false"><figcaption style="color:#1D1B19">Шалфей</figcaption></figure><figure><img src="../img/mp/hp-sand.png" alt="Наушники, цвет «Песок»" loading="lazy" draggable="false"><figcaption style="color:#1D1B19">Песок</figcaption></figure><figure class="note" style="background:#D2482A"><b>Чехол в цвет</b><span>Каждые наушники — с тканевым чехлом того же оттенка</span></figure></div>
-</div></li></ol>
-  </section>
-
-  <section class="prod" id="bear" aria-labelledby="bear-t">
-    <div class="wrap car-head">
-      <div><h2 id="bear-t">Игрушки · плюшевый мишка</h2><p>Главный слайд, безопасность, размер и цвета.</p></div>
-      <div class="arrows">
-        <span class="count" data-for="bear-s" aria-live="polite">1 / 4</span>
-        <button type="button" class="arr" data-dir="-1" data-target="bear-s" aria-label="Предыдущая карточка"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
-        <button type="button" class="arr" data-dir="1" data-target="bear-s" aria-label="Следующая карточка"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></button>
-      </div>
-    </div>
-    <ol class="car" id="bear-s" tabindex="0" aria-label="Карточки: Игрушки · плюшевый мишка"><li class="slot"><span class="slot-n">1 · Главная</span><div class="mp" style="background:linear-gradient(160deg,#FFF7EC 0%,#F6E1C3 100%)">
-  <div class="blob" style="left:12%;top:36%;width:75.556cqw;background:#F1CFA0"></div>
-  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#B8681F">ИГРУШКИ</span><h3 style="color:#1D1B19">Плюшевый мишка</h3><p class="sub" style="color:#5F5A54">Мягкий, 35 см · подарок на любой праздник</p></div>
-  <div class="stamp" style="left:73.33%;top:21.83%;width:21.111cqw;background:#B8681F"><span style="font-size:2.444cqw">в&nbsp;подарок</span></div>
-  <img class="pr" src="../img/mp/bear-caramel.png" alt="Плюшевый мишка, карамельный" style="left:22.22%;top:30.83%;width:55.56%" width="500" height="522" loading="lazy" draggable="false">
-  <div class="pills" style="left:5.33%;top:88.50%;width:89.333cqw"><span style="background:#FFFFFF;color:#3B2A1C"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#3B2A1C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15M5 19c3-4 6-7 10-9"/></svg>Гипоаллергенно</span><span style="background:#FFFFFF;color:#3B2A1C"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#3B2A1C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 8h16M8 5.5h.01M11 5.5h.01"/><circle cx="12" cy="14.5" r="3.5"/></svg>Стирка 30 °C</span><span style="background:#FFFFFF;color:#3B2A1C"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#3B2A1C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V11M11 10V4.5a1.5 1.5 0 0 1 3 0V11M14 10.5V6a1.5 1.5 0 0 1 3 0v7c0 4-3 8-7 8-3 0-5-2-6.5-4.5L2 13.5a1.6 1.6 0 0 1 2.6-1.8L8 15"/></svg>Мягкий плюш</span></div>
-</div></li><li class="slot"><span class="slot-n">2 · Безопасность</span><div class="mp lightco" style="background:linear-gradient(170deg,#FCEFF3,#F4D3DD)">
-  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#C2456B">ИГРУШКИ</span><h3 style="color:#1D1B19">Безопасно для малышей</h3></div>
-  <img class="pr" src="../img/mp/bear-pink.png" alt="Плюшевый мишка, розовый" style="left:20.00%;top:33.33%;width:60.00%" width="540" height="564" loading="lazy" draggable="false">
-  <svg class="ov" viewBox="0 0 900 1200" aria-hidden="true"><path d="M300 400 L320 552" stroke="#C2456B" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/><circle cx="320" cy="552" r="11" fill="#C2456B" stroke="#FFF" stroke-width="4"/><path d="M680 520 L517 770" stroke="#C2456B" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/><circle cx="517" cy="770" r="11" fill="#C2456B" stroke="#FFF" stroke-width="4"/><path d="M240 1010 L303 877" stroke="#C2456B" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/><circle cx="303" cy="877" r="11" fill="#C2456B" stroke="#FFF" stroke-width="4"/></svg><div class="co" style="left:7.11%;top:25.00%;width:36.667cqw"><b>Глаза и нос пришиты</b><span>не оторвать даже зубами</span></div><div class="co" style="left:62.22%;top:35.00%;width:33.333cqw"><b>Плюш без ворса</b><span>не линяет и не лезет в рот</span></div><div class="co" style="left:7.11%;top:84.17%;width:46.667cqw"><b>Наполнитель — холлофайбер</b><span>не сбивается после стирки</span></div>
-</div></li><li class="slot"><span class="slot-n">3 · Размер</span><div class="mp" style="background:#FFF7EC">
-  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#B8681F">ИГРУШКИ</span><h3 style="color:#1D1B19">Удобно обнимать</h3><p class="sub" style="color:#5F5A54">Размер как у полугодовалого малыша</p></div>
-  <img class="pr" src="../img/mp/bear-caramel.png" alt="Плюшевый мишка, карамельный" style="left:25.56%;top:35.83%;width:46.67%" width="420" height="439" loading="lazy" draggable="false">
-  <svg class="ov" viewBox="0 0 900 1200" aria-hidden="true"><g stroke="#3B2A1C" stroke-width="3" fill="none" stroke-linecap="round"><path d="M180 455 V840"/><path d="M164 455 H196 M164 840 H196"/></g></svg>
-  <div class="dim v" style="left:-3.33%;top:51.67%">35 см</div>
-  <div class="big" style="left:62.22%;top:85.00%;color:#B8681F">3+<small>года</small></div>
-</div></li><li class="slot"><span class="slot-n">4 · Цвета</span><div class="mp" style="background:#FFF7EC">
-  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#B8681F">ИГРУШКИ</span><h3 style="color:#1D1B19">Выберите своего мишку</h3></div>
-  <div class="swg" style="left:5.33%;top:27.50%;width:89.333cqw"><figure><img src="../img/mp/bear-caramel.png" alt="Плюшевый мишка, цвет «Карамель»" loading="lazy" draggable="false"><figcaption style="color:#1D1B19">Карамель</figcaption></figure><figure><img src="../img/mp/bear-choco.png" alt="Плюшевый мишка, цвет «Шоколад»" loading="lazy" draggable="false"><figcaption style="color:#1D1B19">Шоколад</figcaption></figure><figure><img src="../img/mp/bear-milk.png" alt="Плюшевый мишка, цвет «Молоко»" loading="lazy" draggable="false"><figcaption style="color:#1D1B19">Молоко</figcaption></figure><figure><img src="../img/mp/bear-pink.png" alt="Плюшевый мишка, цвет «Розовый»" loading="lazy" draggable="false"><figcaption style="color:#1D1B19">Розовый</figcaption></figure><figure><img src="../img/mp/bear-blue.png" alt="Плюшевый мишка, цвет «Голубой»" loading="lazy" draggable="false"><figcaption style="color:#1D1B19">Голубой</figcaption></figure><figure class="note" style="background:#B8681F"><b>Открытка внутри</b><span>Подпишем пожелание при заказе в подарок</span></figure></div>
-</div></li></ol>
-  </section>
-
-  <section class="prod" id="hat" aria-labelledby="hat-t">
-    <div class="wrap car-head">
-      <div><h2 id="hat-t">Одежда · шапка-бини</h2><p>Главный слайд, преимущества, таблица размеров и цвета.</p></div>
-      <div class="arrows">
-        <span class="count" data-for="hat-s" aria-live="polite">1 / 4</span>
-        <button type="button" class="arr" data-dir="-1" data-target="hat-s" aria-label="Предыдущая карточка"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
-        <button type="button" class="arr" data-dir="1" data-target="hat-s" aria-label="Следующая карточка"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></button>
-      </div>
-    </div>
-    <ol class="car" id="hat-s" tabindex="0" aria-label="Карточки: Одежда · шапка-бини"><li class="slot"><span class="slot-n">1 · Главная</span><div class="mp" style="background:linear-gradient(160deg,#FFF8E8 0%,#F7E0AE 100%)">
-  <div class="blob" style="left:13%;top:36%;width:73.333cqw;background:#F1C96F"></div>
-  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#A8650B">ОДЕЖДА</span><h3 style="color:#1D1B19">Шапка-бини с помпоном</h3><p class="sub" style="color:#5F5A54">Меринос · двойной отворот</p></div>
-  <img class="pr" src="../img/mp/hat-mustard.png" alt="Шапка-бини, горчичная" style="left:22.22%;top:31.67%;width:55.56%" width="500" height="525" loading="lazy" draggable="false">
-  <div class="pills" style="left:5.33%;top:88.50%;width:89.333cqw"><span style="background:#FFFFFF;color:#3A2A0E"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#3A2A0E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15M5 19c3-4 6-7 10-9"/></svg>Меринос 100%</span><span style="background:#FFFFFF;color:#3A2A0E"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#3A2A0E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V11M11 10V4.5a1.5 1.5 0 0 1 3 0V11M14 10.5V6a1.5 1.5 0 0 1 3 0v7c0 4-3 8-7 8-3 0-5-2-6.5-4.5L2 13.5a1.6 1.6 0 0 1 2.6-1.8L8 15"/></svg>Не колется</span><span style="background:#FFFFFF;color:#3A2A0E"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#3A2A0E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20h12M8 20c-2-3-3-6-2-10h12c1 4 0 7-2 10M7 10c0-3 2-5 5-5s5 2 5 5"/></svg>One size</span></div>
-</div></li><li class="slot"><span class="slot-n">2 · Преимущества</span><div class="mp" style="background:radial-gradient(120% 80% at 50% 60%,#3A1B21 0%,#1C0D10 100%)">
-  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#FF9EAF">ОДЕЖДА</span><h3 style="color:#FFFFFF">Тепло без лишнего объёма</h3></div>
-  <img class="pr" src="../img/mp/hat-wine.png" alt="Шапка-бини, бордовая" style="left:21.11%;top:35.00%;width:57.78%" width="520" height="546" loading="lazy" draggable="false">
-  <svg class="ov" viewBox="0 0 900 1200" aria-hidden="true"><path d="M300 390 L383 507" stroke="#FF9EAF" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/><circle cx="383" cy="507" r="11" fill="#FF9EAF" stroke="#FFF" stroke-width="4"/><path d="M690 500 L509 691" stroke="#FF9EAF" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/><circle cx="509" cy="691" r="11" fill="#FF9EAF" stroke="#FFF" stroke-width="4"/><path d="M300 1010 L383 874" stroke="#FF9EAF" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/><circle cx="383" cy="874" r="11" fill="#FF9EAF" stroke="#FFF" stroke-width="4"/></svg><div class="co" style="left:7.11%;top:25.00%;width:36.667cqw"><b>Пышный помпон</b><span>держит форму после стирки</span></div><div class="co" style="left:62.22%;top:35.00%;width:33.333cqw"><b>Вязка «резинка»</b><span>тянется и не сползает</span></div><div class="co" style="left:7.11%;top:84.17%;width:48.889cqw"><b>Двойной отворот</b><span>закрывает уши в мороз</span></div>
-</div></li><li class="slot"><span class="slot-n">3 · Размер</span><div class="mp" style="background:#FFF8E8">
-  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#A8650B">ОДЕЖДА</span><h3 style="color:#1D1B19">Подойдёт по размеру</h3></div>
-  <table class="sz" style="left:7.11%;top:27.50%;width:85.778cqw">
-    <thead><tr><th scope="col">Обхват головы</th><th scope="col">Подойдёт</th></tr></thead>
-    <tbody><tr><td>52–54 см</td><td>с отворотом</td></tr><tr><td>55–57 см</td><td>свободно</td></tr><tr><td>58–60 см</td><td>без отворота</td></tr></tbody>
-  </table>
-  <img class="pr" src="../img/mp/hat-emerald.png" alt="Шапка-бини, изумрудная" style="left:30.00%;top:63.33%;width:40.00%" width="360" height="378" loading="lazy" draggable="false">
-</div></li><li class="slot"><span class="slot-n">4 · Цвета</span><div class="mp" style="background:#FFF8E8">
-  <div class="hd" style="left:7.11%;top:5.83%;width:85.778cqw"><span class="brand" style="color:#A8650B">ОДЕЖДА</span><h3 style="color:#1D1B19">5 цветов на зиму</h3></div>
-  <div class="swg" style="left:5.33%;top:27.50%;width:89.333cqw"><figure><img src="../img/mp/hat-mustard.png" alt="Шапка-бини, цвет «Горчица»" loading="lazy" draggable="false"><figcaption style="color:#1D1B19">Горчица</figcaption></figure><figure><img src="../img/mp/hat-wine.png" alt="Шапка-бини, цвет «Бордо»" loading="lazy" draggable="false"><figcaption style="color:#1D1B19">Бордо</figcaption></figure><figure><img src="../img/mp/hat-emerald.png" alt="Шапка-бини, цвет «Изумруд»" loading="lazy" draggable="false"><figcaption style="color:#1D1B19">Изумруд</figcaption></figure><figure><img src="../img/mp/hat-cream.png" alt="Шапка-бини, цвет «Крем»" loading="lazy" draggable="false"><figcaption style="color:#1D1B19">Крем</figcaption></figure><figure><img src="../img/mp/hat-graphite.png" alt="Шапка-бини, цвет «Графит»" loading="lazy" draggable="false"><figcaption style="color:#1D1B19">Графит</figcaption></figure><figure class="note" style="background:#A8650B"><b>Есть варежки</b><span>В тех же цветах — соберите комплект</span></figure></div>
-</div></li></ol>
+    <ol class="car" id="hp-s" tabindex="0" aria-label="Карточки: Техника · беспроводные наушники"><li class="slot"><span class="slot-n">1 · Главная</span><img class="mpi" src="../img/mp/hp1.jpg" alt="Карточка беспроводных наушников — главная" width="900" height="1200" loading="lazy" draggable="false"></li><li class="slot"><span class="slot-n">2 · Конструкция</span><img class="mpi" src="../img/mp/hp2.jpg" alt="Карточка беспроводных наушников — конструкция" width="900" height="1200" loading="lazy" draggable="false"></li><li class="slot"><span class="slot-n">3 · Комфорт</span><img class="mpi" src="../img/mp/hp3.jpg" alt="Карточка беспроводных наушников — комфорт" width="900" height="1200" loading="lazy" draggable="false"></li><li class="slot"><span class="slot-n">4 · Цвета</span><img class="mpi" src="../img/mp/hp4.jpg" alt="Карточка беспроводных наушников — цвета" width="900" height="1200" loading="lazy" draggable="false"></li></ol>
   </section>
   <section class="wrap why" aria-label="Принципы">
     <div><h3>Один слайд — одна мысль</h3><p>Покупатель листает быстро, поэтому на каждом слайде один ответ: что это, чем хорошо, какого размера, какие цвета.</p></div>
-    <div><h3>Читается в превью</h3><p>Крупный заголовок и контраст: главный слайд понятен даже в маленькой плитке каталога.</p></div>
-    <div><h3>Единый стиль</h3><p>Фирменные цвета, один шрифт и одинаковая сетка: карточки бренда узнаются в выдаче.</p></div>
+    <div><h3>Читается в превью</h3><p>Крупный заголовок и контраст: главный слайд понятен даже в маленькой плитке каталога. Углы под «сердечко» и промо-плашки оставлены свободными.</p></div>
+    <div><h3>Товар в жизни</h3><p>Покупатель доверяет фото, а не рисунку: вещь на модели, посуда на столе, техника в руках — плюс 3–4 коротких тезиса.</p></div>
   </section>
   <section class="wrap end">
     <h2>Нужны карточки для вашего товара?</h2>
-    <p>Сделаю инфографику для Ozon и Wildberries, а если нет фото — смоделирую товар в 3D.</p>
+    <p>Сделаю инфографику для Ozon и Wildberries: подберу кадры, отретуширую фото и соберу серию слайдов.</p>
     <a class="btn" href="../index.html#contact">Обсудить проект</a>
   </section>
 </main>
